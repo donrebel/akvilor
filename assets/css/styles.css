@@ -1,0 +1,87 @@
+
+body {
+	background: #f4f4f4;
+  -ms-overflow-style: scrollbar;
+}
+
+a {
+	-moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+	-webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+	-ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+	transition: color 0.2s ease, border-bottom-color 0.2s ease;
+	color: inherit;
+	text-decoration: none;
+}
+
+a:before {
+	-moz-transition: color 0.2s ease;
+	-webkit-transition: color 0.2s ease;
+	-ms-transition: color 0.2s ease;
+	transition: color 0.2s ease;
+}
+
+a:hover {
+	border-bottom-color: transparent;
+	color: #79a7d3 !important;
+	text-decoration: none !important;
+}
+
+a:hover:before {
+	color: #79a7d3 !important;
+}
+
+a.akvilor {
+	font-family: "Raleway", Helvetica, sans-serif;
+	font-size: 0.7em;
+	font-weight: 800;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.close-btn {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	color: #646464;
+	font-size: 1.5em;
+	z-index: 100;
+	vertical-align: text-top;
+}
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* === Bootstrap Customs === */
+.form-control {
+	border-radius: 0px;
+}
+
+.btn {
+	border-radius: 0px;
+	font-family: "Raleway", Helvetica, sans-serif;
+	font-size: 0.6em;
+	font-weight: 800;
+	height: 4em;
+	text-transform: uppercase;
+	letter-spacing: 0.25em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+	-webkit-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+	-ms-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus {
+	background: rgba(46, 186, 174, 0.05);
+}
+.btn:hover:active {
+	background-color: rgba(46, 186, 174, 0.10);
+}

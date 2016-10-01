@@ -1,0 +1,11 @@
+{
+  "data" : [{
+    "userName": "cimmerian",
+    "personName": "Maksym Kovalenko",
+    "email":"max.y.kovalenko@gmail.com",
+    "avatarPicture": "images/avatar1.jpg",
+    "canvasPicture": "images/usercard.jpg",
+    "synopsis": "Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus",
+    "skilltaglist": ["#Python", "#Angular", "#DWBI", "#DatabaseDewelopment"]
+  }]
+}

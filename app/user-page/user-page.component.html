@@ -1,0 +1,24 @@
+<div class="container-fluid content-holder">
+  <app-user-card [userName]="userName"></app-user-card>
+</div>
+<div class="container-fluid content-holder">
+  <div class="row">
+    <div class="col-md-6 col-lg-6" *ngFor="let mpost of pageContent.posts">
+      <md-card>
+        <md-card-header>
+          <img md-card-avatar src="assets/images/avatar.jpg">
+          <md-card-title>{{mpost.title}}</md-card-title>
+          <md-card-subtitle>Header subtitle</md-card-subtitle>
+        </md-card-header>
+        <img md-card-image src={{mpost.titleImageSrc}}>
+        <md-card-content>
+          <p>Here is some more content</p>
+        </md-card-content>
+        <md-card-actions>
+          <button md-button>LIKE</button>
+          <button md-button>SHARE</button>
+        </md-card-actions>
+      </md-card>
+    <div>
+  </div>
+</div>
