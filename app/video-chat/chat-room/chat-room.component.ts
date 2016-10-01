@@ -6,7 +6,7 @@ declare var adapter: any;
   moduleId: module.id,
   selector: 'chat-room',
   templateUrl: 'chat-room.component.html',
-  styleUrls:[]
+  styleUrls: ['chat-room.component.css']
 })
 export class ChatRoomComponent {
 

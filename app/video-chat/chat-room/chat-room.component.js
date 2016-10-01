@@ -21,7 +21,7 @@ var ChatRoomComponent = (function () {
             moduleId: module.id,
             selector: 'chat-room',
             templateUrl: 'chat-room.component.html',
-            styleUrls: []
+            styleUrls: ['chat-room.component.css']
         }), 
         __metadata('design:paramtypes', [Object, Object, Object, Object, Object])
     ], ChatRoomComponent);
