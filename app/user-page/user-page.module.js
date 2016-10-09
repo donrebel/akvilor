@@ -28,7 +28,7 @@ var UserPageModule = (function () {
                 shared_module_1.SharedModule,
                 card_1.MdCardModule,
                 button_1.MdButtonModule,
-                user_page_routing_1.routing
+                user_page_routing_1.userPageRouting
             ],
             declarations: [
                 user_page_component_1.UserPageComponent,

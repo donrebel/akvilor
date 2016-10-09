@@ -15,6 +15,7 @@ var core_1 = require('@angular/core');
 //import { AkvAvatar } from '../../directives/default-avatar';
 var user_profile_service_1 = require('../services/user-profile.service');
 var utils_1 = require('../services/utils');
+var router_1 = require('@angular/router');
 var uploadURL = 'http://localhost:8080/profile/';
 var CModel_UserProfile = (function () {
     function CModel_UserProfile(userProfileData) {
@@ -34,9 +35,10 @@ var CModel_UserProfile = (function () {
 }());
 ;
 var UserCardComponent = (function () {
-    function UserCardComponent(userProfileService, utils) {
+    function UserCardComponent(userProfileService, utils, router) {
         this.userProfileService = userProfileService;
         this.utils = utils;
+        this.router = router;
         //public uploader:FileUploader = new FileUploader({url: uploadURL});
         //public hasBaseDropZoneOver:boolean = false;
         this.hasAnotherDropZoneOver = false;
@@ -99,6 +101,7 @@ var UserCardComponent = (function () {
     };
     UserCardComponent.prototype.avatar_change = function ($event) {
         console.log('Avatar changing');
+        this.router.navigate(['/video-chat']);
         /*$event.stopPropagation();
         this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
         this.isOpenEditUserCardForm = true;*/
@@ -132,7 +135,7 @@ var UserCardComponent = (function () {
                 'user-card.component.css'
             ]
         }), 
-        __metadata('design:paramtypes', [user_profile_service_1.UserProfileService, utils_1.Utils])
+        __metadata('design:paramtypes', [user_profile_service_1.UserProfileService, utils_1.Utils, router_1.Router])
     ], UserCardComponent);
     return UserCardComponent;
 }());

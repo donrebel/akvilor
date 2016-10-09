@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 require('./rxjs-operators');
 var auth_service_1 = require('./core/services/auth.service');
+var router_1 = require('@angular/router');
 var AppComponent = (function () {
-    function AppComponent(auth) {
+    function AppComponent(auth, router) {
         this.auth = auth;
+        this.router = router;
     }
     AppComponent.prototype.ngOnInit = function () {
     };
@@ -29,7 +31,7 @@ var AppComponent = (function () {
             templateUrl: 'app/app.component.html',
             styleUrls: ['app/app.component.css']
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
     ], AppComponent);
     return AppComponent;
 }());

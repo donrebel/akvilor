@@ -9,14 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var video_chat_routing_1 = require('./video-chat.routing');
+var chat_room_component_1 = require('./chat-room/chat-room.component');
 //import * as r from 'webrtc-adapter';
 var VideoChatModule = (function () {
     function VideoChatModule() {
     }
     VideoChatModule = __decorate([
         core_1.NgModule({
-            imports: [],
-            declarations: [],
+            imports: [
+                video_chat_routing_1.chatRouting
+            ],
+            declarations: [
+                chat_room_component_1.ChatRoomComponent
+            ],
             providers: []
         }), 
         __metadata('design:paramtypes', [])

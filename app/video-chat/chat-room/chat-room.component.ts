@@ -10,11 +10,14 @@ declare var adapter: any;
 })
 export class ChatRoomComponent {
 
-  constructor(sce, VideoStream, location, routeParams, Room) {
-    if (!(window as any).RTCPeerConnection  || !navigator.getUserMedia) {
-      console.log('WebRTC is not supported by your browser. You can try the app with Chrome and Firefox.')
-    }
-    console.log('good');
+  constructor(){
+    console.log('chat-room');
   }
+  // constructor(sce, VideoStream, location, routeParams, Room) {
+  //   if (!(window as any).RTCPeerConnection  || !navigator.getUserMedia) {
+  //     console.log('WebRTC is not supported by your browser. You can try the app with Chrome and Firefox.')
+  //   }
+  //   console.log('good');
+  // }
 
 }

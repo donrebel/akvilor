@@ -9,7 +9,7 @@ import { MainPageComponent } from './main-page.component';
 import { UserPageModule } from './user-page/user-page.module';
 
 @NgModule({
-  imports:      [
+  imports: [
     BrowserModule,
     routing,
     CoreModule,
@@ -20,8 +20,8 @@ import { UserPageModule } from './user-page/user-page.module';
     MainPageComponent
   ],
   providers: [
-      appRoutingProviders
-    ],
+    appRoutingProviders
+  ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { MdCardModule } from '@angular2-material/card';
 import { MdButtonModule } from '@angular2-material/button';
-import { routing } from './user-page.routing';
+
+import { userPageRouting } from './user-page.routing';
 
 import { UserPageComponent } from './user-page.component';
 import { UserCardComponent } from './user-card/user-card.component';
@@ -17,7 +18,7 @@ import { Utils } from './services/utils';
       SharedModule,
       MdCardModule,
       MdButtonModule,
-      routing
+      userPageRouting
     ],
     declarations: [
       UserPageComponent,

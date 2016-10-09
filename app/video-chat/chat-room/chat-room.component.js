@@ -10,11 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ChatRoomComponent = (function () {
-    function ChatRoomComponent(sce, VideoStream, location, routeParams, Room) {
-        if (!window.RTCPeerConnection || !navigator.getUserMedia) {
-            console.log('WebRTC is not supported by your browser. You can try the app with Chrome and Firefox.');
-        }
-        console.log('good');
+    function ChatRoomComponent() {
+        console.log('chat-room');
     }
     ChatRoomComponent = __decorate([
         core_1.Component({
@@ -23,7 +20,7 @@ var ChatRoomComponent = (function () {
             templateUrl: 'chat-room.component.html',
             styleUrls: ['chat-room.component.css']
         }), 
-        __metadata('design:paramtypes', [Object, Object, Object, Object, Object])
+        __metadata('design:paramtypes', [])
     ], ChatRoomComponent);
     return ChatRoomComponent;
 }());

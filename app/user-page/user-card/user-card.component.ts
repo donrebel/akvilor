@@ -8,6 +8,9 @@ import { UserProfileService } from '../services/user-profile.service';
 import { Utils } from '../services/utils';
 import { RatePerMinutePipe } from './user-card.pipes';
 
+import { Router,
+         NavigationExtras } from '@angular/router';
+
 const uploadURL = 'http://localhost:8080/profile/';
 class CModel_UserProfile {
   _id: string;
@@ -57,7 +60,8 @@ export class UserCardComponent implements OnInit {
 
   constructor (
       private userProfileService: UserProfileService,
-      private utils: Utils
+      private utils: Utils,
+      public router: Router
   ) {
       this.clickedOutside = this.clickedOutside.bind(this);
   }
@@ -132,6 +136,8 @@ export class UserCardComponent implements OnInit {
 
   avatar_change($event){
     console.log('Avatar changing');
+
+    this.router.navigate(['/video-chat']);
     /*$event.stopPropagation();
     this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
     this.isOpenEditUserCardForm = true;*/

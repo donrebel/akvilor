@@ -4,6 +4,9 @@ import './rxjs-operators';
 
 import { AuthService } from './core/services/auth.service';
 
+import { Router,
+         NavigationExtras } from '@angular/router';
+
 @Component({
   selector: 'akvilor',
   templateUrl: 'app/app.component.html',
@@ -12,7 +15,8 @@ import { AuthService } from './core/services/auth.service';
 export class AppComponent implements OnInit {
 
     constructor(
-      private auth: AuthService
+      private auth: AuthService,
+      public router: Router
     ) {}
 
     ngOnInit() {

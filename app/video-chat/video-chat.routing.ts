@@ -1,12 +1,12 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ChatRoomComponent } from './chat-room';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'room/', pathMatch: 'full' },
+const chatRoutes: Routes = [
+  { path: '', redirectTo: 'room', pathMatch: 'full' },
   { path: 'room/:roomId', component: ChatRoomComponent },
-  { path: 'room/', component: ChatRoomComponent }
+  { path: 'room', component: ChatRoomComponent }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forChild(routes);
+export const chatRouting: ModuleWithProviders = RouterModule.forChild(chatRoutes);
