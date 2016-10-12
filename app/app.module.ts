@@ -22,6 +22,6 @@ import { UserPageModule } from './user-page/user-page.module';
   providers: [
     appRoutingProviders
   ],
-  bootstrap:    [ AppComponent ]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

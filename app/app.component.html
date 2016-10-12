@@ -1,3 +1,4 @@
+
 <div class="container" id="main-tape">
   <header id="header">
     <div class="row">
@@ -19,11 +20,12 @@
     </div>
 	</header>
 
+  <chat-room *ngIf="openChatRoom"></chat-room>
+
   <router-outlet></router-outlet>
+
   <section id="footer">
-
     <span id="cdSiteSeal1"><script type="text/javascript" src="//tracedseals.starfieldtech.com/siteseal/get?scriptId=cdSiteSeal1&amp;cdSealType=Seal1&amp;sealId=55e4ye7y7mb73084d1f4b0bf23f314y63xy7mb7355e4ye79161ea7b3966b2f9c"></script></span>
-
 		<ul class="icons">
 			<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
 			<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>

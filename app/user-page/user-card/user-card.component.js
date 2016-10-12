@@ -13,6 +13,7 @@ var core_1 = require('@angular/core');
 //import OffClickDirective from "../directives/off-click.directive";
 //import { Draggable } from '../directives/draggable';
 //import { AkvAvatar } from '../../directives/default-avatar';
+var video_chat_service_1 = require('../../video-chat/services/video-chat.service');
 var user_profile_service_1 = require('../services/user-profile.service');
 var utils_1 = require('../services/utils');
 var router_1 = require('@angular/router');
@@ -35,8 +36,9 @@ var CModel_UserProfile = (function () {
 }());
 ;
 var UserCardComponent = (function () {
-    function UserCardComponent(userProfileService, utils, router) {
+    function UserCardComponent(userProfileService, videoChatService, utils, router) {
         this.userProfileService = userProfileService;
+        this.videoChatService = videoChatService;
         this.utils = utils;
         this.router = router;
         //public uploader:FileUploader = new FileUploader({url: uploadURL});
@@ -101,7 +103,8 @@ var UserCardComponent = (function () {
     };
     UserCardComponent.prototype.avatar_change = function ($event) {
         console.log('Avatar changing');
-        this.router.navigate(['/video-chat']);
+        this.videoChatService.setChatRoomInfo({ chatLink: 'asd' });
+        //this.router.navigate(['/video-chat']);
         /*$event.stopPropagation();
         this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
         this.isOpenEditUserCardForm = true;*/
@@ -135,7 +138,7 @@ var UserCardComponent = (function () {
                 'user-card.component.css'
             ]
         }), 
-        __metadata('design:paramtypes', [user_profile_service_1.UserProfileService, utils_1.Utils, router_1.Router])
+        __metadata('design:paramtypes', [user_profile_service_1.UserProfileService, video_chat_service_1.VideoChatService, utils_1.Utils, router_1.Router])
     ], UserCardComponent);
     return UserCardComponent;
 }());

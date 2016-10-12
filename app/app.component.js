@@ -11,13 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 require('./rxjs-operators');
 var auth_service_1 = require('./core/services/auth.service');
+var video_chat_service_1 = require('./video-chat/services/video-chat.service');
 var router_1 = require('@angular/router');
 var AppComponent = (function () {
-    function AppComponent(auth, router) {
+    function AppComponent(auth, videoChatService, router) {
         this.auth = auth;
+        this.videoChatService = videoChatService;
         this.router = router;
+        this.openChatRoom = false;
     }
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.videoChatService.getChatRoomInfo().subscribe(function (chatRoomInfo) {
+            console.log('chat room for: ', chatRoomInfo.chatLink);
+            _this.openChatRoom = true;
+        });
     };
     AppComponent.prototype.login = function () {
         this.auth.login();
@@ -31,7 +39,7 @@ var AppComponent = (function () {
             templateUrl: 'app/app.component.html',
             styleUrls: ['app/app.component.css']
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, video_chat_service_1.VideoChatService, router_1.Router])
     ], AppComponent);
     return AppComponent;
 }());

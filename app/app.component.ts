@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import './rxjs-operators';
 
 import { AuthService } from './core/services/auth.service';
+import { VideoChatService } from './video-chat/services/video-chat.service';
+import { ChatRoomInfo } from './video-chat/video-chat.d';
+
 
 import { Router,
          NavigationExtras } from '@angular/router';
@@ -13,13 +16,20 @@ import { Router,
   styleUrls: ['app/app.component.css']
 })
 export class AppComponent implements OnInit {
+    private openChatRoom: boolean = false;
 
     constructor(
       private auth: AuthService,
+      private videoChatService: VideoChatService,
       public router: Router
+
     ) {}
 
     ngOnInit() {
+      this.videoChatService.getChatRoomInfo().subscribe((chatRoomInfo: ChatRoomInfo) => {
+        console.log('chat room for: ', chatRoomInfo.chatLink)
+        this.openChatRoom = true;
+      })  
     }
 
     login() {

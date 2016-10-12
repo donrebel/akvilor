@@ -4,6 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 //import OffClickDirective from "../directives/off-click.directive";
 //import { Draggable } from '../directives/draggable';
 //import { AkvAvatar } from '../../directives/default-avatar';
+import { VideoChatService } from '../../video-chat/services/video-chat.service';
 import { UserProfileService } from '../services/user-profile.service';
 import { Utils } from '../services/utils';
 import { RatePerMinutePipe } from './user-card.pipes';
@@ -60,6 +61,7 @@ export class UserCardComponent implements OnInit {
 
   constructor (
       private userProfileService: UserProfileService,
+      private videoChatService: VideoChatService,
       private utils: Utils,
       public router: Router
   ) {
@@ -136,8 +138,9 @@ export class UserCardComponent implements OnInit {
 
   avatar_change($event){
     console.log('Avatar changing');
+    this.videoChatService.setChatRoomInfo({chatLink: 'asd'});
+    //this.router.navigate(['/video-chat']);
 
-    this.router.navigate(['/video-chat']);
     /*$event.stopPropagation();
     this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
     this.isOpenEditUserCardForm = true;*/

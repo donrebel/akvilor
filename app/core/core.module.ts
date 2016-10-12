@@ -5,13 +5,20 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth.guard.service';
+import { VideoChatModule } from '../video-chat/video-chat.module';
 
 @NgModule({
     imports: [
       CommonModule,
-      HttpModule
+      HttpModule,
+      VideoChatModule
     ],
-    declarations: [ ],
+    declarations: [
+
+    ],
+    exports: [
+      VideoChatModule
+    ],
     providers: [
       AuthService,
       AuthGuard,

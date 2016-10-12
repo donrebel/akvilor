@@ -17,6 +17,7 @@ var http_1 = require('@angular/http');
 var angular2_jwt_1 = require('angular2-jwt');
 var auth_service_1 = require('./services/auth.service');
 var auth_guard_service_1 = require('./services/auth.guard.service');
+var video_chat_module_1 = require('../video-chat/video-chat.module');
 var CoreModule = (function () {
     function CoreModule(parentModule) {
         if (parentModule) {
@@ -27,9 +28,13 @@ var CoreModule = (function () {
         core_1.NgModule({
             imports: [
                 common_1.CommonModule,
-                http_1.HttpModule
+                http_1.HttpModule,
+                video_chat_module_1.VideoChatModule
             ],
             declarations: [],
+            exports: [
+                video_chat_module_1.VideoChatModule
+            ],
             providers: [
                 auth_service_1.AuthService,
                 auth_guard_service_1.AuthGuard,
