@@ -18,13 +18,15 @@ var AppComponent = (function () {
         this.auth = auth;
         this.videoChatService = videoChatService;
         this.router = router;
-        this.openChatRoom = false;
+        //private openChatRoom: boolean = false;
+        this.chatRooms = [];
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.videoChatService.getChatRoomInfo().subscribe(function (chatRoomInfo) {
             console.log('chat room for: ', chatRoomInfo.chatLink);
-            _this.openChatRoom = true;
+            //this.openChatRoom = true;
+            _this.chatRooms.push(chatRoomInfo);
         });
     };
     AppComponent.prototype.login = function () {

@@ -7,8 +7,8 @@ import { AuthGuard } from '../core/services/auth.guard.service';
 
 const userPageRoutes: Routes = [
   // { path: 'user-page/:id', component: UserPageComponent, canActivate: [AuthGuard] }
-  { path: 'user-page/:id', component: UserPageComponent, canActivate: [AuthGuard] },
-  { path: 'video-chat', loadChildren: 'app/video-chat/video-chat.module#VideoChatModule'}
+  { path: 'user-page/:id', component: UserPageComponent, canActivate: [AuthGuard] }
+  // { path: 'video-chat', loadChildren: 'app/video-chat/video-chat.module#VideoChatModule'}
 ];
 
 export const userPageRouting: ModuleWithProviders = RouterModule.forChild(userPageRoutes);

@@ -51,6 +51,7 @@ export class UserCardComponent implements OnInit {
   @Input() userName:string;
   //public uploader:FileUploader = new FileUploader({url: uploadURL});
   //public hasBaseDropZoneOver:boolean = false;
+private test:number = 0;
   public hasAnotherDropZoneOver:boolean = false;
 
   errorMessage: string;
@@ -138,7 +139,8 @@ export class UserCardComponent implements OnInit {
 
   avatar_change($event){
     console.log('Avatar changing');
-    this.videoChatService.setChatRoomInfo({chatLink: 'asd'});
+    this.test = this.test + 1;
+    this.videoChatService.setChatRoomInfo({chatLink: 'asd' + this.test});
     //this.router.navigate(['/video-chat']);
 
     /*$event.stopPropagation();

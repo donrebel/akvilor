@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }   from './app.component';
 
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 import { routing, appRoutingProviders } from './app.routing';
 import { MainPageComponent } from './main-page.component';
 import { UserPageModule } from './user-page/user-page.module';
@@ -13,6 +14,7 @@ import { UserPageModule } from './user-page/user-page.module';
     BrowserModule,
     routing,
     CoreModule,
+    SharedModule,
     UserPageModule
   ],
   declarations: [

@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var core_module_1 = require('./core/core.module');
+var shared_module_1 = require('./shared/shared.module');
 var app_routing_1 = require('./app.routing');
 var main_page_component_1 = require('./main-page.component');
 var user_page_module_1 = require('./user-page/user-page.module');
@@ -24,6 +25,7 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 app_routing_1.routing,
                 core_module_1.CoreModule,
+                shared_module_1.SharedModule,
                 user_page_module_1.UserPageModule
             ],
             declarations: [

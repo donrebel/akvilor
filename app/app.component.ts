@@ -16,7 +16,8 @@ import { Router,
   styleUrls: ['app/app.component.css']
 })
 export class AppComponent implements OnInit {
-    private openChatRoom: boolean = false;
+    //private openChatRoom: boolean = false;
+    private chatRooms: ChatRoomInfo[] = [];
 
     constructor(
       private auth: AuthService,
@@ -28,8 +29,9 @@ export class AppComponent implements OnInit {
     ngOnInit() {
       this.videoChatService.getChatRoomInfo().subscribe((chatRoomInfo: ChatRoomInfo) => {
         console.log('chat room for: ', chatRoomInfo.chatLink)
-        this.openChatRoom = true;
-      })  
+        //this.openChatRoom = true;
+        this.chatRooms.push(chatRoomInfo);
+      })
     }
 
     login() {

@@ -20,7 +20,11 @@
     </div>
 	</header>
 
-  <chat-room *ngIf="openChatRoom"></chat-room>
+  <!-- <chat-room *ngIf="openChatRoom"></chat-room> -->
+
+  <div class="chatViewContainer">
+    <chat-room *ngFor="let chatRoom of chatRooms">{{chatRoom.chatLink}}</chat-room>
+  </div>
 
   <router-outlet></router-outlet>
 

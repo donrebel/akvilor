@@ -43,6 +43,7 @@ var UserCardComponent = (function () {
         this.router = router;
         //public uploader:FileUploader = new FileUploader({url: uploadURL});
         //public hasBaseDropZoneOver:boolean = false;
+        this.test = 0;
         this.hasAnotherDropZoneOver = false;
         this.form_submited = false;
         this.clickedOutside = this.clickedOutside.bind(this);
@@ -103,7 +104,8 @@ var UserCardComponent = (function () {
     };
     UserCardComponent.prototype.avatar_change = function ($event) {
         console.log('Avatar changing');
-        this.videoChatService.setChatRoomInfo({ chatLink: 'asd' });
+        this.test = this.test + 1;
+        this.videoChatService.setChatRoomInfo({ chatLink: 'asd' + this.test });
         //this.router.navigate(['/video-chat']);
         /*$event.stopPropagation();
         this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
