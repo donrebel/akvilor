@@ -20,13 +20,13 @@
     </div>
 	</header>
 
-  <!-- <chat-room *ngIf="openChatRoom"></chat-room> -->
-
-  <div class="chatViewContainer">
-    <chat-room *ngFor="let chatRoom of chatRooms">{{chatRoom.chatLink}}</chat-room>
-  </div>
-
   <router-outlet></router-outlet>
+
+  <div class="container-fluid chatViewContainer">
+    <div class="row">
+      <chat-room *ngFor="let chatRoom of chatRooms">{{chatRoom.chatLink}}</chat-room>
+    </div>
+  </div>
 
   <section id="footer">
     <span id="cdSiteSeal1"><script type="text/javascript" src="//tracedseals.starfieldtech.com/siteseal/get?scriptId=cdSiteSeal1&amp;cdSealType=Seal1&amp;sealId=55e4ye7y7mb73084d1f4b0bf23f314y63xy7mb7355e4ye79161ea7b3966b2f9c"></script></span>
