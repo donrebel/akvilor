@@ -1,16 +1,22 @@
+.col-padding-05 {
+  padding-left: 0.5em;
+}
 .chat-room {
   display: inline-block;
   position: relative;
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
+
+
 .chat-container {
   display: inline-block;
+  padding: 0px;
   position: relative;
 	z-index: 99;
 	background: #ffffff;
 	min-height: 400px;
-	min-width: 400px;	
+	min-width: 300px;
   overflow: hidden;
   resize: both;
 	border: solid 1px rgba(255, 255, 255, 1);
@@ -18,18 +24,20 @@
 }
 .chat-header{
 	cursor: move;
-	padding: 0px 7px 7px;
-	position: relative;
-	overflow: hidden;
-	width:100%;
-	font-size: 13px;
+	padding-left: 1.5em;
+  padding-right: 1.5em;
+  vertical-align: middle;
+	/*position: relative;*/
+	/*overflow: hidden;*/
+	/*width: 100%;*/
+	font-size: 1em;
 	font-weight: bold;
 	color: rgb(255, 255, 255);
-	text-overflow: ellipsis;
+	/*text-overflow: ellipsis;*/
 	background: #666;
-	height:40px;
+  height: 3em;
 }
-.chat-header:before {
+/*.chat-header:before {
     content: "";
     position: absolute;
     top: -100%;
@@ -38,8 +46,8 @@
     bottom: -100%;
     opacity: 0.25;
     background: radial-gradient(white, black);
-    /*animation: pulse 1s ease alternate infinite;*/
-}
+    /*animation: pulse 1s ease alternate infinite;
+}*/
 .right {
     float: right;
 }
@@ -51,25 +59,39 @@
 	padding-left:3px;
 }
 .h-r-cnt{
-	padding-top:8px;
-	height:100%;
-	display: inline-block;
+	/*height:100%;
+	display: inline-block;*/
 	cursor: auto;
+  margin: auto;
 }
 .chat-room-title{
 	color:rgb(255, 255, 255);
-	display: inline;
 }
 .chat-pannel{
-	position:relative;
-	width:100%;
-	height:30px;
-	padding-left:3px;
+	/*position:relative;*/
+	/*width:100%;*/
+	height: 2em;
+	padding-left: 1.5em;
+
 	background: RGB(240,240,240);
 	border-bottom: solid 1px rgba(160, 160, 160, 0.5);
 }
+.icontainer {
+  padding: 0.5em;
+  margin: auto;
+}
+.row-centered-horisontal {
+  vertical-align: middle;
+  text-align:center;
+}
+
+.row-centered-vertical {
+  display: flex;
+  align-items: center;
+}
+
 .chat-body-cnt{
-	width:100%;
+	/*width:100%;*/
 	position:absolute;
 	top:70px;
 	bottom:80px;
