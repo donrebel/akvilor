@@ -105,7 +105,8 @@ var UserCardComponent = (function () {
     UserCardComponent.prototype.avatar_change = function ($event) {
         console.log('Avatar changing');
         this.test = this.test + 1;
-        this.videoChatService.setChatRoomInfo({ chatLink: 'asd' + this.test });
+        //this.videoChatService.setChatRoomInfo({chatLink: 'asd' + this.test});
+        this.videoChatService.openVideoFrame({ chatLink: 'asd' });
         //this.router.navigate(['/video-chat']);
         /*$event.stopPropagation();
         this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);

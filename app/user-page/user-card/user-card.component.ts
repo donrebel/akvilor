@@ -140,7 +140,9 @@ private test:number = 0;
   avatar_change($event){
     console.log('Avatar changing');
     this.test = this.test + 1;
-    this.videoChatService.setChatRoomInfo({chatLink: 'asd' + this.test});
+    //this.videoChatService.setChatRoomInfo({chatLink: 'asd' + this.test});
+    this.videoChatService.openVideoFrame({chatLink: 'asd'});
+
     //this.router.navigate(['/video-chat']);
 
     /*$event.stopPropagation();

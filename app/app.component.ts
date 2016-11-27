@@ -18,6 +18,7 @@ import { Router,
 export class AppComponent implements OnInit {
     //private openChatRoom: boolean = false;
     private chatRooms: ChatRoomInfo[] = [];
+    private videoFrame: {};
 
     constructor(
       private auth: AuthService,
@@ -31,7 +32,13 @@ export class AppComponent implements OnInit {
         console.log('chat room for: ', chatRoomInfo.chatLink)
         //this.openChatRoom = true;
         this.chatRooms.push(chatRoomInfo);
+      });
+
+      this.videoChatService.getVideoFrameObservable().subscribe((chatRoomInfo: ChatRoomInfo) => {
+        this.videoFrame = {name: "ww"}
       })
+
+
     }
 
     login() {

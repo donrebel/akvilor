@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { chatRouting } from './video-chat.routing';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { ChatVideoRoomComponent} from './chat-video-room/chat-video-room.component';
 import { VideoChatService } from './services/video-chat.service';
 //import * as r from 'webrtc-adapter';
 
@@ -10,10 +11,12 @@ import { VideoChatService } from './services/video-chat.service';
     chatRouting
   ],
   declarations: [
-    ChatRoomComponent
+    ChatRoomComponent,
+    ChatVideoRoomComponent
   ],
   exports: [
-    ChatRoomComponent
+    ChatRoomComponent,
+    ChatVideoRoomComponent
   ],
   providers: [
     VideoChatService

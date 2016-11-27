@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var video_chat_routing_1 = require('./video-chat.routing');
 var chat_room_component_1 = require('./chat-room/chat-room.component');
+var chat_video_room_component_1 = require('./chat-video-room/chat-video-room.component');
 var video_chat_service_1 = require('./services/video-chat.service');
 //import * as r from 'webrtc-adapter';
 var VideoChatModule = (function () {
@@ -22,10 +23,12 @@ var VideoChatModule = (function () {
                 video_chat_routing_1.chatRouting
             ],
             declarations: [
-                chat_room_component_1.ChatRoomComponent
+                chat_room_component_1.ChatRoomComponent,
+                chat_video_room_component_1.ChatVideoRoomComponent
             ],
             exports: [
-                chat_room_component_1.ChatRoomComponent
+                chat_room_component_1.ChatRoomComponent,
+                chat_video_room_component_1.ChatVideoRoomComponent
             ],
             providers: [
                 video_chat_service_1.VideoChatService

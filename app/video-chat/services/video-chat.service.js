@@ -14,6 +14,7 @@ var Subject_1 = require('rxjs/Subject');
 var VideoChatService = (function () {
     function VideoChatService() {
         this.subject = new Subject_1.Subject();
+        this.videoFrameSubject = new Subject_1.Subject();
     }
     VideoChatService.prototype.setChatRoomInfo = function (chatRoomInfo) {
         this.chatRoomInfo = chatRoomInfo;
@@ -21,6 +22,12 @@ var VideoChatService = (function () {
     };
     VideoChatService.prototype.getChatRoomInfo = function () {
         return this.subject.asObservable();
+    };
+    VideoChatService.prototype.openVideoFrame = function (chatRoomInfo) {
+        this.videoFrameSubject.next(chatRoomInfo);
+    };
+    VideoChatService.prototype.getVideoFrameObservable = function () {
+        return this.videoFrameSubject.asObservable();
     };
     VideoChatService = __decorate([
         core_1.Injectable(), 

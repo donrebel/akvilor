@@ -2,7 +2,14 @@
   position: fixed;
   bottom: 0px;
   right: 0px;
-  z-index: 1000;
+  z-index: 500;
+}
+
+.videoChatViewContainer {
+  position: fixed;
+  top: 250px;
+  left: 300px;
+  z-index: 501;
 }
 
 main-page{

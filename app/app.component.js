@@ -28,6 +28,9 @@ var AppComponent = (function () {
             //this.openChatRoom = true;
             _this.chatRooms.push(chatRoomInfo);
         });
+        this.videoChatService.getVideoFrameObservable().subscribe(function (chatRoomInfo) {
+            _this.videoFrame = { name: "ww" };
+        });
     };
     AppComponent.prototype.login = function () {
         this.auth.login();
