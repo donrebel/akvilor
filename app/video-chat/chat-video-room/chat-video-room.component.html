@@ -1,7 +1,17 @@
 <div class="container video-frame-cnt">
   <div class="row">
-    <div class="col-md-5">
-      <h1>videoFrame</h1>
+    <div class="col-md-6">
+      <video id="vid1" autoplay="true" muted="true"></video>
+    </div>
+    <div class="col-md-6">
+      <video id="vid2" autoplay></video>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-default" id="btn1" (click)="start()">Call</button>
+      <button class="btn btn-default" id="btn2" (click)="accept()">Accept</button>
+      <button class="btn btn-default" id="btn3" (click)="stop()">Hang Up</button>
+    </div>
+  <div>
 </div>
