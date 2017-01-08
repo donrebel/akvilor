@@ -1,17 +1,29 @@
-<div class="container video-frame-cnt">
-  <div class="row">
-    <div class="col-md-6">
-      <video id="vid1" autoplay="true" muted="true"></video>
-    </div>
-    <div class="col-md-6">
-      <video id="vid2" autoplay></video>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button class="btn btn-default" id="btn1" (click)="start()">Call</button>
-      <button class="btn btn-default" id="btn2" (click)="accept()">Accept</button>
-      <button class="btn btn-default" id="btn3" (click)="stop()">Hang Up</button>
-    </div>
-  <div>
-</div>
+<!-- <head>
+  <title>EasyRTC Demo: Simple Video+Audio</title>
+  <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
+  <script type="text/javascript" src="js/demo_audio_video_simple.js"></script>
+
+</head> -->
+<body onload="connect();"> -->
+
+      <div id="demoContainer">
+        <div id="connectControls">
+          <div id="iam">Not yet connected...</div>
+          <br />
+          <strong>Connected users:</strong>
+          <div id="otherClients"></div>
+        </div>
+        <div id="videos">
+          <video autoplay="autoplay" class="easyrtcMirror" id="selfVideo" muted="muted" volume="0" ></video>
+          <div style="position:relative;float:left;">
+          <video autoplay="autoplay" id="callerVideo"></video>
+          </div>
+          <!-- each caller video needs to be in it"s own div so it"s close button can be positioned correctly -->
+        </div>
+      </div>
+
+<!-- </body>
+</html> -->

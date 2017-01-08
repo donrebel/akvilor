@@ -8,10 +8,20 @@ module.exports = function(app, staticRoot) {
     audience: 'dXFukGIX83bwXj2R8yFPsKR3dhecEWZi'
   });
 
+
   app.all('/api/v1/*', authCheck);
   app.use('/api/v1', apiRoutes_v1);
 
+  //app.all('/call/*', authCheck);
+  app.get('/call/:connId', function(req, res) {
+    var connId = req.params.connId;
+    console.log('wwwwwwww');
+    //res.sendFile(staticRoot + 'call.html');
+    res.sendFile(staticRoot + 'app_call/index.html');
+  });
+
   app.get('/*', function(req, res) {
+      console.log('eeeeeeee');
       res.sendFile(staticRoot + 'index.html'); // load our public/index.html file
   });
 };

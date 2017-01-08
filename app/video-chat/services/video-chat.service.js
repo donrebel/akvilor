@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var Subject_1 = require('rxjs/Subject');
-//import { }
+var angular2_jwt_1 = require('angular2-jwt');
 var VideoChatService = (function () {
-    function VideoChatService() {
+    function VideoChatService(authHttp) {
+        this.authHttp = authHttp;
         this.subject = new Subject_1.Subject();
         this.videoFrameSubject = new Subject_1.Subject();
+        this.apiBaseUrl = '//localhost:3003';
     }
     VideoChatService.prototype.setChatRoomInfo = function (chatRoomInfo) {
         this.chatRoomInfo = chatRoomInfo;
@@ -22,6 +24,13 @@ var VideoChatService = (function () {
     };
     VideoChatService.prototype.getChatRoomInfo = function () {
         return this.subject.asObservable();
+    };
+    VideoChatService.prototype.runVideoChatApp = function (connectionInfo) {
+        // 1. write connectionInfo to the DB
+        // 2. get objectId of created connectionInfo object in DB
+        // 3. open videoChatApp in the new window with objectId as a parameter
+        var connectionObjectId = '123';
+        window.open(this.apiBaseUrl + "/call/" + connectionObjectId, "MsgWindow", "width=640, height=480");
     };
     VideoChatService.prototype.openVideoFrame = function (chatRoomInfo) {
         this.videoFrameSubject.next(chatRoomInfo);
@@ -31,7 +40,7 @@ var VideoChatService = (function () {
     };
     VideoChatService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [angular2_jwt_1.AuthHttp])
     ], VideoChatService);
     return VideoChatService;
 }());

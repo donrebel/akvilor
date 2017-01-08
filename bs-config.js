@@ -3,6 +3,7 @@ var fallbackMiddleware = require('connect-history-api-fallback');
 
 module.exports = {
     server: {
+        port: 3000,
         middleware: {
             1: proxyMiddleware('/api', {
                 target: 'http://localhost:3003',

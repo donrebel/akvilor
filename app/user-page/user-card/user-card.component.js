@@ -107,6 +107,7 @@ var UserCardComponent = (function () {
         this.test = this.test + 1;
         //this.videoChatService.setChatRoomInfo({chatLink: 'asd' + this.test});
         this.videoChatService.openVideoFrame({ chatLink: 'asd' });
+        //this.videoChatService.runVideoChatApp({socket:'',targetId:''});
         //this.router.navigate(['/video-chat']);
         /*$event.stopPropagation();
         this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);

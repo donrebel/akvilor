@@ -112,8 +112,10 @@ if (app.get('env') == 'development') {
   httpsServer.listen(app.get('portHttps'), function() {
       console.log('app running on port', app.get('portHttps'));
   });
-  socket = require('./modules/socket')(httpServer);
-  app.set('io', socket);
+
+  // socket = require('./modules/socket')(httpServer);
+  // app.set('io', socket);
+
 }
 else {
   httpServer.listen(app.get('prodPortHttp'), function() {
@@ -122,6 +124,6 @@ else {
   httpsServer.listen(app.get('portHttps'), function() {
       console.log('app running on port', app.get('portHttps'));
   });
-  socket = require('./modules/socket')(httpServer);
-  app.set('io', socket);
+  // socket = require('./modules/socket')(httpServer);
+  // app.set('io', socket);
 };

@@ -12,6 +12,7 @@
     map: {
       // our app is within the app folder
       app: 'app',
+      call: 'app-call',
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -30,11 +31,16 @@
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
       'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
       'ng2-file-upload': 'npm:ng2-file-upload/ng2-file-upload.js',
-      'socket.io-client': 'npm:socket.io-client/socket.io.js'
+      'socket.io-client': 'npm:socket.io-client/socket.io.js'//,
+      //'easyrtc': 'npm:easyrtc/api/easyrtc.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: {
+        main: './main.js',
+        defaultExtension: 'js'
+      },
+      call: {
         main: './main.js',
         defaultExtension: 'js'
       },
@@ -47,7 +53,10 @@
       },
       'socket.io-client': {
         defaultExtension: 'js'
-      }
+      }//,
+      // 'easyrtc': {
+      //   defaultExtension: 'js'
+      // }
     }
   });
 })(this);
