@@ -17,8 +17,8 @@ export class ChatVideoRoomComponent implements OnInit{
   ngOnInit() {
     easyrtc.setSocketUrl(":8080");
     easyrtc.setVideoDims(640,480);
-    easyrtc.setRoomOccupantListener(this.convertListToButtons);
-    easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], this.loginSuccess, this.loginFailure);
+    easyrtc.setRoomOccupantListener(this.convertListToButtons.bind(this));
+    easyrtc.easyApp("easyrtc.audioVideoSimple", "local-video", ["mini-video"], this.loginSuccess.bind(this), this.loginFailure);
   }
 
   clearConnectList() {
@@ -29,15 +29,19 @@ export class ChatVideoRoomComponent implements OnInit{
   }
 
   convertListToButtons (roomName, data, isPrimary) {
+    console.log(roomName);
+    console.log(data);
+    console.log(isPrimary);
+    var component = this;
     this.clearConnectList();
     var otherClientDiv = document.getElementById('otherClients');
     for(var easyrtcid in data) {
         var button = document.createElement('button');
-        button.onclick = function(easyrtcid) {
+        button.onclick = function(easyrtcid, component) {
             return function() {
-                this.performCall(easyrtcid);
+                component.performCall(easyrtcid);
             };
-        }(easyrtcid);
+        }(easyrtcid, component);
 
         var label = document.createTextNode(easyrtc.idToName(easyrtcid));
         button.appendChild(label);
@@ -45,17 +49,20 @@ export class ChatVideoRoomComponent implements OnInit{
     }
   }
 
-  performCall(otherEasyrtcid) {
+  performCall = (otherEasyrtcid) => {
       easyrtc.hangupAll();
 
       var successCB = function() {};
       var failureCB = function() {};
+      console.log(otherEasyrtcid);
       easyrtc.call(otherEasyrtcid, successCB, failureCB);
   }
 
 
   loginSuccess(easyrtcid) {
       this.selfEasyrtcid = easyrtcid;
+      // console.log(easyrtcid);
+      // console.log(easyrtc.cleanId(easyrtcid));
       document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
   }
 

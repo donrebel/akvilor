@@ -12,12 +12,19 @@ var core_1 = require('@angular/core');
 var ChatVideoRoomComponent = (function () {
     function ChatVideoRoomComponent() {
         this.selfEasyrtcid = "";
+        this.performCall = function (otherEasyrtcid) {
+            easyrtc.hangupAll();
+            var successCB = function () { };
+            var failureCB = function () { };
+            console.log(otherEasyrtcid);
+            easyrtc.call(otherEasyrtcid, successCB, failureCB);
+        };
     }
     ChatVideoRoomComponent.prototype.ngOnInit = function () {
         easyrtc.setSocketUrl(":8080");
         easyrtc.setVideoDims(640, 480);
-        easyrtc.setRoomOccupantListener(this.convertListToButtons);
-        easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], this.loginSuccess, this.loginFailure);
+        easyrtc.setRoomOccupantListener(this.convertListToButtons.bind(this));
+        easyrtc.easyApp("easyrtc.audioVideoSimple", "local-video", ["mini-video"], this.loginSuccess.bind(this), this.loginFailure);
     };
     ChatVideoRoomComponent.prototype.clearConnectList = function () {
         var otherClientDiv = document.getElementById('otherClients');
@@ -26,28 +33,28 @@ var ChatVideoRoomComponent = (function () {
         }
     };
     ChatVideoRoomComponent.prototype.convertListToButtons = function (roomName, data, isPrimary) {
+        console.log(roomName);
+        console.log(data);
+        console.log(isPrimary);
+        var component = this;
         this.clearConnectList();
         var otherClientDiv = document.getElementById('otherClients');
         for (var easyrtcid in data) {
             var button = document.createElement('button');
-            button.onclick = function (easyrtcid) {
+            button.onclick = function (easyrtcid, component) {
                 return function () {
-                    this.performCall(easyrtcid);
+                    component.performCall(easyrtcid);
                 };
-            }(easyrtcid);
+            }(easyrtcid, component);
             var label = document.createTextNode(easyrtc.idToName(easyrtcid));
             button.appendChild(label);
             otherClientDiv.appendChild(button);
         }
     };
-    ChatVideoRoomComponent.prototype.performCall = function (otherEasyrtcid) {
-        easyrtc.hangupAll();
-        var successCB = function () { };
-        var failureCB = function () { };
-        easyrtc.call(otherEasyrtcid, successCB, failureCB);
-    };
     ChatVideoRoomComponent.prototype.loginSuccess = function (easyrtcid) {
         this.selfEasyrtcid = easyrtcid;
+        // console.log(easyrtcid);
+        // console.log(easyrtc.cleanId(easyrtcid));
         document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
     };
     ChatVideoRoomComponent.prototype.loginFailure = function (errorCode, message) {

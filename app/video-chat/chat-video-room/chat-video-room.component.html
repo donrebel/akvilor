@@ -1,29 +1,18 @@
-<!-- <head>
-  <title>EasyRTC Demo: Simple Video+Audio</title>
-  <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
+<div id="сontainer">
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
-  <script type="text/javascript" src="js/demo_audio_video_simple.js"></script>
+  <div id="infoBox">
+    <div id="iam">Not yet connected...</div>
+    <br />
+    <strong>Connected users:</strong>
+    <div id="otherClients"></div>
+    <br />
+    <input #socketId>
+    <button (click)="performCall(socketId.value)">Call</button>
+  </div>
 
-</head> -->
-<body onload="connect();"> -->
-
-      <div id="demoContainer">
-        <div id="connectControls">
-          <div id="iam">Not yet connected...</div>
-          <br />
-          <strong>Connected users:</strong>
-          <div id="otherClients"></div>
-        </div>
-        <div id="videos">
-          <video autoplay="autoplay" class="easyrtcMirror" id="selfVideo" muted="muted" volume="0" ></video>
-          <div style="position:relative;float:left;">
-          <video autoplay="autoplay" id="callerVideo"></video>
-          </div>
-          <!-- each caller video needs to be in it"s own div so it"s close button can be positioned correctly -->
-        </div>
-      </div>
-
-<!-- </body>
-</html> -->
+  <div id="videos">
+    <video id="mini-video" autoplay muted></video>
+    <video class="easyrtcMirror" id="local-video" autoplay muted volume="0"></video>
+    <video id="remote-video" autoplay></video>
+  </div>
+</div>

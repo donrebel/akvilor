@@ -5,13 +5,6 @@
   z-index: 500;
 }
 
-.videoChatViewContainer {
-  position: fixed;
-  top: 250px;
-  left: 300px;
-  z-index: 501;
-}
-
 main-page{
   display: inline;
   height: 100%;
