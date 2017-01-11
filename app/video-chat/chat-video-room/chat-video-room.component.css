@@ -28,11 +28,11 @@
 }
 
 #videos.active {
-  -moz-transform: rotateY(180deg);
+  /*-moz-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+  transform: rotateY(180deg);*/
 }
 
 #local-video {
@@ -50,6 +50,15 @@
   -o-transform: scale(-1, 1);
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
+}
+
+#local-video.active {
+  transition: all 1s;
+  -moz-transform: scale(-0.25, 0.25) translate(calc(-150% + 30px), calc(150% - 30px));
+  -ms-transform: scale(-0.25, 0.25) translate(calc(-150% + 30px), calc(150% - 30px));
+  -o-transform: scale(-0.25, 0.25) translate(calc(-150% + 30px) calc(150% - 30px));
+  -webkit-transform: scale(-0.25, 0.25) translate(calc(-150% + 30px), calc(150% - 30px));
+  transform: scale(-0.25, 0.25) translate(calc(-150% + 30px), calc(150% - 30px));
 }
 
 #mini-video {

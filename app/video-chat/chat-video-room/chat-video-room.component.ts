@@ -9,6 +9,9 @@ import {Component, OnInit} from '@angular/core';
 
 export class ChatVideoRoomComponent implements OnInit{
   private selfEasyrtcid = "";
+  private videoMode = '';
+  private videoModeToggle = false;
+
 
   constructor() {
 
@@ -18,7 +21,7 @@ export class ChatVideoRoomComponent implements OnInit{
     easyrtc.setSocketUrl(":8080");
     easyrtc.setVideoDims(640,480);
     easyrtc.setRoomOccupantListener(this.convertListToButtons.bind(this));
-    easyrtc.easyApp("easyrtc.audioVideoSimple", "local-video", ["mini-video"], this.loginSuccess.bind(this), this.loginFailure);
+    easyrtc.easyApp("easyrtc.audioVideoSimple", "local-video", ["remote-video"], this.loginSuccess.bind(this), this.loginFailure);
   }
 
   clearConnectList() {
@@ -66,9 +69,17 @@ export class ChatVideoRoomComponent implements OnInit{
       document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
   }
 
-
   loginFailure(errorCode, message) {
       easyrtc.showError(errorCode, message);
+  }
+
+  activate(element) {
+	  element.classList.add('active');
+	}
+
+  changeMode() {
+      this.videoModeToggle = !this.videoModeToggle;
+      this.videoMode = this.videoModeToggle ? "active": "";
   }
 
 }

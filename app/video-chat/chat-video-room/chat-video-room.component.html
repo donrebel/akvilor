@@ -8,11 +8,12 @@
     <br />
     <input #socketId>
     <button (click)="performCall(socketId.value)">Call</button>
+    <button (click)="changeMode()">Mode</button>
   </div>
 
   <div id="videos">
     <video id="mini-video" autoplay muted></video>
-    <video class="easyrtcMirror" id="local-video" autoplay muted volume="0"></video>
-    <video id="remote-video" autoplay></video>
+    <video class="easyrtcMirror"  [ngClass]="videoMode" id="local-video" autoplay muted volume="0"></video>
+    <video id="remote-video" autoplay ></video>
   </div>
 </div>

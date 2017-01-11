@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var shared_module_1 = require('../shared/shared.module');
 var video_chat_routing_1 = require('./video-chat.routing');
 var chat_room_component_1 = require('./chat-room/chat-room.component');
 var chat_video_room_component_1 = require('./chat-video-room/chat-video-room.component');
@@ -20,7 +21,8 @@ var VideoChatModule = (function () {
     VideoChatModule = __decorate([
         core_1.NgModule({
             imports: [
-                video_chat_routing_1.chatRouting //,
+                video_chat_routing_1.chatRouting,
+                shared_module_1.SharedModule
             ],
             declarations: [
                 chat_room_component_1.ChatRoomComponent,

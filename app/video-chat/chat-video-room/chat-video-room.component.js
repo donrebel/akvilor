@@ -12,6 +12,8 @@ var core_1 = require('@angular/core');
 var ChatVideoRoomComponent = (function () {
     function ChatVideoRoomComponent() {
         this.selfEasyrtcid = "";
+        this.videoMode = '';
+        this.videoModeToggle = false;
         this.performCall = function (otherEasyrtcid) {
             easyrtc.hangupAll();
             var successCB = function () { };
@@ -24,7 +26,7 @@ var ChatVideoRoomComponent = (function () {
         easyrtc.setSocketUrl(":8080");
         easyrtc.setVideoDims(640, 480);
         easyrtc.setRoomOccupantListener(this.convertListToButtons.bind(this));
-        easyrtc.easyApp("easyrtc.audioVideoSimple", "local-video", ["mini-video"], this.loginSuccess.bind(this), this.loginFailure);
+        easyrtc.easyApp("easyrtc.audioVideoSimple", "local-video", ["remote-video"], this.loginSuccess.bind(this), this.loginFailure);
     };
     ChatVideoRoomComponent.prototype.clearConnectList = function () {
         var otherClientDiv = document.getElementById('otherClients');
@@ -59,6 +61,13 @@ var ChatVideoRoomComponent = (function () {
     };
     ChatVideoRoomComponent.prototype.loginFailure = function (errorCode, message) {
         easyrtc.showError(errorCode, message);
+    };
+    ChatVideoRoomComponent.prototype.activate = function (element) {
+        element.classList.add('active');
+    };
+    ChatVideoRoomComponent.prototype.changeMode = function () {
+        this.videoModeToggle = !this.videoModeToggle;
+        this.videoMode = this.videoModeToggle ? "active" : "";
     };
     ChatVideoRoomComponent = __decorate([
         core_1.Component({
