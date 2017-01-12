@@ -12,8 +12,8 @@
   </div>
 
   <div id="videos">
-    <video id="mini-video" autoplay muted></video>
-    <video class="easyrtcMirror"  [ngClass]="videoMode" id="local-video" autoplay muted volume="0"></video>
-    <video id="remote-video" autoplay ></video>
+    <!-- <video id="mini-video" autoplay muted></video> -->
+    <video class="easyrtcMirror" [ngClass]="viewState" id="local-video" autoplay muted volume="0"></video>
+    <video id="remote-video" [ngClass]="viewState" autoplay ></video>
   </div>
 </div>

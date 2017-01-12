@@ -11,15 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ChatVideoRoomComponent = (function () {
     function ChatVideoRoomComponent() {
+        var _this = this;
         this.selfEasyrtcid = "";
-        this.videoMode = '';
+        this.viewState = '';
         this.videoModeToggle = false;
         this.performCall = function (otherEasyrtcid) {
             easyrtc.hangupAll();
             var successCB = function () { };
             var failureCB = function () { };
-            console.log(otherEasyrtcid);
-            easyrtc.call(otherEasyrtcid, successCB, failureCB);
+            easyrtc.call(otherEasyrtcid, _this.callStartSuccessCB, failureCB);
+        };
+        this.callStartSuccessCB = function () {
+            console.log('success');
+            _this.viewState = "active";
         };
     }
     ChatVideoRoomComponent.prototype.ngOnInit = function () {
@@ -35,9 +39,6 @@ var ChatVideoRoomComponent = (function () {
         }
     };
     ChatVideoRoomComponent.prototype.convertListToButtons = function (roomName, data, isPrimary) {
-        console.log(roomName);
-        console.log(data);
-        console.log(isPrimary);
         var component = this;
         this.clearConnectList();
         var otherClientDiv = document.getElementById('otherClients');
@@ -55,8 +56,6 @@ var ChatVideoRoomComponent = (function () {
     };
     ChatVideoRoomComponent.prototype.loginSuccess = function (easyrtcid) {
         this.selfEasyrtcid = easyrtcid;
-        // console.log(easyrtcid);
-        // console.log(easyrtc.cleanId(easyrtcid));
         document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
     };
     ChatVideoRoomComponent.prototype.loginFailure = function (errorCode, message) {
@@ -66,8 +65,8 @@ var ChatVideoRoomComponent = (function () {
         element.classList.add('active');
     };
     ChatVideoRoomComponent.prototype.changeMode = function () {
-        this.videoModeToggle = !this.videoModeToggle;
-        this.videoMode = this.videoModeToggle ? "active" : "";
+        // this.videoModeToggle = !this.videoModeToggle;
+        // this.videoMode = this.videoModeToggle ? "active": "";
     };
     ChatVideoRoomComponent = __decorate([
         core_1.Component({

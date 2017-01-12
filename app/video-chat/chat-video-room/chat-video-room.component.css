@@ -36,8 +36,8 @@
 }
 
 #local-video {
-  top: 0px;
-  left: 0px;
+  /*top: 0px;
+  left: 0px;*/
   height: 100%;
   width: 100%;
   position: absolute;
@@ -50,6 +50,7 @@
   -o-transform: scale(-1, 1);
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
+  z-index: 1;
 }
 
 #local-video.active {
@@ -59,6 +60,9 @@
   -o-transform: scale(-0.25, 0.25) translate(calc(-150% + 30px) calc(150% - 30px));
   -webkit-transform: scale(-0.25, 0.25) translate(calc(-150% + 30px), calc(150% - 30px));
   transform: scale(-0.25, 0.25) translate(calc(-150% + 30px), calc(150% - 30px));
+  border: 1px solid gray;
+  /*bottom: 30px;
+  right: 30px;*/
 }
 
 #mini-video {
@@ -95,9 +99,9 @@
   transform: rotateY(180deg);
   transition: opacity 1s;
   width: 100%;
+  z-index: 0;
 }
 
 #remote-video.active {
   opacity: 1;
-  z-index: 1;
 }

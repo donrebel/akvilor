@@ -9,7 +9,7 @@ import {Component, OnInit} from '@angular/core';
 
 export class ChatVideoRoomComponent implements OnInit{
   private selfEasyrtcid = "";
-  private videoMode = '';
+  private viewState = '';
   private videoModeToggle = false;
 
 
@@ -32,9 +32,6 @@ export class ChatVideoRoomComponent implements OnInit{
   }
 
   convertListToButtons (roomName, data, isPrimary) {
-    console.log(roomName);
-    console.log(data);
-    console.log(isPrimary);
     var component = this;
     this.clearConnectList();
     var otherClientDiv = document.getElementById('otherClients');
@@ -54,18 +51,18 @@ export class ChatVideoRoomComponent implements OnInit{
 
   performCall = (otherEasyrtcid) => {
       easyrtc.hangupAll();
-
       var successCB = function() {};
       var failureCB = function() {};
-      console.log(otherEasyrtcid);
-      easyrtc.call(otherEasyrtcid, successCB, failureCB);
+      easyrtc.call(otherEasyrtcid, this.callStartSuccessCB, failureCB);
   }
 
+  callStartSuccessCB = () => {
+    console.log('success');
+    this.viewState = "active"
+  }
 
   loginSuccess(easyrtcid) {
       this.selfEasyrtcid = easyrtcid;
-      // console.log(easyrtcid);
-      // console.log(easyrtc.cleanId(easyrtcid));
       document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
   }
 
@@ -78,8 +75,8 @@ export class ChatVideoRoomComponent implements OnInit{
 	}
 
   changeMode() {
-      this.videoModeToggle = !this.videoModeToggle;
-      this.videoMode = this.videoModeToggle ? "active": "";
+      // this.videoModeToggle = !this.videoModeToggle;
+      // this.videoMode = this.videoModeToggle ? "active": "";
   }
 
 }
