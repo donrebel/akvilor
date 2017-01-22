@@ -24,12 +24,17 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.videoChatService.getChatRoomInfo().subscribe(function (chatRoomInfo) {
-            console.log('chat room for: ', chatRoomInfo.chatLink);
+            console.log('chat room for: ', chatRoomInfo.data.chatLink);
             //this.openChatRoom = true;
             _this.chatRooms.push(chatRoomInfo);
         });
         this.videoChatService.getVideoFrameObservable().subscribe(function (chatRoomInfo) {
-            _this.videoFrame = { name: "ww" };
+            if (chatRoomInfo.action == "open") {
+                _this.videoFrame = { name: "ww" };
+            }
+            else {
+                _this.videoFrame = false;
+            }
         });
     };
     AppComponent.prototype.login = function () {

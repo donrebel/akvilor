@@ -1,0 +1,36 @@
+<div id="сontainer">
+
+  <div id="infoBox">
+    <div id="iam">Not yet connected...</div>
+    <br />
+    <strong>Connected users:</strong>
+    <div id="otherClients"></div>
+    <br />
+    <input #socketId>
+    <button (click)="performCall()">Call</button>
+
+
+    <button (click)="changeMode()">Mode</button>
+
+  </div>
+
+  <div id="connectControls">
+    <!-- <button id="connectButton" (click)="connect()">Connect</button> -->
+    <button id="hangupButton" disabled="disabled" (click)="hangup()">Hangup</button>
+    <div id="iam">Not yet connected...</div>
+    <br />
+    <strong>Connected users:</strong>
+    <div id="otherClients"></div>
+  </div>
+
+  <div id="videos">
+    <!-- <video id="mini-video" autoplay muted></video> -->
+    <video class="easyrtcMirror" [ngClass]="viewState" id="local-video" autoplay muted volume="0"></video>
+    <video id="remote-video" [ngClass]="viewState" autoplay ></video>
+
+    <div id="acceptCallBox"> <!-- Should be initially hidden using CSS -->
+      <div id="acceptCallLabel"></div>
+      <button id="callAcceptButton" >Accept</button> <button id="callRejectButton">Reject</button>
+    </div>
+  </div>
+</div>

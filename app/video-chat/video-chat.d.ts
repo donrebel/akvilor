@@ -1,3 +1,6 @@
 export interface ChatRoomInfo {
-  chatLink: string
+  action: string,
+  data : {
+    chatLink: string
+  }
 }

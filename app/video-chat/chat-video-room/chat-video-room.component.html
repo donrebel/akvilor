@@ -1,19 +1,38 @@
 <div id="сontainer">
-
   <div id="infoBox">
-    <div id="iam">Not yet connected...</div>
-    <br />
-    <strong>Connected users:</strong>
-    <div id="otherClients"></div>
-    <br />
+    <div id="iam">
+      <strong>"I am: "</strong>{{myEasyRTCid}}
+    </div>
+
+    <div id="connectControls">
+      <button id="connectButton" [disabled]="template.connectButton.disabled" (click)="connect()">Connect</button>
+      <button id="callButton" [disabled]="template.callButton.disabled" (click)="performCall()">Call</button>
+      <button id="hangupButton" [disabled]="template.hangupButton.disabled" (click)="hangup()">Hangup</button>
+      <button id="disconnectButton" [disabled]="template.disconnectButton.disabled" (click)="disconnect()">Disconnect</button>
+      <!-- <div id="iam">Not yet connected...</div> -->
+      <br />
+      <strong>Connected users:</strong>
+      <div id="otherClients"></div>
+    </div>
+
+    <!-- <div>
+      <h3>"Connected clients:"</h3>
+      <div id="otherClients">
+        <button *ngFor="let easyrtcid of (connectedClientsList)" (click)="performCall(easyrtcid)">{{easyrtcid}}</button>
+      </div>
+    </div>
     <input #socketId>
-    <button (click)="performCall(socketId.value)">Call</button>
-    <button (click)="changeMode()">Mode</button>
+    <button (click)="performCall_(socketId.value)">Call</button> -->
+
   </div>
 
   <div id="videos">
-    <!-- <video id="mini-video" autoplay muted></video> -->
-    <video class="easyrtcMirror" [ngClass]="viewState" id="local-video" autoplay muted volume="0"></video>
-    <video id="remote-video" [ngClass]="viewState" autoplay ></video>
+    <video id="local-video" class="easyrtcMirror" [ngClass]="viewState" autoplay muted volume="0"></video>
+    <video id="remote-video" [ngClass]="viewState" autoplay></video>
+    <div id="acceptCallBox"> <!-- Should be initially hidden using CSS -->
+      <div id="acceptCallLabel"></div>
+      <button id="callAcceptButton" >Accept</button>
+      <button id="callRejectButton">Reject</button>
+    </div>
   </div>
 </div>

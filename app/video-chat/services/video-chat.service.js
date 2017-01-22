@@ -33,7 +33,20 @@ var VideoChatService = (function () {
         window.open(this.apiBaseUrl + "/call/" + connectionObjectId, "MsgWindow", "width=640, height=480");
     };
     VideoChatService.prototype.openVideoFrame = function (chatRoomInfo) {
-        this.videoFrameSubject.next(chatRoomInfo);
+        this.videoFrameSubject.next({
+            action: "open",
+            data: {
+                chatLink: "asd"
+            }
+        });
+    };
+    VideoChatService.prototype.closeVideoFrame = function () {
+        this.videoFrameSubject.next({
+            action: "close",
+            data: {
+                chatLink: "asd"
+            }
+        });
     };
     VideoChatService.prototype.getVideoFrameObservable = function () {
         return this.videoFrameSubject.asObservable();

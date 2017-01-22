@@ -1,3 +1,4 @@
+// https://school.scotch.io/routing-angular-2-applications/candeactivate
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,27 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var forms_1 = require('@angular/forms');
-var can_deactivate_guard_service_1 = require('./guards/can-deactivate-guard.service');
-var draggable_1 = require('./draggable');
-var SharedModule = (function () {
-    function SharedModule() {
+var CanDeactivateGuard = (function () {
+    function CanDeactivateGuard() {
     }
-    SharedModule = __decorate([
-        core_1.NgModule({
-            imports: [common_1.CommonModule],
-            declarations: [draggable_1.Draggable],
-            providers: [can_deactivate_guard_service_1.CanDeactivateGuard],
-            exports: [
-                common_1.CommonModule,
-                forms_1.FormsModule,
-                draggable_1.Draggable
-            ]
-        }), 
+    CanDeactivateGuard.prototype.canDeactivate = function (component) {
+        return component.canDeactivate ? component.canDeactivate() : true;
+    };
+    CanDeactivateGuard = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], SharedModule);
-    return SharedModule;
+    ], CanDeactivateGuard);
+    return CanDeactivateGuard;
 }());
-exports.SharedModule = SharedModule;
-//# sourceMappingURL=shared.module.js.map
+exports.CanDeactivateGuard = CanDeactivateGuard;
+//# sourceMappingURL=can-deactivate-guard.service.js.map

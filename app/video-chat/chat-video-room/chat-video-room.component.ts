@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ChangeDetectorRef, OnInit} from '@angular/core';
+import { VideoChatService } from '../services/video-chat.service';
+
 
 @Component({
   moduleId: module.id,
@@ -8,75 +10,194 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class ChatVideoRoomComponent implements OnInit{
-  private selfEasyrtcid = "";
-  private viewState = '';
-  private videoModeToggle = false;
 
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private videoChatService: VideoChatService
+  ) { }
 
-  constructor() {
+  myEasyRTCid = '';
+  remoteEasyRTCId = '';
+  viewState = '';
+  videoModeToggle = false;
+  connectedClientsList: Array<string> = [];
+  template = {
+    connectButton: {
+      disabled: false
+    },
+    disconnectButton: {
+      disabled: true
+    },
+    callButton: {
+      disabled: true
+    },
+    hangupButton: {
+      disabled: true
+    },
 
   }
 
-  ngOnInit() {
-    easyrtc.setSocketUrl(":8080");
-    easyrtc.setVideoDims(640,480);
-    easyrtc.setRoomOccupantListener(this.convertListToButtons.bind(this));
-    easyrtc.easyApp("easyrtc.audioVideoSimple", "local-video", ["remote-video"], this.loginSuccess.bind(this), this.loginFailure);
+  clearConnectionList():void {
+    this.connectedClientsList = [];
+    this.cdr.detectChanges();
   }
 
-  clearConnectList() {
-      var otherClientDiv = document.getElementById('otherClients');
-      while (otherClientDiv.hasChildNodes()) {
-          otherClientDiv.removeChild(otherClientDiv.lastChild);
-      }
-  }
+  // performCall = (otherEasyrtcid:string):void => {
+  //      easyrtc.hangupAll();
+  //      let successCB = function() {
+  //        this.viewState = "active";
+  //        console.log(otherEasyrtcid);
+  //      };
+  //      var failureCB = function() {};
+  //      easyrtc.call(otherEasyrtcid, successCB.bind(this), failureCB);
+  // }
 
-  convertListToButtons (roomName, data, isPrimary) {
-    var component = this;
-    this.clearConnectList();
-    var otherClientDiv = document.getElementById('otherClients');
-    for(var easyrtcid in data) {
-        var button = document.createElement('button');
-        button.onclick = function(easyrtcid, component) {
-            return function() {
-                component.performCall(easyrtcid);
-            };
-        }(easyrtcid, component);
-
-        var label = document.createTextNode(easyrtc.idToName(easyrtcid));
-        button.appendChild(label);
-        otherClientDiv.appendChild(button);
+  buildCaller(easyrtcid:string):(() => void) {
+    return ():void => {
+      this.performCall(easyrtcid);
     }
   }
 
-  performCall = (otherEasyrtcid) => {
-      easyrtc.hangupAll();
-      var successCB = function() {};
-      var failureCB = function() {};
-      easyrtc.call(otherEasyrtcid, this.callStartSuccessCB, failureCB);
+
+
+  easyrtcCallSuccessCB():void {
+    this.template.hangupButton.disabled = false;
+    this.viewState = "active";
   }
 
-  callStartSuccessCB = () => {
-    console.log('success');
-    this.viewState = "active"
+  easyrtcCallFailureCB():void {
+    this.template.hangupButton.disabled = true;
+    this.template.callButton.disabled = false;
   }
 
-  loginSuccess(easyrtcid) {
-      this.selfEasyrtcid = easyrtcid;
-      document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
+  easyrtcCallAcceptedCB(accepted:boolean, easyrtcid:string):void {
+    if ( !accepted ) {
+      easyrtc.showError("CALL-REJECTED", "Sorry, your call to " + easyrtc.idToName(easyrtcid) + " was rejected");
+      this.template.callButton.disabled = false;
+    }
   }
 
-  loginFailure(errorCode, message) {
-      easyrtc.showError(errorCode, message);
+  performCall(otherEasyrtcid:string) {
+    easyrtc.hangupAll();
+    console.log('call');
+    console.log(otherEasyrtcid);
+    // var acceptedCB = function(accepted, easyrtcid) {
+    //   if( !accepted ) {
+    //     easyrtc.showError("CALL-REJECTED", "Sorry, your call to " + easyrtc.idToName(easyrtcid) + " was rejected");
+    //     enable("otherClients");
+    //   }
+    // };
+    // var successCB = function() {
+    //   enable("hangupButton");
+    // };
+    // var failureCB = function() {
+    //   enable("otherClients");
+    // };
+    easyrtc.call(
+      otherEasyrtcid,
+      () => {
+        this.easyrtcCallSuccessCB();
+      },
+      () => {
+        this.easyrtcCallFailureCB();
+      },
+      (accepted, easyrtcid) => {
+        this.easyrtcCallAcceptedCB(accepted, easyrtcid);
+      }
+    );
   }
 
-  activate(element) {
-	  element.classList.add('active');
-	}
 
-  changeMode() {
-      // this.videoModeToggle = !this.videoModeToggle;
-      // this.videoMode = this.videoModeToggle ? "active": "";
+
+
+  convertListToButtons(roomName:string, data:Easyrtc_PerRoomData, isPrimary:boolean):void {
+    this.clearConnectionList();
+    for(let easyrtcid in data) {
+      this.connectedClientsList.push(easyrtc.idToName(easyrtcid));
+    }
+    this.cdr.detectChanges();
+  }
+
+  updateMyEasyRTCId(myEasyRTCid:string):void {
+    this.myEasyRTCid = myEasyRTCid;
+    this.cdr.detectChanges();
+  }
+
+  // loginSuccess(easyrtcid:string):void {
+  //   this.updateMyEasyRTCId(easyrtc.cleanId(easyrtcid));
+  //   this.template.connectButton.disabled = true;
+  //   // enable("disconnectButton");
+  //   //this.enable("otherClients");
+  // }
+
+  // loginFailure(errorCode:string, message:string):void {
+  //   this.updateMyEasyRTCId('Login failed. Reason: ' + message);
+  // }
+
+
+
+  easyrtcConnectSuccessCB(easyrtcid:string):void {
+    this.updateMyEasyRTCId(easyrtc.cleanId(easyrtcid));
+    this.template.connectButton.disabled = true;
+    this.template.callButton.disabled = false;
+    this.template.disconnectButton.disabled = false;
+  }
+
+  easyrtcConnectFailureCB(errorCode:string, message:string):void {
+    easyrtc.showError(errorCode, message);
+  }
+
+  initMediaSourceSuccessCB():void {
+    easyrtc.setVideoObjectSrc(document.getElementById("local-video"), easyrtc.getLocalStream());
+    let easyrtcConnectSuccessCBShim = (easyrtcid:string) => {
+      this.easyrtcConnectSuccessCB(easyrtcid);
+    }
+    let easyrtcConnectFailureCBShim = (errorCode:string, message:string) => {
+      this.easyrtcConnectFailureCB(errorCode, message);
+    }
+    easyrtc.connect("easyrtc.videoOnly", easyrtcConnectSuccessCBShim, easyrtcConnectFailureCBShim);
+  }
+
+  connect():void {
+    easyrtc.setSocketUrl(":8080");
+    easyrtc.enableDebug(false);
+    console.log("Initializing.");
+    easyrtc.enableAudio(false);
+    easyrtc.enableAudioReceive(false);
+    let convertListToButtonShim = (roomName:string, data:Easyrtc_PerRoomData, isPrimary:boolean):void => {
+      this.convertListToButtons(roomName, data, isPrimary);
+    }
+    easyrtc.setRoomOccupantListener(convertListToButtonShim);
+    let initMediaSourceSuccessCBShim = () => {
+      this.initMediaSourceSuccessCB();
+    }
+    easyrtc.initMediaSource(initMediaSourceSuccessCBShim);
+  }
+
+  ngOnInit() {
+    this.connect();
+  }
+
+  hangup():void {
+    easyrtc.hangupAll();
+    this.template.hangupButton.disabled = true;
+  }
+
+
+  disconnect() {
+    easyrtc.disconnect();
+    console.log("disconnecting from server");
+    this.template.connectButton.disabled = false;
+    this.clearConnectionList();
+    easyrtc.setVideoObjectSrc(document.getElementById("local-video"), "");
+    this.videoChatService.closeVideoFrame();
+  }
+
+  // canDeactivate function seems to be does not calling from CanDeactivateGuard
+  canDeactivate() {
+    console.log("DEACTIVATING")
+    easyrtc.disconnect();
+    return true;
   }
 
 }

@@ -141,7 +141,14 @@ private test:number = 0;
     console.log('Avatar changing');
     this.test = this.test + 1;
     //this.videoChatService.setChatRoomInfo({chatLink: 'asd' + this.test});
-    this.videoChatService.openVideoFrame({chatLink: 'asd'});
+    this.videoChatService.openVideoFrame(
+      {
+        action: "open",
+        data: {
+          chatLink: 'asd'
+        }
+      }
+    );
     //this.videoChatService.runVideoChatApp({socket:'',targetId:''});
 
     //this.router.navigate(['/video-chat']);

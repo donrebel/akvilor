@@ -29,13 +29,17 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
       this.videoChatService.getChatRoomInfo().subscribe((chatRoomInfo: ChatRoomInfo) => {
-        console.log('chat room for: ', chatRoomInfo.chatLink)
+        console.log('chat room for: ', chatRoomInfo.data.chatLink)
         //this.openChatRoom = true;
         this.chatRooms.push(chatRoomInfo);
       });
 
       this.videoChatService.getVideoFrameObservable().subscribe((chatRoomInfo: ChatRoomInfo) => {
-        this.videoFrame = {name: "ww"}
+        if (chatRoomInfo.action == "open") {
+          this.videoFrame = {name: "ww"};
+        } else {
+          this.videoFrame = false;
+        }
       })
 
 

@@ -41,7 +41,25 @@ export class VideoChatService {
   }
 
   openVideoFrame(chatRoomInfo: ChatRoomInfo): void {
-    this.videoFrameSubject.next(chatRoomInfo);
+    this.videoFrameSubject.next(
+      {
+        action: "open",
+        data: {
+          chatLink: "asd"
+        }
+      }
+    );
+  }
+
+  closeVideoFrame():void {
+    this.videoFrameSubject.next(
+      {
+        action: "close",
+        data: {
+          chatLink: "asd"
+        }
+      }
+    )
   }
   getVideoFrameObservable(): Observable<ChatRoomInfo> {
     return this.videoFrameSubject.asObservable();
