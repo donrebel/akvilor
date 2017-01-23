@@ -32,6 +32,12 @@ var ChatVideoRoomComponent = (function () {
             hangupButton: {
                 disabled: true
             },
+            acceptCallBox: {
+                display: "none"
+            },
+            acceptCallLabel: {
+                innerHTML: ""
+            }
         };
     }
     ChatVideoRoomComponent.prototype.clearConnectionList = function () {
@@ -54,7 +60,7 @@ var ChatVideoRoomComponent = (function () {
         };
     };
     ChatVideoRoomComponent.prototype.easyrtcCallSuccessCB = function () {
-        this.template.hangupButton.disabled = false;
+        //this.template.hangupButton.disabled = false;
         this.viewState = "active";
     };
     ChatVideoRoomComponent.prototype.easyrtcCallFailureCB = function () {
@@ -67,8 +73,10 @@ var ChatVideoRoomComponent = (function () {
             this.template.callButton.disabled = false;
         }
     };
-    ChatVideoRoomComponent.prototype.performCall = function (otherEasyrtcid) {
+    ChatVideoRoomComponent.prototype.performCall = function () {
         var _this = this;
+        var otherEasyrtcid = this.connectedClientsList[0];
+        this.remoteEasyRTCId = otherEasyrtcid;
         easyrtc.hangupAll();
         console.log('call');
         console.log(otherEasyrtcid);
@@ -132,6 +140,43 @@ var ChatVideoRoomComponent = (function () {
         };
         easyrtc.connect("easyrtc.videoOnly", easyrtcConnectSuccessCBShim, easyrtcConnectFailureCBShim);
     };
+    ChatVideoRoomComponent.prototype.easyrtcSetStreamAcceptorCB = function (easyrtcid, stream) {
+        easyrtc.setVideoObjectSrc(document.getElementById("remote-video"), stream);
+        console.log("saw video from " + easyrtcid);
+        this.template.hangupButton.disabled = false;
+        this.cdr.detectChanges();
+    };
+    ChatVideoRoomComponent.prototype.easyrtcSetOnStreamClosedCB = function (easyrtcid) {
+        easyrtc.setVideoObjectSrc(document.getElementById("remote-video"), "");
+        this.template.hangupButton.disabled = true;
+        this.viewState = "";
+        this.cdr.detectChanges();
+    };
+    ChatVideoRoomComponent.prototype.callHandleBuilder = function (wasAccepted, callback) {
+        var _this = this;
+        return function () {
+            _this.template.acceptCallBox.display = "none";
+            if (wasAccepted && easyrtc.getConnectionCount() > 0) {
+                easyrtc.hangupAll();
+            }
+            callback(wasAccepted);
+            if (wasAccepted) {
+                _this.viewState = "active";
+            }
+        };
+    };
+    ChatVideoRoomComponent.prototype.easyrtcSetAcceptCheckerCB = function (easyrtcid, callback) {
+        this.template.acceptCallBox.display = "block";
+        this.cdr.detectChanges();
+        if (easyrtc.getConnectionCount() > 0) {
+            this.template.acceptCallLabel.innerHTML = "Drop current call and accept new from " + easyrtc.idToName(easyrtcid) + " ?";
+        }
+        else {
+            this.template.acceptCallLabel.innerHTML = "Accept incoming call from " + easyrtc.idToName(easyrtcid) + " ?";
+        }
+        document.getElementById("callAcceptButton").onclick = this.callHandleBuilder(true, callback);
+        document.getElementById("callRejectButton").onclick = this.callHandleBuilder(false, callback);
+    };
     ChatVideoRoomComponent.prototype.connect = function () {
         var _this = this;
         easyrtc.setSocketUrl(":8080");
@@ -139,6 +184,15 @@ var ChatVideoRoomComponent = (function () {
         console.log("Initializing.");
         easyrtc.enableAudio(false);
         easyrtc.enableAudioReceive(false);
+        easyrtc.setStreamAcceptor(function (easyrtcid, stream) {
+            _this.easyrtcSetStreamAcceptorCB(easyrtcid, stream);
+        });
+        easyrtc.setOnStreamClosed(function (easyrtcid) {
+            _this.easyrtcSetOnStreamClosedCB(easyrtcid);
+        });
+        easyrtc.setAcceptChecker(function (easyrtcid, callback) {
+            _this.easyrtcSetAcceptCheckerCB(easyrtcid, callback);
+        });
         var convertListToButtonShim = function (roomName, data, isPrimary) {
             _this.convertListToButtons(roomName, data, isPrimary);
         };
@@ -152,6 +206,7 @@ var ChatVideoRoomComponent = (function () {
         this.connect();
     };
     ChatVideoRoomComponent.prototype.hangup = function () {
+        console.log("hangup all");
         easyrtc.hangupAll();
         this.template.hangupButton.disabled = true;
     };
@@ -161,6 +216,7 @@ var ChatVideoRoomComponent = (function () {
         this.template.connectButton.disabled = false;
         this.clearConnectionList();
         easyrtc.setVideoObjectSrc(document.getElementById("local-video"), "");
+        easyrtc.closeLocalMediaStream();
         this.videoChatService.closeVideoFrame();
     };
     // canDeactivate function seems to be does not calling from CanDeactivateGuard

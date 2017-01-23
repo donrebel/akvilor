@@ -12,7 +12,15 @@
       <!-- <div id="iam">Not yet connected...</div> -->
       <br />
       <strong>Connected users:</strong>
-      <div id="otherClients"></div>
+      <div id="otherClients">
+        <strong *ngFor="let easyrtcid of connectedClientsList">{{easyrtcid}}</strong>
+      </div>
+
+      <div id="acceptCallBox" [style.display]="template.acceptCallBox.display"> <!-- Should be initially hidden using CSS -->
+        <div id="acceptCallLabel"></div>
+        <button id="callAcceptButton">Accept</button>
+        <button id="callRejectButton">Reject</button>
+      </div>
     </div>
 
     <!-- <div>
@@ -29,10 +37,5 @@
   <div id="videos">
     <video id="local-video" class="easyrtcMirror" [ngClass]="viewState" autoplay muted volume="0"></video>
     <video id="remote-video" [ngClass]="viewState" autoplay></video>
-    <div id="acceptCallBox"> <!-- Should be initially hidden using CSS -->
-      <div id="acceptCallLabel"></div>
-      <button id="callAcceptButton" >Accept</button>
-      <button id="callRejectButton">Reject</button>
-    </div>
   </div>
 </div>
