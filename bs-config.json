@@ -1,0 +1,8 @@
+{
+  "server": {
+    "baseDir": "client_app",
+    "routes": {
+      "/node_modules": "node_modules"
+    }
+  }
+}

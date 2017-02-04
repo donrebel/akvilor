@@ -3,6 +3,10 @@ var fallbackMiddleware = require('connect-history-api-fallback');
 
 module.exports = {
     server: {
+        baseDir: "client_app",
+        routes: {
+          "/node_modules": "node_modules"
+        },
         port: 3000,
         middleware: {
             1: proxyMiddleware('/api', {
