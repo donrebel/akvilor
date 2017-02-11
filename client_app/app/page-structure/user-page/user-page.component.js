@@ -30,7 +30,10 @@ var UserPageComponent = (function () {
         });
     };
     UserPageComponent.prototype.ngOnDestroy = function () {
-        this.sub.unsubscribe();
+        if (this.sub) {
+            this.sub.unsubscribe();
+        }
+        ;
     };
     UserPageComponent.prototype.goBack = function () {
         window.history.back();

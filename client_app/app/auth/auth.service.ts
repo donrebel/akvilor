@@ -14,9 +14,9 @@ export class AuthService {
   constructor(
     private router: Router
   ) {
+    this.redirectUrl = localStorage.getItem('redirectUrl');
     // Add callback for lock 'authenticated' event
     this.lock.on("authenticated", (authResult: any) => {
-      console.log('authenticated');
       localStorage.setItem('id_token', authResult.idToken);
       this.lock.getProfile(authResult.idToken, (error:any, profile: any) => {
         if (error) {
@@ -30,6 +30,10 @@ export class AuthService {
     });
   }
 
+  public setRedirectUrl(url: string): void {
+    localStorage.setItem('redirectUrl', url);
+  }
+
   public login() {
     this.lock.show();
   }
@@ -37,29 +41,11 @@ export class AuthService {
   public logout() {
     localStorage.removeItem('profile');
     localStorage.removeItem('id_token');
-    this.router.navigateByUrl('/login');
+    localStorage.removeItem('redirectUrl');
+    this.router.navigate(['/main-page']);
   }
 
   public authenticated() {
-    let tockenNotExpired = false;
-    try {
-      tockenNotExpired = tokenNotExpired();
-    } catch (e) {
-      tockenNotExpired = false;
-    }
-    return tockenNotExpired
+    return tokenNotExpired();
   }
-
 }
-
-// login() {
-//   this.lock.show((error: string, profile: Object, id_token: string) => {
-//     if (error) {
-//       console.log(error);
-//     }
-//     // We get a profile object for the user from Auth0
-//     localStorage.setItem('profile', JSON.stringify(profile));
-//     // We also get the user's JWT
-//     localStorage.setItem('id_token', id_token);
-//   });
-// }

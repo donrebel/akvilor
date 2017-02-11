@@ -42,7 +42,9 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-      this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe()
+    };
   }
 
   goBack(){

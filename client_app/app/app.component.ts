@@ -41,14 +41,5 @@ export class AppComponent implements OnInit {
           this.videoFrame = false;
         }
       })
-
-
     }
-
-    // login() {
-    //   this.auth.login();
-    // }
-    // logout() {
-    //   this.auth.logout();
-    // }
 }

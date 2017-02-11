@@ -16,9 +16,9 @@ var AuthService = (function () {
         var _this = this;
         this.router = router;
         this.lock = new Auth0Lock('dXFukGIX83bwXj2R8yFPsKR3dhecEWZi', 'akvilor.auth0.com');
+        this.redirectUrl = localStorage.getItem('redirectUrl');
         // Add callback for lock 'authenticated' event
         this.lock.on("authenticated", function (authResult) {
-            console.log('authenticated');
             localStorage.setItem('id_token', authResult.idToken);
             _this.lock.getProfile(authResult.idToken, function (error, profile) {
                 if (error) {
@@ -31,23 +31,20 @@ var AuthService = (function () {
             _this.lock.hide();
         });
     }
+    AuthService.prototype.setRedirectUrl = function (url) {
+        localStorage.setItem('redirectUrl', url);
+    };
     AuthService.prototype.login = function () {
         this.lock.show();
     };
     AuthService.prototype.logout = function () {
         localStorage.removeItem('profile');
         localStorage.removeItem('id_token');
-        this.router.navigateByUrl('/login');
+        localStorage.removeItem('redirectUrl');
+        this.router.navigate(['/main-page']);
     };
     AuthService.prototype.authenticated = function () {
-        var tockenNotExpired = false;
-        try {
-            tockenNotExpired = angular2_jwt_1.tokenNotExpired();
-        }
-        catch (e) {
-            tockenNotExpired = false;
-        }
-        return tockenNotExpired;
+        return angular2_jwt_1.tokenNotExpired();
     };
     AuthService = __decorate([
         core_1.Injectable(), 
@@ -56,15 +53,4 @@ var AuthService = (function () {
     return AuthService;
 }());
 exports.AuthService = AuthService;
-// login() {
-//   this.lock.show((error: string, profile: Object, id_token: string) => {
-//     if (error) {
-//       console.log(error);
-//     }
-//     // We get a profile object for the user from Auth0
-//     localStorage.setItem('profile', JSON.stringify(profile));
-//     // We also get the user's JWT
-//     localStorage.setItem('id_token', id_token);
-//   });
-// }
 //# sourceMappingURL=auth.service.js.map
