@@ -14,10 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var http_1 = require('@angular/http');
-var angular2_jwt_1 = require('angular2-jwt');
-var auth_service_1 = require('./services/auth.service');
-var auth_guard_service_1 = require('./services/auth.guard.service');
 var video_chat_module_1 = require('../video-chat/video-chat.module');
+var auth_module_1 = require('../auth/auth.module');
 var CoreModule = (function () {
     function CoreModule(parentModule) {
         if (parentModule) {
@@ -29,16 +27,12 @@ var CoreModule = (function () {
             imports: [
                 common_1.CommonModule,
                 http_1.HttpModule,
-                video_chat_module_1.VideoChatModule
+                video_chat_module_1.VideoChatModule,
+                auth_module_1.AuthModule
             ],
-            declarations: [],
             exports: [
-                video_chat_module_1.VideoChatModule
-            ],
-            providers: [
-                auth_service_1.AuthService,
-                auth_guard_service_1.AuthGuard,
-                angular2_jwt_1.AUTH_PROVIDERS
+                video_chat_module_1.VideoChatModule,
+                auth_module_1.AuthModule
             ]
         }),
         __param(0, core_1.Optional()),

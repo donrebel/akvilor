@@ -9,16 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var shared_module_1 = require('../shared/shared.module');
+var shared_module_1 = require('../../shared/shared.module');
 var card_1 = require('@angular2-material/card');
 var button_1 = require('@angular2-material/button');
-var user_page_routing_1 = require('./user-page.routing');
+// import { userPageRouting } from './user-page.routing';
 var user_page_component_1 = require('./user-page.component');
 var user_card_component_1 = require('./user-card/user-card.component');
-var off_click_directive_1 = require("./directives/off-click.directive");
+var off_click_directive_1 = require('./directives/off-click.directive');
 var user_page_content_service_1 = require('./services/user-page-content.service');
 var user_profile_service_1 = require('./services/user-profile.service');
 var utils_1 = require('./services/utils');
+var user_page_routing_module_1 = require('./user-page-routing.module');
 var UserPageModule = (function () {
     function UserPageModule() {
     }
@@ -28,7 +29,7 @@ var UserPageModule = (function () {
                 shared_module_1.SharedModule,
                 card_1.MdCardModule,
                 button_1.MdButtonModule,
-                user_page_routing_1.userPageRouting
+                user_page_routing_module_1.UserPageRoutingModule
             ],
             declarations: [
                 user_page_component_1.UserPageComponent,

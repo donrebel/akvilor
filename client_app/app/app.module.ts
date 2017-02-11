@@ -5,24 +5,27 @@ import { AppComponent }   from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { routing, appRoutingProviders } from './app.routing';
-import { MainPageComponent } from './main-page.component';
-import { UserPageModule } from './user-page/user-page.module';
+import { AppRoutingModule } from './app-routing.module';
+import { UserPageModule } from './page-structure/user-page/user-page.module';
+import { MainPageComponent } from './page-structure/main-page/main-page.component';
+import { PageNotFoundComponent } from './page-structure/page-not-found/page-not-found.component';
+
+import { ComposeMessageComponent } from './compose-message.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    routing,
     CoreModule,
     SharedModule,
-    UserPageModule
+    UserPageModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    MainPageComponent
-  ],
-  providers: [
-    appRoutingProviders
+    MainPageComponent,
+    PageNotFoundComponent,
+
+    ComposeMessageComponent
   ],
   bootstrap: [ AppComponent ]
 })

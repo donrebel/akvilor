@@ -7,8 +7,9 @@ export class UserPageContent {
 
 export class Post{
   constructor(
-    public title:string,
-    public titleImageSrc:string,
-    public dateCreated:string
+    public id: number,
+    public title: string,
+    public titleImageSrc: string,
+    public dateCreated: string
   ){}
 }

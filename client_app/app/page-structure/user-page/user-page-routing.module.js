@@ -9,17 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var MainPageComponent = (function () {
-    function MainPageComponent() {
+var router_1 = require('@angular/router');
+var user_page_component_1 = require('./user-page.component');
+var auth_guard_service_1 = require('../../auth/auth-guard.service');
+var userPageRoutes = [
+    { path: 'user-page/:id', component: user_page_component_1.UserPageComponent, canActivate: [auth_guard_service_1.AuthGuard] }
+];
+var UserPageRoutingModule = (function () {
+    function UserPageRoutingModule() {
     }
-    MainPageComponent = __decorate([
-        core_1.Component({
-            templateUrl: 'app/main-page.component.html',
-            styleUrls: ['app/main-page.component.css']
+    UserPageRoutingModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                router_1.RouterModule.forChild(userPageRoutes)
+            ],
+            exports: [
+                router_1.RouterModule
+            ]
         }), 
         __metadata('design:paramtypes', [])
-    ], MainPageComponent);
-    return MainPageComponent;
+    ], UserPageRoutingModule);
+    return UserPageRoutingModule;
 }());
-exports.MainPageComponent = MainPageComponent;
-//# sourceMappingURL=main-page.component.js.map
+exports.UserPageRoutingModule = UserPageRoutingModule;
+//# sourceMappingURL=user-page-routing.module.js.map

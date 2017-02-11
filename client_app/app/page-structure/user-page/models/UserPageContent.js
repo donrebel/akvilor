@@ -8,7 +8,8 @@ var UserPageContent = (function () {
 exports.UserPageContent = UserPageContent;
 ;
 var Post = (function () {
-    function Post(title, titleImageSrc, dateCreated) {
+    function Post(id, title, titleImageSrc, dateCreated) {
+        this.id = id;
         this.title = title;
         this.titleImageSrc = titleImageSrc;
         this.dateCreated = dateCreated;

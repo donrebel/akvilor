@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 //import OffClickDirective from "../directives/off-click.directive";
 //import { Draggable } from '../directives/draggable';
 //import { AkvAvatar } from '../../directives/default-avatar';
-import { VideoChatService } from '../../video-chat/services/video-chat.service';
+import { VideoChatService } from '../../../video-chat/services/video-chat.service';
 import { UserProfileService } from '../services/user-profile.service';
 import { Utils } from '../services/utils';
 import { RatePerMinutePipe } from './user-card.pipes';

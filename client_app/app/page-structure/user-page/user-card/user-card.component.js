@@ -13,7 +13,7 @@ var core_1 = require('@angular/core');
 //import OffClickDirective from "../directives/off-click.directive";
 //import { Draggable } from '../directives/draggable';
 //import { AkvAvatar } from '../../directives/default-avatar';
-var video_chat_service_1 = require('../../video-chat/services/video-chat.service');
+var video_chat_service_1 = require('../../../video-chat/services/video-chat.service');
 var user_profile_service_1 = require('../services/user-profile.service');
 var utils_1 = require('../services/utils');
 var router_1 = require('@angular/router');

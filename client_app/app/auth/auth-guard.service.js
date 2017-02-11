@@ -10,35 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var auth_service_1 = require('../services/auth.service');
+var auth_service_1 = require('./auth.service');
 var AuthGuard = (function () {
-    function AuthGuard(authService, router) {
-        this.authService = authService;
+    function AuthGuard(router, authService) {
         this.router = router;
+        this.authService = authService;
     }
     AuthGuard.prototype.canActivate = function (route, state) {
         var url = state.url;
         return this.checkLogin(url);
     };
     AuthGuard.prototype.checkLogin = function (url) {
-        if (this.authService.authenticated) {
+        if (this.authService.authenticated()) {
             return true;
         }
         this.authService.redirectUrl = url;
-        this.router.navigate(['/login']);
+        this.authService.login();
+        // this.router.navigate(['/login']);
+        return false;
     };
     AuthGuard = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, auth_service_1.AuthService])
     ], AuthGuard);
     return AuthGuard;
 }());
 exports.AuthGuard = AuthGuard;
-//   if (this.authService.authenticated()) {
-//     return true;
-//   }
-//   //this.router.navigate(['/login']);
-//   this.authService.login();
-//   return false;
-// }
-//# sourceMappingURL=auth.guard.service.js.map
+//# sourceMappingURL=auth-guard.service.js.map

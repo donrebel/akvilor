@@ -1,28 +1,19 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
-
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './services/auth.guard.service';
 import { VideoChatModule } from '../video-chat/video-chat.module';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
     imports: [
       CommonModule,
       HttpModule,
-      VideoChatModule
-    ],
-    declarations: [
-
+      VideoChatModule,
+      AuthModule
     ],
     exports: [
-      VideoChatModule
-    ],
-    providers: [
-      AuthService,
-      AuthGuard,
-      AUTH_PROVIDERS
+      VideoChatModule,
+      AuthModule
     ]
 })
 export class CoreModule {

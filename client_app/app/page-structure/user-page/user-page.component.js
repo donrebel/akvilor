@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+require('rxjs/add/operator/switchMap');
 var user_page_content_service_1 = require('./services/user-page-content.service');
 var UserPageComponent = (function () {
     function UserPageComponent(route, router, contentService) {
@@ -19,9 +20,13 @@ var UserPageComponent = (function () {
     }
     UserPageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.sub = this.route.params.subscribe(function (params) {
-            _this.userName = params['id']; // (+) converts string 'id' to a number
-            _this.pageContent = _this.contentService.getContent();
+        this.route.params
+            .switchMap(function (params) {
+            _this.userName = params['id'];
+            return _this.contentService.getContent();
+        })
+            .subscribe(function (content) {
+            _this.pageContent = content;
         });
     };
     UserPageComponent.prototype.ngOnDestroy = function () {

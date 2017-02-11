@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 require('./rxjs-operators');
-var auth_service_1 = require('./core/services/auth.service');
+var auth_service_1 = require('./auth/auth.service');
 var video_chat_service_1 = require('./video-chat/services/video-chat.service');
 var router_1 = require('@angular/router');
 var AppComponent = (function () {

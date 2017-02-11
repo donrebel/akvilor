@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+
 
 //import { MdCard } from '@angular2-material/card';
 //import { MdButtonModule } from '@angular2-material/button';
@@ -29,10 +31,14 @@ export class UserPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.userName = params['id']; // (+) converts string 'id' to a number
-      this.pageContent = this.contentService.getContent();
-    });
+    this.route.params
+      .switchMap((params: Params) => {
+        this.userName = params['id'];
+        return this.contentService.getContent()
+      })
+      .subscribe((content: UserPageContent) => {
+        this.pageContent = content;
+      })
   }
 
   ngOnDestroy() {

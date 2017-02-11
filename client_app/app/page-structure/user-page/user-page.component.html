@@ -2,7 +2,7 @@
   <app-user-card [userName]="userName"></app-user-card>
 </div>
 <div class="container-fluid content-holder">
-  <div class="row">
+  <div class="row" *ngIf="pageContent">
     <div class="col-md-6 col-lg-6" *ngFor="let mpost of pageContent.posts">
       <md-card>
         <md-card-header>

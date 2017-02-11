@@ -9,38 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_component_1 = require('./app.component');
-var core_module_1 = require('./core/core.module');
-var shared_module_1 = require('./shared/shared.module');
-var app_routing_module_1 = require('./app-routing.module');
-var user_page_module_1 = require('./page-structure/user-page/user-page.module');
+var router_1 = require('@angular/router');
 var main_page_component_1 = require('./page-structure/main-page/main-page.component');
 var page_not_found_component_1 = require('./page-structure/page-not-found/page-not-found.component');
 var compose_message_component_1 = require('./compose-message.component');
-var AppModule = (function () {
-    function AppModule() {
+var appRoutes = [
+    { path: 'compose', component: compose_message_component_1.ComposeMessageComponent, outlet: 'popup' },
+    { path: 'main-page', component: main_page_component_1.MainPageComponent },
+    { path: '', redirectTo: '/main-page', pathMatch: 'full' },
+    { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    AppModule = __decorate([
+    AppRoutingModule = __decorate([
         core_1.NgModule({
             imports: [
-                platform_browser_1.BrowserModule,
-                core_module_1.CoreModule,
-                shared_module_1.SharedModule,
-                user_page_module_1.UserPageModule,
-                app_routing_module_1.AppRoutingModule
+                router_1.RouterModule.forRoot(appRoutes),
             ],
-            declarations: [
-                app_component_1.AppComponent,
-                main_page_component_1.MainPageComponent,
-                page_not_found_component_1.PageNotFoundComponent,
-                compose_message_component_1.ComposeMessageComponent
-            ],
-            bootstrap: [app_component_1.AppComponent]
+            exports: [
+                router_1.RouterModule
+            ]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], AppRoutingModule);
+    return AppRoutingModule;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.AppRoutingModule = AppRoutingModule;
+// { path: 'user-page', loadChildren: 'app/page-structure/user-page/user-page.module#UserPageModule' },
+//# sourceMappingURL=app-routing.module.js.map
