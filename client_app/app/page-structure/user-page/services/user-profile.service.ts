@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { Response, RequestOptions, Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
+import { APP_CONFIG, AppConfig } from '../../../app-config';
 import { User } from '../models/user';
 
 interface UserProfile{
@@ -23,8 +24,12 @@ export class UserProfileService {
 
   private baseUrl: string;
 
-  constructor(private authHttp: AuthHttp) {
-    this.baseUrl  = '//localhost:3000/api';
+  constructor(
+    @Inject(APP_CONFIG) appConfig: AppConfig,
+    private authHttp: AuthHttp
+  ) {
+    //this.baseUrl  = '//localhost:3000/api';
+    this.baseUrl = appConfig.apiEndpoint;
   }
 
   userProfile_getAll(){}

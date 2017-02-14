@@ -8,15 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require('@angular/core');
 var angular2_jwt_1 = require('angular2-jwt');
 var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
+var app_config_1 = require('../../../app-config');
 var UserProfileService = (function () {
-    function UserProfileService(authHttp) {
+    function UserProfileService(appConfig, authHttp) {
         this.authHttp = authHttp;
-        this.baseUrl = '//localhost:3000/api';
+        //this.baseUrl  = '//localhost:3000/api';
+        this.baseUrl = appConfig.apiEndpoint;
     }
     UserProfileService.prototype.userProfile_getAll = function () { };
     UserProfileService.prototype.getOne = function (id) {
@@ -63,8 +68,9 @@ var UserProfileService = (function () {
         return Observable_1.Observable.throw(errMsg);
     };
     UserProfileService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [angular2_jwt_1.AuthHttp])
+        core_1.Injectable(),
+        __param(0, core_1.Inject(app_config_1.APP_CONFIG)), 
+        __metadata('design:paramtypes', [Object, angular2_jwt_1.AuthHttp])
     ], UserProfileService);
     return UserProfileService;
 }());

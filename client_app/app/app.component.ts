@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import './rxjs-operators';
 
 import { AuthService } from './auth/auth.service';
 import { VideoChatService } from './video-chat/services/video-chat.service';
 import { ChatRoomInfo } from './video-chat/video-chat.d';
-
 
 import { Router,
          NavigationExtras } from '@angular/router';
@@ -24,7 +23,6 @@ export class AppComponent implements OnInit {
       private auth: AuthService,
       private videoChatService: VideoChatService,
       public router: Router
-
     ) {}
 
     ngOnInit() {

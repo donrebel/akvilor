@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { APP_CONFIG, AKVILOR_CONFIG } from './app-config';
 import { AppComponent }   from './app.component';
 
 import { CoreModule } from './core/core.module';
@@ -24,8 +25,10 @@ import { ComposeMessageComponent } from './compose-message.component';
     AppComponent,
     MainPageComponent,
     PageNotFoundComponent,
-
     ComposeMessageComponent
+  ],
+  providers: [
+    { provide: APP_CONFIG, useValue: AKVILOR_CONFIG }
   ],
   bootstrap: [ AppComponent ]
 })

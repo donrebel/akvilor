@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var app_config_1 = require('./app-config');
 var app_component_1 = require('./app.component');
 var core_module_1 = require('./core/core.module');
 var shared_module_1 = require('./shared/shared.module');
@@ -35,6 +36,9 @@ var AppModule = (function () {
                 main_page_component_1.MainPageComponent,
                 page_not_found_component_1.PageNotFoundComponent,
                 compose_message_component_1.ComposeMessageComponent
+            ],
+            providers: [
+                { provide: app_config_1.APP_CONFIG, useValue: app_config_1.AKVILOR_CONFIG }
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
