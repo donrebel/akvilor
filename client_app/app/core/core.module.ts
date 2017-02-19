@@ -1,19 +1,29 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
+
 import { VideoChatModule } from '../video-chat/video-chat.module';
 import { AuthModule } from '../auth/auth.module';
+import { SearchService } from './services/search.service';
+
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { SearchData } from './services/search-data';
 
 @NgModule({
     imports: [
       CommonModule,
       HttpModule,
       VideoChatModule,
-      AuthModule
+      AuthModule,
+
+      InMemoryWebApiModule.forRoot(SearchData)
     ],
     exports: [
       VideoChatModule,
       AuthModule
+    ],
+    providers: [
+      SearchService
     ]
 })
 export class CoreModule {

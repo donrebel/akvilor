@@ -25,6 +25,7 @@ var AuthService = (function () {
                     console.log(error);
                 }
                 localStorage.setItem('profile', JSON.stringify(profile));
+                console.log(JSON.stringify(profile));
             });
             var redirect = _this.redirectUrl ? _this.redirectUrl : '/main-page';
             _this.router.navigate([redirect]);

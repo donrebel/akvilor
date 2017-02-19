@@ -9,16 +9,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Subject_1 = require('rxjs/Subject');
+var Observable_1 = require('rxjs/Observable');
+require('rxjs/add/operator/debounceTime');
+require('rxjs/add/operator/distinctUntilChanged');
+require('rxjs/add/operator/switchMap');
+var search_service_1 = require('../../core/services/search.service');
 var MainPageComponent = (function () {
-    function MainPageComponent() {
+    function MainPageComponent(searchService) {
+        this.searchService = searchService;
+        this.items = new Observable_1.Observable();
+        this.searchTermStream = new Subject_1.Subject();
     }
+    MainPageComponent.prototype.search = function (term) {
+        this.searchTermStream.next(term);
+    };
+    MainPageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.items = this.searchTermStream
+            .debounceTime(300)
+            .distinctUntilChanged()
+            .switchMap(function (term) { return _this.searchService.search(term); });
+    };
     MainPageComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             templateUrl: 'main-page.component.html',
             styleUrls: ['main-page.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [search_service_1.SearchService])
     ], MainPageComponent);
     return MainPageComponent;
 }());

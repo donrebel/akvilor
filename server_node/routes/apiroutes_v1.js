@@ -7,6 +7,8 @@ var products = require('../models/products.js');
 var user = require('../models/users.js');
 var userProfile = require('../models/userProfile.js');
 
+var account = require('../models/account.js');
+
 router.get('/users', userProfile.readAll);
 router.get('/user/:id', userProfile.readOne);
 router.post('/user/', userProfile.create);
@@ -24,5 +26,7 @@ router.get('/admin/user/:id', user.getOne);
 router.post('/admin/user/', user.create);
 router.put('/admin/user/:id', user.update);
 router.delete('/admin/user/:id', user.delete);
+
+router.post('/test/signup', account.create);
 
 module.exports = router;

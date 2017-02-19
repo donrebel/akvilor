@@ -2,10 +2,13 @@
 	<section id="intro">
 		<a href="#" class="logo"><img src="../assets/images/logo.jpg" alt="" /></a>
 		<header>
-			<p>What do you want to know? <!-- <a href="http://html5up.net">HTML5 UP</a> --> </p>
+			<p>What do you want to know?</p>
 		</header>
 		<form ng-submit="goFind()">
-			<input type="text" class="form-control" name="finder" id="finder" placeholder="" ng-model="srcstr"/>
+			<input #term (keyup)="search(term.value)" class="form-control" placeholder=""/>
 		</form>
+		<ul>
+			<li *ngFor="let item of items | async">{{item.id}} --- {{item.name}}</li>
+		</ul>
 	</section>
 </div>

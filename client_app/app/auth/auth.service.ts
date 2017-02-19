@@ -23,6 +23,7 @@ export class AuthService {
           console.log(error);
         }
         localStorage.setItem('profile', JSON.stringify(profile));
+        console.log(JSON.stringify(profile));
       });
       let redirect = this.redirectUrl ? this.redirectUrl : '/main-page';
       this.router.navigate([redirect]);
