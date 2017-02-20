@@ -32,31 +32,28 @@
     "@angular/core": "~2.4.0",
     "@angular/forms": "~2.4.0",
     "@angular/http": "~2.4.0",
+    "@angular/material": "^2.0.0-beta.2",
     "@angular/platform-browser": "~2.4.0",
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
-
     "@angular2-material/button": "^2.0.0-alpha.8-1",
     "@angular2-material/card": "^2.0.0-alpha.8-1",
     "@angular2-material/core": "^2.0.0-alpha.8-1",
-
     "angular-in-memory-web-api": "~0.2.4",
-    "systemjs": "0.19.40",
+    "angular2-jwt": "^0.1.22",
+    "bootstrap": "^3.3.6",
     "core-js": "^2.4.1",
+    "easyrtc": "^1.1.0",
+    "ng2-file-upload": "^1.0.3",
     "rxjs": "5.0.1",
-    "zone.js": "^0.7.4",
-
-  	"angular2-jwt": "^0.1.22",
-  	"bootstrap": "^3.3.6",
-  	"easyrtc": "^1.1.0",
-  	"ng2-file-upload": "^1.0.3",
-    "socket.io-client": "^1.4.8"
+    "socket.io-client": "^1.4.8",
+    "systemjs": "0.19.40",
+    "zone.js": "^0.7.4"
   },
   "devDependencies": {
     "concurrently": "^3.1.0",
     "lite-server": "^2.2.2",
     "typescript": "~2.0.10",
-
     "canonical-path": "0.0.2",
     "tslint": "^3.15.1",
     "lodash": "^4.16.4",
@@ -68,10 +65,8 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~4.0.14",
     "rimraf": "^2.5.4",
-
-	  "connect-history-api-fallback": "^1.3.0",
-	  "http-proxy-middleware": "^0.17.1",
-
+    "connect-history-api-fallback": "^1.3.0",
+    "http-proxy-middleware": "^0.17.1",
     "@types/node": "^6.0.46",
     "@types/jasmine": "^2.5.36",
     "@types/socket.io-client": "^1.4.29",

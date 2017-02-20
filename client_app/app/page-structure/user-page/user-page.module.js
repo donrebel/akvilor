@@ -10,8 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var shared_module_1 = require('../../shared/shared.module');
-var card_1 = require('@angular2-material/card');
-var button_1 = require('@angular2-material/button');
 // import { userPageRouting } from './user-page.routing';
 var user_page_component_1 = require('./user-page.component');
 var user_card_component_1 = require('./user-card/user-card.component');
@@ -27,8 +25,6 @@ var UserPageModule = (function () {
         core_1.NgModule({
             imports: [
                 shared_module_1.SharedModule,
-                card_1.MdCardModule,
-                button_1.MdButtonModule,
                 user_page_routing_module_1.UserPageRoutingModule
             ],
             declarations: [

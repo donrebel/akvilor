@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../../shared/shared.module';
-import { MdCardModule } from '@angular2-material/card';
-import { MdButtonModule } from '@angular2-material/button';
 
 // import { userPageRouting } from './user-page.routing';
 
@@ -17,8 +15,6 @@ import { UserPageRoutingModule } from './user-page-routing.module';
 @NgModule({
     imports: [
       SharedModule,
-      MdCardModule,
-      MdButtonModule,
       UserPageRoutingModule
     ],
     declarations: [

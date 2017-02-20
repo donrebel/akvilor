@@ -2,12 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
-
-//import { MdCard } from '@angular2-material/card';
-//import { MdButtonModule } from '@angular2-material/button';
-//import { UserCardComponent } from './user-card/user-card.component';
-//import { PostComponent } from './post/post.component';
-//import { MiniPostComponent } from './mini-post/mini-post.component';
 import { UserPageContent} from './models/UserPageContent';
 
 import { UserPageContentService } from './services/user-page-content.service';

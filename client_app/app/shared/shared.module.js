@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
+var material_1 = require('@angular/material');
 var can_deactivate_guard_service_1 = require('./guards/can-deactivate-guard.service');
 var draggable_1 = require('./draggable');
 var SharedModule = (function () {
@@ -24,6 +25,7 @@ var SharedModule = (function () {
             exports: [
                 common_1.CommonModule,
                 forms_1.FormsModule,
+                material_1.MaterialModule,
                 draggable_1.Draggable
             ]
         }), 
