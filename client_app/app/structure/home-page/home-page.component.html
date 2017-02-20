@@ -8,7 +8,8 @@
 			<input #term (keyup)="search(term.value)" class="form-control" placeholder=""/>
 		</form>
 		<ul>
-			<li *ngFor="let item of items | async">{{item.id}} --- {{item.name}}</li>
+			<search-item *ngFor="let item of items | async"></search-item>
+			<!-- <li *ngFor="let item of items | async">{{item.id}}  {{item.name}}</li> -->
 		</ul>
 	</section>
 </div>

@@ -76,11 +76,26 @@ export class UserProfileService {
     return body || { };
   }
 
-  private handleError (error: any) {
-    // In a real world app, we might send the error to remote logging infrastructure
-    let errMsg = error.message || 'Server error';
-    console.error(errMsg); // log to console instead
+  private handleError (error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
     return Observable.throw(errMsg);
   }
+
+
+  // private handleError (error: any) {
+
+  //   let errMsg = error.message || 'Server error';
+  //   console.log(errMsg);
+  //   console.error(errMsg); // log to console instead
+  //   return Observable.throw(errMsg);
+  // }
 
 }

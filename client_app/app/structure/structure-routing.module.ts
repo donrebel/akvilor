@@ -6,7 +6,7 @@ import { ComposeMessageComponent } from './popup/compose-message.component';
 
 const structureRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
-  { path: 'compose', component: ComposeMessageComponent, outlet: 'popup'},
+  { path: 'compose', component: ComposeMessageComponent, outlet: 'popup' }
 ]
 
 @NgModule({

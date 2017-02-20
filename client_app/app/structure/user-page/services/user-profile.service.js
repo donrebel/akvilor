@@ -62,9 +62,16 @@ var UserProfileService = (function () {
         return body || {};
     };
     UserProfileService.prototype.handleError = function (error) {
-        // In a real world app, we might send the error to remote logging infrastructure
-        var errMsg = error.message || 'Server error';
-        console.error(errMsg); // log to console instead
+        var errMsg;
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.error || JSON.stringify(body);
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
         return Observable_1.Observable.throw(errMsg);
     };
     UserProfileService = __decorate([

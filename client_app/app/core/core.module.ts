@@ -7,7 +7,7 @@ import { AuthModule } from '../auth/auth.module';
 import { SearchService } from './services/search.service';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { SearchData } from './services/search-data';
+import { AppData } from '../app-data';
 
 @NgModule({
     imports: [
@@ -16,7 +16,7 @@ import { SearchData } from './services/search-data';
       VideoChatModule,
       AuthModule,
 
-      InMemoryWebApiModule.forRoot(SearchData)
+      InMemoryWebApiModule.forRoot(AppData)
     ],
     exports: [
       VideoChatModule,

@@ -7,6 +7,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
 import { SearchService, SearchItem } from '../../core/services/search.service';
+import { SearchItemComponent } from './search-item.component';
 
 @Component({
   moduleId: module.id,

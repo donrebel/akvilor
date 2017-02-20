@@ -11,8 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var material_1 = require('@angular/material');
 var shared_module_1 = require('../shared/shared.module');
+var user_page_module_1 = require('./user-page/user-page.module');
 var structure_routing_module_1 = require('./structure-routing.module');
 var home_page_component_1 = require('./home-page/home-page.component');
+var search_item_component_1 = require('./home-page/search-item.component');
 var compose_message_component_1 = require('./popup/compose-message.component');
 var StructureModule = (function () {
     function StructureModule() {
@@ -22,11 +24,13 @@ var StructureModule = (function () {
             imports: [
                 shared_module_1.SharedModule,
                 material_1.MaterialModule,
+                user_page_module_1.UserPageModule,
                 structure_routing_module_1.StructureRoutingModule
             ],
             declarations: [
                 home_page_component_1.HomePageComponent,
-                compose_message_component_1.ComposeMessageComponent
+                compose_message_component_1.ComposeMessageComponent,
+                search_item_component_1.SearchItemComponent
             ]
         }), 
         __metadata('design:paramtypes', [])

@@ -10,17 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
-// import { FormsModule }   from '@angular/forms';
 var core_module_1 = require('./core/core.module');
 var structure_module_1 = require('./structure/structure.module');
-// import { SharedModule } from './shared/shared.module';
 var app_config_1 = require('./app-config');
 var app_component_1 = require('./app.component');
 var app_routing_module_1 = require('./app-routing.module');
-// import { UserPageModule } from './page-structure/user-page/user-page.module';
-// import { MainPageComponent } from './page-structure/main-page/main-page.component';
 var page_not_found_component_1 = require('./structure/page-not-found/page-not-found.component');
-// import { ComposeMessageComponent } from './compose-message.component';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -34,7 +29,7 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                page_not_found_component_1.PageNotFoundComponent //,
+                page_not_found_component_1.PageNotFoundComponent
             ],
             providers: [
                 { provide: app_config_1.APP_CONFIG, useValue: app_config_1.AKVILOR_CONFIG }

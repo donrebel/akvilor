@@ -14,7 +14,7 @@ var home_page_component_1 = require('./home-page/home-page.component');
 var compose_message_component_1 = require('./popup/compose-message.component');
 var structureRoutes = [
     { path: 'home', component: home_page_component_1.HomePageComponent },
-    { path: 'compose', component: compose_message_component_1.ComposeMessageComponent, outlet: 'popup' },
+    { path: 'compose', component: compose_message_component_1.ComposeMessageComponent, outlet: 'popup' }
 ];
 var StructureRoutingModule = (function () {
     function StructureRoutingModule() {

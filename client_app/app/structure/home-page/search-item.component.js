@@ -9,17 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var SearchItem = (function () {
-    function SearchItem() {
+var SearchItemComponent = (function () {
+    function SearchItemComponent() {
     }
-    SearchItem = __decorate([
+    SearchItemComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            template: "\n    <md-card> asd \n    </md-card>\n  "
+            selector: 'search-item',
+            template: "\n    <md-card> asd\n    </md-card>\n  "
         }), 
         __metadata('design:paramtypes', [])
-    ], SearchItem);
-    return SearchItem;
+    ], SearchItemComponent);
+    return SearchItemComponent;
 }());
-exports.SearchItem = SearchItem;
+exports.SearchItemComponent = SearchItemComponent;
 //# sourceMappingURL=search-item.component.js.map

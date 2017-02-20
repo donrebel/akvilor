@@ -18,7 +18,7 @@ var video_chat_module_1 = require('../video-chat/video-chat.module');
 var auth_module_1 = require('../auth/auth.module');
 var search_service_1 = require('./services/search.service');
 var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
-var search_data_1 = require('./services/search-data');
+var app_data_1 = require('../app-data');
 var CoreModule = (function () {
     function CoreModule(parentModule) {
         if (parentModule) {
@@ -32,7 +32,7 @@ var CoreModule = (function () {
                 http_1.HttpModule,
                 video_chat_module_1.VideoChatModule,
                 auth_module_1.AuthModule,
-                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(search_data_1.SearchData)
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(app_data_1.AppData)
             ],
             exports: [
                 video_chat_module_1.VideoChatModule,

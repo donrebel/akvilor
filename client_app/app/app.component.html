@@ -3,12 +3,12 @@
   <header id="header">
     <div class="row">
       <div class="col-md-12">
-        <a class="akvilor" routerLink="/main-page" routerLinkActive="active">Akvilor</a>
+        <a class="akvilor" routerLink="/home" routerLinkActive="active">Akvilor</a>
       </div>
     </div>
     <nav class="links">
 			<ul *ngIf="auth.authenticated()">
-        <li><a routerLink="/main-page">back to find</a></li>
+        <li><a routerLink="/home">back to find</a></li>
         <li><a routerLink= "/user-page/cimmerian">my page</a></li>
         <li><a [routerLink]="[{ outlets: {popup: ['compose'] } }]">test</a></li>
 			</ul>

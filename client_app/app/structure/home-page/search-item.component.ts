@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
+  selector: 'search-item',
   template: `
-    <md-card> asd 
+    <md-card> asd
     </md-card>
   `
 })
-export class SearchItem {
+export class SearchItemComponent {
 
 }
