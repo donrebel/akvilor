@@ -10,15 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+// import { FormsModule }   from '@angular/forms';
+var core_module_1 = require('./core/core.module');
+var structure_module_1 = require('./structure/structure.module');
+// import { SharedModule } from './shared/shared.module';
 var app_config_1 = require('./app-config');
 var app_component_1 = require('./app.component');
-var core_module_1 = require('./core/core.module');
-var shared_module_1 = require('./shared/shared.module');
 var app_routing_module_1 = require('./app-routing.module');
-var user_page_module_1 = require('./page-structure/user-page/user-page.module');
-var main_page_component_1 = require('./page-structure/main-page/main-page.component');
-var page_not_found_component_1 = require('./page-structure/page-not-found/page-not-found.component');
-var compose_message_component_1 = require('./compose-message.component');
+// import { UserPageModule } from './page-structure/user-page/user-page.module';
+// import { MainPageComponent } from './page-structure/main-page/main-page.component';
+var page_not_found_component_1 = require('./structure/page-not-found/page-not-found.component');
+// import { ComposeMessageComponent } from './compose-message.component';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -27,15 +29,12 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 core_module_1.CoreModule,
-                shared_module_1.SharedModule,
-                user_page_module_1.UserPageModule,
+                structure_module_1.StructureModule,
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [
                 app_component_1.AppComponent,
-                main_page_component_1.MainPageComponent,
-                page_not_found_component_1.PageNotFoundComponent,
-                compose_message_component_1.ComposeMessageComponent
+                page_not_found_component_1.PageNotFoundComponent //,
             ],
             providers: [
                 { provide: app_config_1.APP_CONFIG, useValue: app_config_1.AKVILOR_CONFIG }

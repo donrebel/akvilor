@@ -10,26 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var page_not_found_component_1 = require('./structure/page-not-found/page-not-found.component');
-var appRoutes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
+var home_page_component_1 = require('./home-page/home-page.component');
+var compose_message_component_1 = require('./popup/compose-message.component');
+var structureRoutes = [
+    { path: 'home', component: home_page_component_1.HomePageComponent },
+    { path: 'compose', component: compose_message_component_1.ComposeMessageComponent, outlet: 'popup' },
 ];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var StructureRoutingModule = (function () {
+    function StructureRoutingModule() {
     }
-    AppRoutingModule = __decorate([
+    StructureRoutingModule = __decorate([
         core_1.NgModule({
             imports: [
-                router_1.RouterModule.forRoot(appRoutes),
+                router_1.RouterModule.forChild(structureRoutes)
             ],
             exports: [
                 router_1.RouterModule
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppRoutingModule);
-    return AppRoutingModule;
+    ], StructureRoutingModule);
+    return StructureRoutingModule;
 }());
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+exports.StructureRoutingModule = StructureRoutingModule;
+//# sourceMappingURL=structure-routing.module.js.map

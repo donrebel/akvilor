@@ -10,10 +10,10 @@ import { SearchService, SearchItem } from '../../core/services/search.service';
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'main-page.component.html',
-  styleUrls: ['main-page.component.css']
+  templateUrl: 'home-page.component.html',
+  styleUrls: ['home-page.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class HomePageComponent implements OnInit {
   public items = new Observable<SearchItem[]>();
   private searchTermStream = new Subject<string>();
 

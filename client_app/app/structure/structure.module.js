@@ -9,27 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var page_not_found_component_1 = require('./structure/page-not-found/page-not-found.component');
-var appRoutes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
-];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var material_1 = require('@angular/material');
+var shared_module_1 = require('../shared/shared.module');
+var structure_routing_module_1 = require('./structure-routing.module');
+var home_page_component_1 = require('./home-page/home-page.component');
+var compose_message_component_1 = require('./popup/compose-message.component');
+var StructureModule = (function () {
+    function StructureModule() {
     }
-    AppRoutingModule = __decorate([
+    StructureModule = __decorate([
         core_1.NgModule({
             imports: [
-                router_1.RouterModule.forRoot(appRoutes),
+                shared_module_1.SharedModule,
+                material_1.MaterialModule,
+                structure_routing_module_1.StructureRoutingModule
             ],
-            exports: [
-                router_1.RouterModule
+            declarations: [
+                home_page_component_1.HomePageComponent,
+                compose_message_component_1.ComposeMessageComponent
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppRoutingModule);
-    return AppRoutingModule;
+    ], StructureModule);
+    return StructureModule;
 }());
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+exports.StructureModule = StructureModule;
+//# sourceMappingURL=structure.module.js.map

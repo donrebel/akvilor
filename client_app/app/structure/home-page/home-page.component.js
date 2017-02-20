@@ -15,31 +15,31 @@ require('rxjs/add/operator/debounceTime');
 require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/switchMap');
 var search_service_1 = require('../../core/services/search.service');
-var MainPageComponent = (function () {
-    function MainPageComponent(searchService) {
+var HomePageComponent = (function () {
+    function HomePageComponent(searchService) {
         this.searchService = searchService;
         this.items = new Observable_1.Observable();
         this.searchTermStream = new Subject_1.Subject();
     }
-    MainPageComponent.prototype.search = function (term) {
+    HomePageComponent.prototype.search = function (term) {
         this.searchTermStream.next(term);
     };
-    MainPageComponent.prototype.ngOnInit = function () {
+    HomePageComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.items = this.searchTermStream
             .debounceTime(300)
             .distinctUntilChanged()
             .switchMap(function (term) { return _this.searchService.search(term); });
     };
-    MainPageComponent = __decorate([
+    HomePageComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            templateUrl: 'main-page.component.html',
-            styleUrls: ['main-page.component.css']
+            templateUrl: 'home-page.component.html',
+            styleUrls: ['home-page.component.css']
         }), 
         __metadata('design:paramtypes', [search_service_1.SearchService])
-    ], MainPageComponent);
-    return MainPageComponent;
+    ], HomePageComponent);
+    return HomePageComponent;
 }());
-exports.MainPageComponent = MainPageComponent;
-//# sourceMappingURL=main-page.component.js.map
+exports.HomePageComponent = HomePageComponent;
+//# sourceMappingURL=home-page.component.js.map
