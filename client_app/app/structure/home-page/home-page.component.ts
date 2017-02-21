@@ -30,4 +30,8 @@ export class HomePageComponent implements OnInit {
       .distinctUntilChanged()
       .switchMap((term: string) => this.searchService.search(term));
   }
+
+  like(searchItem: SearchItem) {
+    console.log(searchItem);
+  }
 }

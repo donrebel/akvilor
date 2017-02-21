@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
 
-// We want to avoid any 'name not found'
-// warnings from TypeScript
 declare var Auth0Lock: any;
 
 @Injectable()
@@ -25,7 +23,7 @@ export class AuthService {
         localStorage.setItem('profile', JSON.stringify(profile));
         console.log(JSON.stringify(profile));
       });
-      let redirect = this.redirectUrl ? this.redirectUrl : '/main-page';
+      let redirect = this.redirectUrl ? this.redirectUrl : '/home';
       this.router.navigate([redirect]);
       this.lock.hide();
     });
@@ -43,7 +41,7 @@ export class AuthService {
     localStorage.removeItem('profile');
     localStorage.removeItem('id_token');
     localStorage.removeItem('redirectUrl');
-    this.router.navigate(['/main-page']);
+    this.router.navigate(['/home']);
   }
 
   public authenticated() {

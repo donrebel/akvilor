@@ -31,6 +31,9 @@ var HomePageComponent = (function () {
             .distinctUntilChanged()
             .switchMap(function (term) { return _this.searchService.search(term); });
     };
+    HomePageComponent.prototype.like = function (searchItem) {
+        console.log(searchItem);
+    };
     HomePageComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

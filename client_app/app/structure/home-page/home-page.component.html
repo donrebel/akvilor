@@ -7,9 +7,12 @@
 		<form ng-submit="goFind()">
 			<input #term (keyup)="search(term.value)" class="form-control" placeholder=""/>
 		</form>
-		<ul>
-			<search-item *ngFor="let item of items | async"></search-item>
-			<!-- <li *ngFor="let item of items | async">{{item.id}}  {{item.name}}</li> -->
-		</ul>
+		<div class="container-fluid">
+			<div class=row>
+				<div class="col-md-6 col-lg-6" *ngFor="let item of items | async">
+					<search-item [searchItem]="item" (likeRequest)="like($event)"></search-item>
+				</div>
+			</div>
+		</div>
 	</section>
 </div>

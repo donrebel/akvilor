@@ -27,7 +27,7 @@ var AuthService = (function () {
                 localStorage.setItem('profile', JSON.stringify(profile));
                 console.log(JSON.stringify(profile));
             });
-            var redirect = _this.redirectUrl ? _this.redirectUrl : '/main-page';
+            var redirect = _this.redirectUrl ? _this.redirectUrl : '/home';
             _this.router.navigate([redirect]);
             _this.lock.hide();
         });
@@ -42,7 +42,7 @@ var AuthService = (function () {
         localStorage.removeItem('profile');
         localStorage.removeItem('id_token');
         localStorage.removeItem('redirectUrl');
-        this.router.navigate(['/main-page']);
+        this.router.navigate(['/home']);
     };
     AuthService.prototype.authenticated = function () {
         return angular2_jwt_1.tokenNotExpired();

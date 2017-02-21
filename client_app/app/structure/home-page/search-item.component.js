@@ -9,14 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var search_service_1 = require('../../core/services/search.service');
 var SearchItemComponent = (function () {
     function SearchItemComponent() {
+        this.likeRequest = new core_1.EventEmitter();
     }
+    SearchItemComponent.prototype.like = function () {
+        this.likeRequest.emit(this.searchItem);
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', search_service_1.SearchItem)
+    ], SearchItemComponent.prototype, "searchItem", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], SearchItemComponent.prototype, "likeRequest", void 0);
     SearchItemComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'search-item',
-            template: "\n    <md-card> asd\n    </md-card>\n  "
+            templateUrl: './search-item.component.html',
+            styleUrls: ['./search-item.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], SearchItemComponent);
