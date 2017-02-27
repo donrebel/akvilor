@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { APP_CONFIG, AppConfig } from '../../../app-config';
 import { User } from '../models/user';
+import { UtilService } from '../../../core/services/util.service';
 
 interface UserProfile{
   userName:string,
@@ -22,23 +23,26 @@ interface UserProfile{
 @Injectable()
 export class UserProfileService {
 
-  private baseUrl: string;
+  private apiBaseUrl: string;
+  private apiUrl: string;
 
   constructor(
     @Inject(APP_CONFIG) appConfig: AppConfig,
-    private authHttp: AuthHttp
+    private authHttp: AuthHttp,
+    private util: UtilService
   ) {
-    //this.baseUrl  = '//localhost:3000/api';
-    this.baseUrl = appConfig.apiEndpoint;
+    this.apiBaseUrl = appConfig.apiEndpoint;
+//  this.apiUrl = `${this.apiBaseUrl}/v1/user`;
+    this.apiUrl = `${this.apiBaseUrl}/userAccount`;
   }
 
   userProfile_getAll(){}
 
   getOne(id: any): Observable<UserProfile[]> {
     return this.authHttp
-      .get(`${this.baseUrl}/v1/user/${id}`)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .get(`${this.apiUrl}/${id}`)
+      .map(this.util.extractDataHttpRequest)
+      .catch(this.util.handleErrorHttpRequest);
   }
 
   create(inputData: UserProfile): Observable<UserProfile> {
@@ -46,9 +50,9 @@ export class UserProfileService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.authHttp
-      .post(`${this.baseUrl}/v1/user`, body, options)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .post(this.apiUrl, body, options)
+      .map(this.util.extractDataHttpRequest)
+      .catch(this.util.handleErrorHttpRequest);
   }
 
   update(inputData: UserProfile): Observable<UserProfile> {
@@ -56,46 +60,16 @@ export class UserProfileService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.authHttp
-      .put(`${this.baseUrl}/v1/user/${inputData._id}`, body, options)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .put(`${this.apiUrl}/${inputData._id}`, body, options)
+      .map(this.util.extractDataHttpRequest)
+      .catch(this.util.handleErrorHttpRequest);
   }
 
   remove(id: any): Observable<UserProfile> {
     return this.authHttp
-      .delete(`${this.baseUrl}/v1/user/${id}`)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .delete(`${this.apiUrl}/${id}`)
+      .map(this.util.extractDataHttpRequest)
+      .catch(this.util.handleErrorHttpRequest);
   }
-
-  private extractData(res: Response) {
-    if (res.status < 200 || res.status >= 300) {
-      throw new Error('Bad response status: ' + res.status);
-    }
-    let body = res.json();
-    return body || { };
-  }
-
-  private handleError (error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
-  }
-
-
-  // private handleError (error: any) {
-
-  //   let errMsg = error.message || 'Server error';
-  //   console.log(errMsg);
-  //   console.error(errMsg); // log to console instead
-  //   return Observable.throw(errMsg);
-  // }
 
 }

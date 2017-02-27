@@ -8,6 +8,7 @@ export interface AppConfig {
 }
 
 export const AKVILOR_CONFIG: AppConfig = {
-  apiEndpoint: '//localhost:3000/api',
+  // apiEndpoint: '//localhost:3000/api',
+  apiEndpoint: 'app/',
   title: 'akvilor'
 }

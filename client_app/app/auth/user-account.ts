@@ -11,7 +11,7 @@ export class UserProfile {
     email_verified: boolean,
     clientID: string,
     updated_at: string,
-    identites: Object[],
+    identities: Object[],
     created_at: string,
     global_client_id: string
   ) { }
@@ -27,7 +27,9 @@ export class UserAccount {
     avatarPicture: string,
     canvasPicture:string,
     synopsis:string,
-    skilltaglist: string[]
+    skilltaglist: string[],
+    ratePerMinute: number,
+    likes: number
   ) { }
 
 }

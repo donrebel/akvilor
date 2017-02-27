@@ -9,7 +9,8 @@
     <nav class="links">
 			<ul *ngIf="auth.authenticated()">
         <li><a routerLink="/home">back to find</a></li>
-        <li><a routerLink= "/user-page/cimmerian">my page</a></li>
+        <!-- <li><a routerLink= "/user-page/cimmerian">my page</a></li> -->
+        <li><a [routerLink]="currentUserAccountLink">my page</a></li>
         <li><a [routerLink]="[{ outlets: {popup: ['compose'] } }]">test</a></li>
 			</ul>
 		</nav>

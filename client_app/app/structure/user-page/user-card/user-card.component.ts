@@ -9,6 +9,8 @@ import { UserProfileService } from '../services/user-profile.service';
 import { Utils } from '../services/utils';
 import { RatePerMinutePipe } from './user-card.pipes';
 
+import { AuthService } from '../../../auth/auth.service';
+
 import { Router,
          NavigationExtras } from '@angular/router';
 

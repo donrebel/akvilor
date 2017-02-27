@@ -8,13 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/observable/of');
 require('rxjs/add/operator/delay');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
+var app_config_1 = require('../../app-config');
+var util_service_1 = require('./util.service');
 var SearchItem = (function () {
     function SearchItem(id, name) {
         this.id = id;
@@ -24,46 +28,27 @@ var SearchItem = (function () {
 }());
 exports.SearchItem = SearchItem;
 var SearchService = (function () {
-    function SearchService(http) {
+    function SearchService(appConfig, http, util) {
         this.http = http;
-        this.searchUrl = 'app/searchItems';
+        this.util = util;
+        this.apiBaseUrl = appConfig.apiEndpoint;
     }
-    // search(term: string): Observable<string[]> {
-    //   let res = ['a', 'b', 'c'];
-    //   return Observable.of(res).delay(1000);
-    // }
     SearchService.prototype.search = function (term) {
-        return this.http.get(this.searchUrl)
-            .map(this.extractData)
-            .catch(this.handleError);
+        return this.http.get(this.apiBaseUrl + "searchItems")
+            .map(this.util.extractDataHttpRequest)
+            .catch(this.util.handleErrorHttpRequest);
     };
     SearchService.prototype.searchAddItem = function (item) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.searchUrl, item, options)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
-    SearchService.prototype.extractData = function (res) {
-        var body = res.json();
-        return body.data || {};
-    };
-    SearchService.prototype.handleError = function (error) {
-        var errMsg;
-        if (error instanceof http_1.Response) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
-        }
-        else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return Observable_1.Observable.throw(errMsg);
+        return this.http.post(this.apiBaseUrl + "searchItems", item, options)
+            .map(this.util.extractDataHttpRequest)
+            .catch(this.util.handleErrorHttpRequest);
     };
     SearchService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        core_1.Injectable(),
+        __param(0, core_1.Inject(app_config_1.APP_CONFIG)), 
+        __metadata('design:paramtypes', [Object, http_1.Http, util_service_1.UtilService])
     ], SearchService);
     return SearchService;
 }());

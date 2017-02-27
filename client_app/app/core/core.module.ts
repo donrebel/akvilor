@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { VideoChatModule } from '../video-chat/video-chat.module';
 import { AuthModule } from '../auth/auth.module';
 import { SearchService } from './services/search.service';
+import { UtilService } from './services/util.service';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppData } from '../app-data';
@@ -23,7 +24,8 @@ import { AppData } from '../app-data';
       AuthModule
     ],
     providers: [
-      SearchService
+      SearchService,
+      UtilService
     ]
 })
 export class CoreModule {

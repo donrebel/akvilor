@@ -17,6 +17,7 @@ var http_1 = require('@angular/http');
 var video_chat_module_1 = require('../video-chat/video-chat.module');
 var auth_module_1 = require('../auth/auth.module');
 var search_service_1 = require('./services/search.service');
+var util_service_1 = require('./services/util.service');
 var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
 var app_data_1 = require('../app-data');
 var CoreModule = (function () {
@@ -39,7 +40,8 @@ var CoreModule = (function () {
                 auth_module_1.AuthModule
             ],
             providers: [
-                search_service_1.SearchService
+                search_service_1.SearchService,
+                util_service_1.UtilService
             ]
         }),
         __param(0, core_1.Optional()),

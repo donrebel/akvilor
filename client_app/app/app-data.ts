@@ -57,6 +57,39 @@ export class AppData implements InMemoryDbService {
       }
     ];
 
-    return {searchItems, userProfile};
+//    user_id: "auth0|57521c76bf3ea47941a13343",
+
+    let userAccount = [
+      {
+        id: "57521c76bf3ea47941a13343",
+        user_account_id: "111",
+        user_profile_id: "111",
+        accountName: "cimmerian",
+        personName: "Maksym Kovalenko",
+        accountEmail: "max.y.kovalenko@gmail.com",
+        avatarPicture: "https://s.gravatar.com/avatar/0a9983b2869cd597962a9c1269518aa5?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png",
+        canvasPicture: "assets/images/usercard.jpg",
+        synopsis: "LOREM IPSUM DOLOR SIT AMET, ETIAM LOREM ADIPISCING ELIT. CRAS TURPIS ANTE, NULLAM SIT AMET TURPIS NON, SOLLICITUDIN POSUERE URNA. MAURIS ID TELLUS ARCU. NUNC VEHICULA ID NULLA DIGNISSIM DAPIBUS. NULLAM ULTRICES, NEQUE ET FAUCIBUS VIVERRA, EX NULLA CURSUS",
+        skilltaglist: ["AngularJS", "HTML", "CSS", "ReactJS"],
+        ratePerMinute: 7.37,
+        likes: 570
+      },
+      {
+        id: "575219c5eddebf241d6126fb",
+        user_account_id: "222",
+        user_profile_id: "222",
+        accountName: "max.cimmerian",
+        personName: "Maksym Kovalenko 2",
+        accountEmail: "max.cimmerian@gmail.com",
+        avatarPicture: "https://s.gravatar.com/avatar/774d996e8aa03c387171d7c9b7baabc4?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png",
+        canvasPicture: "assets/images/usercard.jpg",
+        synopsis: "The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.",
+        skilltaglist: ["DWBI", "Database", "SQL", "Machine Learning"],
+        ratePerMinute: 5.55,
+        likes: 310
+      }
+
+    ]
+    return {searchItems, userProfile, userAccount};
   }
 }

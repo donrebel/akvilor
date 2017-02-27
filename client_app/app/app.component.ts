@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
     //private openChatRoom: boolean = false;
     private chatRooms: ChatRoomInfo[] = [];
     private videoFrame: {};
+    private currentUserAccountID: string = '';
+    private currentUserAccountLink: string = '';
 
     constructor(
       private auth: AuthService,
@@ -39,5 +41,12 @@ export class AppComponent implements OnInit {
           this.videoFrame = false;
         }
       })
+
+      this.auth.getCurrentUserAccount().subscribe(
+        (acc) => {
+          this.currentUserAccountID = acc.id
+          this.currentUserAccountLink = "/"+ this.currentUserAccountID;
+        }
+      )
     }
 }

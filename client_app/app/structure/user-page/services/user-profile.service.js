@@ -14,70 +14,52 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var core_1 = require('@angular/core');
 var angular2_jwt_1 = require('angular2-jwt');
 var http_1 = require('@angular/http');
-var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 var app_config_1 = require('../../../app-config');
+var util_service_1 = require('../../../core/services/util.service');
 var UserProfileService = (function () {
-    function UserProfileService(appConfig, authHttp) {
+    function UserProfileService(appConfig, authHttp, util) {
         this.authHttp = authHttp;
-        //this.baseUrl  = '//localhost:3000/api';
-        this.baseUrl = appConfig.apiEndpoint;
+        this.util = util;
+        this.apiBaseUrl = appConfig.apiEndpoint;
+        //  this.apiUrl = `${this.apiBaseUrl}/v1/user`;
+        this.apiUrl = this.apiBaseUrl + "/userAccount";
     }
     UserProfileService.prototype.userProfile_getAll = function () { };
     UserProfileService.prototype.getOne = function (id) {
         return this.authHttp
-            .get(this.baseUrl + "/v1/user/" + id)
-            .map(this.extractData)
-            .catch(this.handleError);
+            .get(this.apiUrl + "/" + id)
+            .map(this.util.extractDataHttpRequest)
+            .catch(this.util.handleErrorHttpRequest);
     };
     UserProfileService.prototype.create = function (inputData) {
         var body = JSON.stringify({ data: inputData });
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.authHttp
-            .post(this.baseUrl + "/v1/user", body, options)
-            .map(this.extractData)
-            .catch(this.handleError);
+            .post(this.apiUrl, body, options)
+            .map(this.util.extractDataHttpRequest)
+            .catch(this.util.handleErrorHttpRequest);
     };
     UserProfileService.prototype.update = function (inputData) {
         var body = JSON.stringify({ data: inputData });
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.authHttp
-            .put(this.baseUrl + "/v1/user/" + inputData._id, body, options)
-            .map(this.extractData)
-            .catch(this.handleError);
+            .put(this.apiUrl + "/" + inputData._id, body, options)
+            .map(this.util.extractDataHttpRequest)
+            .catch(this.util.handleErrorHttpRequest);
     };
     UserProfileService.prototype.remove = function (id) {
         return this.authHttp
-            .delete(this.baseUrl + "/v1/user/" + id)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
-    UserProfileService.prototype.extractData = function (res) {
-        if (res.status < 200 || res.status >= 300) {
-            throw new Error('Bad response status: ' + res.status);
-        }
-        var body = res.json();
-        return body || {};
-    };
-    UserProfileService.prototype.handleError = function (error) {
-        var errMsg;
-        if (error instanceof http_1.Response) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
-        }
-        else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return Observable_1.Observable.throw(errMsg);
+            .delete(this.apiUrl + "/" + id)
+            .map(this.util.extractDataHttpRequest)
+            .catch(this.util.handleErrorHttpRequest);
     };
     UserProfileService = __decorate([
         core_1.Injectable(),
         __param(0, core_1.Inject(app_config_1.APP_CONFIG)), 
-        __metadata('design:paramtypes', [Object, angular2_jwt_1.AuthHttp])
+        __metadata('design:paramtypes', [Object, angular2_jwt_1.AuthHttp, util_service_1.UtilService])
     ], UserProfileService);
     return UserProfileService;
 }());
