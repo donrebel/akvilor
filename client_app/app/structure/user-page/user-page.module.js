@@ -15,7 +15,7 @@ var user_page_component_1 = require('./user-page.component');
 var user_card_component_1 = require('./user-card/user-card.component');
 var off_click_directive_1 = require('./directives/off-click.directive');
 var user_page_content_service_1 = require('./services/user-page-content.service');
-var user_profile_service_1 = require('./services/user-profile.service');
+var user_data_service_1 = require('./services/user-data.service');
 var utils_1 = require('./services/utils');
 var user_page_routing_module_1 = require('./user-page-routing.module');
 var UserPageModule = (function () {
@@ -34,7 +34,7 @@ var UserPageModule = (function () {
             ],
             providers: [
                 user_page_content_service_1.UserPageContentService,
-                user_profile_service_1.UserProfileService,
+                user_data_service_1.UserDataService,
                 utils_1.Utils
             ]
         }), 

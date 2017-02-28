@@ -51,6 +51,6 @@ export class UserAccount implements IUserAccount {
   public likes: number
 
   constructor (
-    public id: string,  
+    public id: string,
   ) {}
 }

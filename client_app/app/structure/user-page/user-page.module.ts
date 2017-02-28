@@ -8,7 +8,7 @@ import { UserPageComponent } from './user-page.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import OffClickDirective from './directives/off-click.directive';
 import { UserPageContentService } from './services/user-page-content.service';
-import { UserProfileService } from './services/user-profile.service';
+import { UserDataService } from './services/user-data.service';
 import { Utils } from './services/utils';
 import { UserPageRoutingModule } from './user-page-routing.module';
 
@@ -24,7 +24,7 @@ import { UserPageRoutingModule } from './user-page-routing.module';
     ],
     providers: [
       UserPageContentService,
-      UserProfileService,
+      UserDataService,
       Utils
     ]
 })

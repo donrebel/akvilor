@@ -12,28 +12,25 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var core_1 = require('@angular/core');
-var angular2_jwt_1 = require('angular2-jwt');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/map');
+var angular2_jwt_1 = require('angular2-jwt');
 var app_config_1 = require('../../../app-config');
 var util_service_1 = require('../../../core/services/util.service');
-var UserProfileService = (function () {
-    function UserProfileService(appConfig, authHttp, util) {
+var UserDataService = (function () {
+    function UserDataService(appConfig, authHttp, util) {
         this.authHttp = authHttp;
         this.util = util;
         this.apiBaseUrl = appConfig.apiEndpoint;
-        //  this.apiUrl = `${this.apiBaseUrl}/v1/user`;
-        this.apiUrl = this.apiBaseUrl + "/userAccount";
+        this.apiUrl = this.apiBaseUrl + "userAccount";
     }
-    UserProfileService.prototype.userProfile_getAll = function () { };
-    UserProfileService.prototype.getOne = function (id) {
+    UserDataService.prototype.getOne = function (id) {
         return this.authHttp
             .get(this.apiUrl + "/" + id)
             .map(this.util.extractDataHttpRequest)
             .catch(this.util.handleErrorHttpRequest);
     };
-    UserProfileService.prototype.create = function (inputData) {
-        var body = JSON.stringify({ data: inputData });
+    UserDataService.prototype.create = function (accInfo) {
+        var body = JSON.stringify({ data: accInfo });
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.authHttp
@@ -41,27 +38,21 @@ var UserProfileService = (function () {
             .map(this.util.extractDataHttpRequest)
             .catch(this.util.handleErrorHttpRequest);
     };
-    UserProfileService.prototype.update = function (inputData) {
-        var body = JSON.stringify({ data: inputData });
+    UserDataService.prototype.update = function (accInfo) {
+        var body = JSON.stringify({ data: accInfo });
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.authHttp
-            .put(this.apiUrl + "/" + inputData._id, body, options)
+            .put(this.apiUrl + "/" + accInfo.id, body, options)
             .map(this.util.extractDataHttpRequest)
             .catch(this.util.handleErrorHttpRequest);
     };
-    UserProfileService.prototype.remove = function (id) {
-        return this.authHttp
-            .delete(this.apiUrl + "/" + id)
-            .map(this.util.extractDataHttpRequest)
-            .catch(this.util.handleErrorHttpRequest);
-    };
-    UserProfileService = __decorate([
+    UserDataService = __decorate([
         core_1.Injectable(),
         __param(0, core_1.Inject(app_config_1.APP_CONFIG)), 
         __metadata('design:paramtypes', [Object, angular2_jwt_1.AuthHttp, util_service_1.UtilService])
-    ], UserProfileService);
-    return UserProfileService;
+    ], UserDataService);
+    return UserDataService;
 }());
-exports.UserProfileService = UserProfileService;
-//# sourceMappingURL=user-profile.service.js.map
+exports.UserDataService = UserDataService;
+//# sourceMappingURL=user-data.service.js.map

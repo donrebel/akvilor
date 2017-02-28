@@ -1,5 +1,4 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 
 import { VideoChatModule } from '../video-chat/video-chat.module';
@@ -12,7 +11,6 @@ import { AppData } from '../app-data';
 
 @NgModule({
     imports: [
-      CommonModule,
       HttpModule,
       VideoChatModule,
       AuthModule,

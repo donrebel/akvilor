@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { APP_CONFIG, AppConfig } from '../app-config';
 // import { UserAccount, UserProfile } from './user-account';
-import { UserAccount, UserProfile } from './auth.models';
+import { UserAccount, UserProfile } from '../app.models';
 
 import { UtilService } from '../core/services/util.service';
 
@@ -51,6 +51,9 @@ export class AuthService {
       this.router.navigate([redirect]);
       this.lock.hide();
     });
+
+    this.setCurrentUserAccount();
+
   }
 
   public setRedirectUrl(url: string): void {
@@ -77,17 +80,21 @@ export class AuthService {
     return this._currentUserAccount.asObservable();
   }
 
-  private setCurrentUserAccount(profile: UserProfile) {
-    if (profile) {
-      let user_id = profile.identities[0].user_id;
-      this.http.get(`${this.apiBaseUrl}userAccount/${user_id}`)
-                .map(this.util.extractDataHttpRequest)
-                .catch(this.util.handleErrorHttpRequest)
-                .subscribe(
-                  (acc) => {this._currentUserAccount.next(acc)},
-                  (err) => {console.log(err)},
-                  () => {}
-                );
+  private setCurrentUserAccount(profile?: UserProfile) {
+    if (!profile) {
+      let profileStr = localStorage.getItem('profile');
+      if (profileStr) {
+        profile = <UserProfile>JSON.parse(profileStr);
+      }
     }
+    let user_id = profile.identities[0].user_id;
+    this.http.get(`${this.apiBaseUrl}userAccount/${user_id}`)
+              .map(this.util.extractDataHttpRequest)
+              .catch(this.util.handleErrorHttpRequest)
+              .subscribe(
+                (acc) => {this._currentUserAccount.next(acc)},
+                (err) => {console.log(err)},
+                () => {}
+              );
   }
 }

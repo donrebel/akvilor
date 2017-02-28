@@ -5,7 +5,9 @@ import { Component, OnInit, Input } from '@angular/core';
 //import { Draggable } from '../directives/draggable';
 //import { AkvAvatar } from '../../directives/default-avatar';
 import { VideoChatService } from '../../../video-chat/services/video-chat.service';
-import { UserProfileService } from '../services/user-profile.service';
+
+import { UserDataService } from '../services/user-data.service';
+
 import { Utils } from '../services/utils';
 import { RatePerMinutePipe } from './user-card.pipes';
 
@@ -14,33 +16,10 @@ import { AuthService } from '../../../auth/auth.service';
 import { Router,
          NavigationExtras } from '@angular/router';
 
-const uploadURL = 'http://localhost:8080/profile/';
-class CModel_UserProfile {
-  _id: string;
-  userName: string;
-  personName: string;
-  email: string;
-  synopsis: string;
-  ratePerMinute: number;
-  likes: number;
-  skilltaglist: string[];
-  errorMessage: string;
-  skilltagstr: string;
+import { UserAccount } from '../../../app.models';
 
-  constructor(userProfileData) {
-    this._id = userProfileData._id;
-    this.userName = userProfileData.userName;
-    this.personName = userProfileData.personName;
-    this.email = userProfileData.email;
-    this.synopsis = userProfileData.synopsis;
-    this.ratePerMinute = userProfileData.ratePerMinute;
-    this.likes = userProfileData.likes;
-    this.skilltaglist = userProfileData.skilltaglist;
-    this.skilltagstr = this.skilltaglist.join(' ');
-/*  public avatarPicture?: string,
-    public canvasPicture?: string */
-  }
-};
+const uploadURL = 'http://localhost:8080/profile/';
+
 @Component({
   moduleId: module.id,
   selector: 'app-user-card',
@@ -50,20 +29,21 @@ class CModel_UserProfile {
   ]
 })
 export class UserCardComponent implements OnInit {
-  @Input() userName:string;
+  @Input() accID:string;
   //public uploader:FileUploader = new FileUploader({url: uploadURL});
   //public hasBaseDropZoneOver:boolean = false;
-private test:number = 0;
+  private test:number = 0;
   public hasAnotherDropZoneOver:boolean = false;
 
   errorMessage: string;
   isOpenEditUserCardForm: boolean;
-  cmodel_userProfile: CModel_UserProfile;
-  cmodel_userProfile_: CModel_UserProfile;
+  cmodel_userProfile: UserAccount;
+  cmodel_userProfile_: UserAccount;
+
   form_submited = false;
 
   constructor (
-      private userProfileService: UserProfileService,
+      private userDataService: UserDataService,
       private videoChatService: VideoChatService,
       private utils: Utils,
       public router: Router
@@ -73,32 +53,19 @@ private test:number = 0;
 
   ngOnInit() {
     this.isOpenEditUserCardForm = false;
-    this.cmodel_userProfile_get(this.userName);
+    this.cmodel_userProfile_get(this.accID);
   }
 
-  cmodel_userProfile_get(userName: string) {
-    this.userProfileService.getOne(userName)
+  cmodel_userProfile_get(accID: string) {
+    this.userDataService.getOne(accID)
       .subscribe(
-        userProfileDBData => {
-          if (userProfileDBData.length > 0) {
-            this.cmodel_userProfile = new CModel_UserProfile(userProfileDBData[0]);
-          } else {
-            this.cmodel_userProfile = new CModel_UserProfile({
-              userName:'cimmerian',
-              personName: 'Maksym Kovalenko',
-              email: 'max.y.kovalenko@gmail.com',
-              synopsis: 'LOREM IPSUM DOLOR SIT AMET, ETIAM LOREM ADIPISCING ELIT. CRAS TURPIS ANTE, NULLAM SIT AMET TURPIS NON, SOLLICITUDIN POSUERE URNA. MAURIS ID TELLUS ARCU. NUNC VEHICULA ID NULLA DIGNISSIM DAPIBUS. NULLAM ULTRICES, NEQUE ET FAUCIBUS VIVERRA, EX NULLA CURSUS',
-              ratePerMinute: 101,
-              likes:0
-            });
-          }
-        },
-        error =>  this.errorMessage = <any>error
+        userProfileDBData => { this.cmodel_userProfile = userProfileDBData },
+        error => { this.errorMessage = <any>error }
       );
   }
 
   cmodel_userProfile_create(userProfileData) {
-    this.userProfileService.create(userProfileData)
+    this.userDataService.create(userProfileData)
       .subscribe(
         userProfile => {
           this.form_submited = true;
@@ -110,7 +77,7 @@ private test:number = 0;
 
   cmodel_userProfile_update(userProfileData) {
     userProfileData.skilltaglist = userProfileData.skilltagstr.split(' ');
-    this.userProfileService.update(userProfileData)
+    this.userDataService.update(userProfileData)
       .subscribe(
         userProfile => {
           this.form_submited = true;
@@ -119,7 +86,6 @@ private test:number = 0;
         error =>  this.errorMessage = <any>error
       );
   }
-
 
   userCardEditForm_onSubmit() {
     this.cmodel_userProfile_update(this.cmodel_userProfile)
@@ -142,7 +108,6 @@ private test:number = 0;
   avatar_change($event){
     console.log('Avatar changing');
     this.test = this.test + 1;
-    //this.videoChatService.setChatRoomInfo({chatLink: 'asd' + this.test});
     this.videoChatService.openVideoFrame(
       {
         action: "open",
@@ -151,13 +116,6 @@ private test:number = 0;
         }
       }
     );
-    //this.videoChatService.runVideoChatApp({socket:'',targetId:''});
-
-    //this.router.navigate(['/video-chat']);
-
-    /*$event.stopPropagation();
-    this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
-    this.isOpenEditUserCardForm = true;*/
   }
 
   clickedOutside(){
@@ -173,8 +131,6 @@ private test:number = 0;
     this.userCardForm_editClose()
   }
   userCardForm_editSave(){
-    //this.cData.skilltaglist = this.cData.skilltagstr.split(' ');
-    //this.model.skilltaglist = this.model.skilltagstr.split(' ');
     this.userCardForm_editClose()
   }
 

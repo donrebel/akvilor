@@ -14,14 +14,10 @@ var Observable_1 = require('rxjs/Observable');
 var UtilService = (function () {
     function UtilService() {
     }
-    // private extractData(res: Response) {
-    //   if (res.status < 200 || res.status >= 300) {
-    //     throw new Error('Bad response status: ' + res.status);
-    //   }
-    //   let body = res.json();
-    //   return body || { };
-    // }
     UtilService.prototype.extractDataHttpRequest = function (res) {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error('Bad response status: ' + res.status);
+        }
         var body = res.json();
         return body.data || {};
     };

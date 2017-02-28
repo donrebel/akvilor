@@ -13,7 +13,7 @@ var router_1 = require('@angular/router');
 var user_page_component_1 = require('./user-page.component');
 var auth_guard_service_1 = require('../../auth/auth-guard.service');
 var userPageRoutes = [
-    { path: 'user-page/:id', component: user_page_component_1.UserPageComponent, canActivate: [auth_guard_service_1.AuthGuard] }
+    { path: ':id', component: user_page_component_1.UserPageComponent, canActivate: [auth_guard_service_1.AuthGuard] }
 ];
 var UserPageRoutingModule = (function () {
     function UserPageRoutingModule() {

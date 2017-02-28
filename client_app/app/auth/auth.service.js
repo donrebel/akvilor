@@ -17,7 +17,7 @@ var angular2_jwt_1 = require('angular2-jwt');
 var router_1 = require('@angular/router');
 var app_config_1 = require('../app-config');
 // import { UserAccount, UserProfile } from './user-account';
-var auth_models_1 = require('./auth.models');
+var app_models_1 = require('../app.models');
 var util_service_1 = require('../core/services/util.service');
 var Rx_1 = require('rxjs/Rx');
 require('rxjs/add/operator/filter');
@@ -29,7 +29,7 @@ var AuthService = (function () {
         this.util = util;
         this.lock = new Auth0Lock('dXFukGIX83bwXj2R8yFPsKR3dhecEWZi', 'akvilor.auth0.com');
         //currentUserAccount: UserAccount;
-        this.guestAccount = new auth_models_1.UserAccount("guest");
+        this.guestAccount = new app_models_1.UserAccount("guest");
         this._currentUserAccount = new Rx_1.BehaviorSubject(this.guestAccount);
         this.apiBaseUrl = appConfig.apiEndpoint;
         this.redirectUrl = localStorage.getItem('redirectUrl');
@@ -48,6 +48,7 @@ var AuthService = (function () {
             _this.router.navigate([redirect]);
             _this.lock.hide();
         });
+        this.setCurrentUserAccount();
     }
     AuthService.prototype.setRedirectUrl = function (url) {
         localStorage.setItem('redirectUrl', url);
@@ -69,13 +70,17 @@ var AuthService = (function () {
     };
     AuthService.prototype.setCurrentUserAccount = function (profile) {
         var _this = this;
-        if (profile) {
-            var user_id = profile.identities[0].user_id;
-            this.http.get(this.apiBaseUrl + "userAccount/" + user_id)
-                .map(this.util.extractDataHttpRequest)
-                .catch(this.util.handleErrorHttpRequest)
-                .subscribe(function (acc) { _this._currentUserAccount.next(acc); }, function (err) { console.log(err); }, function () { });
+        if (!profile) {
+            var profileStr = localStorage.getItem('profile');
+            if (profileStr) {
+                profile = JSON.parse(profileStr);
+            }
         }
+        var user_id = profile.identities[0].user_id;
+        this.http.get(this.apiBaseUrl + "userAccount/" + user_id)
+            .map(this.util.extractDataHttpRequest)
+            .catch(this.util.handleErrorHttpRequest)
+            .subscribe(function (acc) { _this._currentUserAccount.next(acc); }, function (err) { console.log(err); }, function () { });
     };
     AuthService = __decorate([
         core_1.Injectable(),

@@ -14,30 +14,13 @@ var core_1 = require('@angular/core');
 //import { Draggable } from '../directives/draggable';
 //import { AkvAvatar } from '../../directives/default-avatar';
 var video_chat_service_1 = require('../../../video-chat/services/video-chat.service');
-var user_profile_service_1 = require('../services/user-profile.service');
+var user_data_service_1 = require('../services/user-data.service');
 var utils_1 = require('../services/utils');
 var router_1 = require('@angular/router');
 var uploadURL = 'http://localhost:8080/profile/';
-var CModel_UserProfile = (function () {
-    function CModel_UserProfile(userProfileData) {
-        this._id = userProfileData._id;
-        this.userName = userProfileData.userName;
-        this.personName = userProfileData.personName;
-        this.email = userProfileData.email;
-        this.synopsis = userProfileData.synopsis;
-        this.ratePerMinute = userProfileData.ratePerMinute;
-        this.likes = userProfileData.likes;
-        this.skilltaglist = userProfileData.skilltaglist;
-        this.skilltagstr = this.skilltaglist.join(' ');
-        /*  public avatarPicture?: string,
-            public canvasPicture?: string */
-    }
-    return CModel_UserProfile;
-}());
-;
 var UserCardComponent = (function () {
-    function UserCardComponent(userProfileService, videoChatService, utils, router) {
-        this.userProfileService = userProfileService;
+    function UserCardComponent(userDataService, videoChatService, utils, router) {
+        this.userDataService = userDataService;
         this.videoChatService = videoChatService;
         this.utils = utils;
         this.router = router;
@@ -50,30 +33,16 @@ var UserCardComponent = (function () {
     }
     UserCardComponent.prototype.ngOnInit = function () {
         this.isOpenEditUserCardForm = false;
-        this.cmodel_userProfile_get(this.userName);
+        this.cmodel_userProfile_get(this.accID);
     };
-    UserCardComponent.prototype.cmodel_userProfile_get = function (userName) {
+    UserCardComponent.prototype.cmodel_userProfile_get = function (accID) {
         var _this = this;
-        this.userProfileService.getOne(userName)
-            .subscribe(function (userProfileDBData) {
-            if (userProfileDBData.length > 0) {
-                _this.cmodel_userProfile = new CModel_UserProfile(userProfileDBData[0]);
-            }
-            else {
-                _this.cmodel_userProfile = new CModel_UserProfile({
-                    userName: 'cimmerian',
-                    personName: 'Maksym Kovalenko',
-                    email: 'max.y.kovalenko@gmail.com',
-                    synopsis: 'LOREM IPSUM DOLOR SIT AMET, ETIAM LOREM ADIPISCING ELIT. CRAS TURPIS ANTE, NULLAM SIT AMET TURPIS NON, SOLLICITUDIN POSUERE URNA. MAURIS ID TELLUS ARCU. NUNC VEHICULA ID NULLA DIGNISSIM DAPIBUS. NULLAM ULTRICES, NEQUE ET FAUCIBUS VIVERRA, EX NULLA CURSUS',
-                    ratePerMinute: 101,
-                    likes: 0
-                });
-            }
-        }, function (error) { return _this.errorMessage = error; });
+        this.userDataService.getOne(accID)
+            .subscribe(function (userProfileDBData) { _this.cmodel_userProfile = userProfileDBData; }, function (error) { _this.errorMessage = error; });
     };
     UserCardComponent.prototype.cmodel_userProfile_create = function (userProfileData) {
         var _this = this;
-        this.userProfileService.create(userProfileData)
+        this.userDataService.create(userProfileData)
             .subscribe(function (userProfile) {
             _this.form_submited = true;
             //            this.cmodel_userProfile = userProfile;
@@ -82,7 +51,7 @@ var UserCardComponent = (function () {
     UserCardComponent.prototype.cmodel_userProfile_update = function (userProfileData) {
         var _this = this;
         userProfileData.skilltaglist = userProfileData.skilltagstr.split(' ');
-        this.userProfileService.update(userProfileData)
+        this.userDataService.update(userProfileData)
             .subscribe(function (userProfile) {
             _this.form_submited = true;
             //          this.cmodel_userProfile_fill(userProfile)
@@ -105,18 +74,12 @@ var UserCardComponent = (function () {
     UserCardComponent.prototype.avatar_change = function ($event) {
         console.log('Avatar changing');
         this.test = this.test + 1;
-        //this.videoChatService.setChatRoomInfo({chatLink: 'asd' + this.test});
         this.videoChatService.openVideoFrame({
             action: "open",
             data: {
                 chatLink: 'asd'
             }
         });
-        //this.videoChatService.runVideoChatApp({socket:'',targetId:''});
-        //this.router.navigate(['/video-chat']);
-        /*$event.stopPropagation();
-        this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
-        this.isOpenEditUserCardForm = true;*/
     };
     UserCardComponent.prototype.clickedOutside = function () {
         this.userCardForm_editClose();
@@ -130,14 +93,12 @@ var UserCardComponent = (function () {
         this.userCardForm_editClose();
     };
     UserCardComponent.prototype.userCardForm_editSave = function () {
-        //this.cData.skilltaglist = this.cData.skilltagstr.split(' ');
-        //this.model.skilltaglist = this.model.skilltagstr.split(' ');
         this.userCardForm_editClose();
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], UserCardComponent.prototype, "userName", void 0);
+    ], UserCardComponent.prototype, "accID", void 0);
     UserCardComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -147,7 +108,7 @@ var UserCardComponent = (function () {
                 'user-card.component.css'
             ]
         }), 
-        __metadata('design:paramtypes', [user_profile_service_1.UserProfileService, video_chat_service_1.VideoChatService, utils_1.Utils, router_1.Router])
+        __metadata('design:paramtypes', [user_data_service_1.UserDataService, video_chat_service_1.VideoChatService, utils_1.Utils, router_1.Router])
     ], UserCardComponent);
     return UserCardComponent;
 }());

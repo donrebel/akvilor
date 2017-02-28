@@ -24,8 +24,8 @@ var StructureModule = (function () {
             imports: [
                 shared_module_1.SharedModule,
                 material_1.MaterialModule,
+                structure_routing_module_1.StructureRoutingModule,
                 user_page_module_1.UserPageModule,
-                structure_routing_module_1.StructureRoutingModule
             ],
             declarations: [
                 home_page_component_1.HomePageComponent,

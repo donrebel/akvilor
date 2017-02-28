@@ -5,17 +5,10 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class UtilService {
 
-  // private extractData(res: Response) {
-  //   if (res.status < 200 || res.status >= 300) {
-  //     throw new Error('Bad response status: ' + res.status);
-  //   }
-  //   let body = res.json();
-  //   return body || { };
-  // }
-
-
-
   extractDataHttpRequest(res: Response) {
+    if (res.status < 200 || res.status >= 300) {
+        throw new Error('Bad response status: ' + res.status);
+    }
     let body = res.json();
     return body.data || { };
   }
@@ -32,4 +25,5 @@ export class UtilService {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
+  
 }

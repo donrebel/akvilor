@@ -6,4 +6,4 @@ var UserAccount = (function () {
     return UserAccount;
 }());
 exports.UserAccount = UserAccount;
-//# sourceMappingURL=auth.models.js.map
+//# sourceMappingURL=app.models.js.map

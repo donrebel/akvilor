@@ -13,8 +13,8 @@ import { ComposeMessageComponent } from './popup/compose-message.component';
   imports: [
     SharedModule,
     MaterialModule,
+    StructureRoutingModule,
     UserPageModule,
-    StructureRoutingModule
   ],
   declarations: [
     HomePageComponent,
