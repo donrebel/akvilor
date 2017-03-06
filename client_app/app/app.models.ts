@@ -31,7 +31,6 @@ export interface IUserAccount {
     accountEmail: string,
     avatarPicture: string,
     canvasPicture:string,
-    synopsis:string,
     skilltaglist: string[],
     ratePerMinute: number,
     likes: number
@@ -45,7 +44,6 @@ export class UserAccount implements IUserAccount {
   public accountEmail: string;
   public avatarPicture: string;
   public canvasPicture:string;
-  public synopsis:string;
   public skilltaglist: string[];
   public ratePerMinute: number;
   public likes: number

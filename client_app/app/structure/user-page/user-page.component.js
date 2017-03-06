@@ -17,6 +17,7 @@ var UserPageComponent = (function () {
         this.route = route;
         this.router = router;
         this.contentService = contentService;
+        this.accIsLoading = false;
     }
     UserPageComponent.prototype.ngOnInit = function () {
         var _this = this;

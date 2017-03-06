@@ -1,13 +1,14 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { AppData } from '../app-data';
+
 import { VideoChatModule } from '../video-chat/video-chat.module';
 import { AuthModule } from '../auth/auth.module';
 import { SearchService } from './services/search.service';
 import { UtilService } from './services/util.service';
-
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { AppData } from '../app-data';
+import { CanDeactivateGuard }  from './guards/can-deactivate-guard.service';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { AppData } from '../app-data';
     ],
     providers: [
       SearchService,
-      UtilService
+      UtilService,
+      CanDeactivateGuard
     ]
 })
 export class CoreModule {

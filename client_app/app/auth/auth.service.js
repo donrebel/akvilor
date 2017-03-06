@@ -27,7 +27,13 @@ var AuthService = (function () {
         this.http = http;
         this.router = router;
         this.util = util;
-        this.lock = new Auth0Lock('dXFukGIX83bwXj2R8yFPsKR3dhecEWZi', 'akvilor.auth0.com');
+        this.lock = new Auth0Lock('dXFukGIX83bwXj2R8yFPsKR3dhecEWZi', 'akvilor.auth0.com', {
+            auth: {
+                redirectUrl: location.origin,
+                responseType: 'token',
+                redirect: false,
+            }
+        });
         //currentUserAccount: UserAccount;
         this.guestAccount = new app_models_1.UserAccount("guest");
         this._currentUserAccount = new Rx_1.BehaviorSubject(this.guestAccount);
@@ -44,8 +50,8 @@ var AuthService = (function () {
                 console.log(JSON.stringify(profile));
                 _this.setCurrentUserAccount(profile);
             });
-            var redirect = _this.redirectUrl ? _this.redirectUrl : '/home';
-            _this.router.navigate([redirect]);
+            //      let redirect = this.redirectUrl ? this.redirectUrl : '/home';
+            _this.router.navigateByUrl(authResult.state);
             _this.lock.hide();
         });
         this.setCurrentUserAccount();
@@ -54,7 +60,13 @@ var AuthService = (function () {
         localStorage.setItem('redirectUrl', url);
     };
     AuthService.prototype.login = function () {
-        this.lock.show();
+        this.lock.show({
+            auth: {
+                params: {
+                    state: this.router.url
+                }
+            }
+        });
     };
     AuthService.prototype.logout = function () {
         localStorage.removeItem('profile');
@@ -71,16 +83,18 @@ var AuthService = (function () {
     AuthService.prototype.setCurrentUserAccount = function (profile) {
         var _this = this;
         if (!profile) {
-            var profileStr = localStorage.getItem('profile');
-            if (profileStr) {
+            if (!localStorage.getItem('profile') == false) {
+                var profileStr = localStorage.getItem('profile');
                 profile = JSON.parse(profileStr);
             }
         }
-        var user_id = profile.identities[0].user_id;
-        this.http.get(this.apiBaseUrl + "userAccount/" + user_id)
-            .map(this.util.extractDataHttpRequest)
-            .catch(this.util.handleErrorHttpRequest)
-            .subscribe(function (acc) { _this._currentUserAccount.next(acc); }, function (err) { console.log(err); }, function () { });
+        if (profile) {
+            var user_id = profile.identities[0].user_id;
+            this.http.get(this.apiBaseUrl + "userAccount/" + user_id)
+                .map(this.util.extractDataHttpRequest)
+                .catch(this.util.handleErrorHttpRequest)
+                .subscribe(function (acc) { _this._currentUserAccount.next(acc); }, function (err) { console.log(err); }, function () { });
+        }
     };
     AuthService = __decorate([
         core_1.Injectable(),

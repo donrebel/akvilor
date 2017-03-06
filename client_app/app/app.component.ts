@@ -49,4 +49,9 @@ export class AppComponent implements OnInit {
         }
       )
     }
+
+    test() {
+      let c = this.auth.authenticated();
+      console.log(c)
+    }
 }

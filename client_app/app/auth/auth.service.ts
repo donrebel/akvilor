@@ -13,7 +13,6 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/Rx';
 import 'rxjs/add/operator/filter';
 
-
 declare var Auth0Lock: any;
 
 @Injectable()
@@ -21,7 +20,15 @@ export class AuthService {
 
   private redirectUrl: string;
   private apiBaseUrl: string;
-  private lock = new Auth0Lock('dXFukGIX83bwXj2R8yFPsKR3dhecEWZi', 'akvilor.auth0.com');
+  private lock = new Auth0Lock(
+    'dXFukGIX83bwXj2R8yFPsKR3dhecEWZi',
+    'akvilor.auth0.com', {
+      auth: {
+          redirectUrl: location.origin,
+          responseType: 'token',
+          redirect: false,
+      }
+    });
 
   //currentUserAccount: UserAccount;
 
@@ -47,8 +54,8 @@ export class AuthService {
         console.log(JSON.stringify(profile));
         this.setCurrentUserAccount(profile);
       });
-      let redirect = this.redirectUrl ? this.redirectUrl : '/home';
-      this.router.navigate([redirect]);
+//      let redirect = this.redirectUrl ? this.redirectUrl : '/home';
+      this.router.navigateByUrl(authResult.state);
       this.lock.hide();
     });
 
@@ -61,7 +68,13 @@ export class AuthService {
   }
 
   public login() {
-    this.lock.show();
+    this.lock.show({
+      auth: {
+        params: {
+          state: this.router.url
+        }
+      }
+    });
   }
 
   public logout() {
@@ -73,7 +86,6 @@ export class AuthService {
 
   public authenticated() {
     return tokenNotExpired();
-
   }
 
   public getCurrentUserAccount() {
@@ -82,19 +94,23 @@ export class AuthService {
 
   private setCurrentUserAccount(profile?: UserProfile) {
     if (!profile) {
-      let profileStr = localStorage.getItem('profile');
-      if (profileStr) {
+      if (!localStorage.getItem('profile') == false) {
+        let profileStr = localStorage.getItem('profile');
         profile = <UserProfile>JSON.parse(profileStr);
       }
     }
-    let user_id = profile.identities[0].user_id;
-    this.http.get(`${this.apiBaseUrl}userAccount/${user_id}`)
-              .map(this.util.extractDataHttpRequest)
-              .catch(this.util.handleErrorHttpRequest)
-              .subscribe(
-                (acc) => {this._currentUserAccount.next(acc)},
-                (err) => {console.log(err)},
-                () => {}
-              );
+
+    if (profile) {
+      let user_id = profile.identities[0].user_id;
+      this.http.get(`${this.apiBaseUrl}userAccount/${user_id}`)
+                .map(this.util.extractDataHttpRequest)
+                .catch(this.util.handleErrorHttpRequest)
+                .subscribe(
+                  (acc) => {this._currentUserAccount.next(acc)},
+                  (err) => {console.log(err)},
+                  () => {}
+                );
+
+    }
   }
 }

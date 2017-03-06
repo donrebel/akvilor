@@ -1,5 +1,5 @@
 label {
-	font-family: "Raleway", Helvetica, sans-serif;
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
 	font-size: 0.7em;
 	font-weight: 400;
 	letter-spacing: 0.25em;
@@ -87,7 +87,7 @@ li {
 .usertag {
 	text-decoration: none;
 	border-bottom: none;
-	font-family: "Raleway", Helvetica, sans-serif;
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
   font-size: 0.8em;
   font-weight: 400;
   letter-spacing: 0.25em;

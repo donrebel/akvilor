@@ -18,6 +18,8 @@ export class UserPageComponent implements OnInit {
   public errorMessage:string;
   private sub: any;
 
+  private accIsLoading = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

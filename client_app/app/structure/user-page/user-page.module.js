@@ -9,15 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var shared_module_1 = require('../../shared/shared.module');
-// import { userPageRouting } from './user-page.routing';
+var user_page_routing_module_1 = require('./user-page-routing.module');
 var user_page_component_1 = require('./user-page.component');
 var user_card_component_1 = require('./user-card/user-card.component');
+var user_card_component2_1 = require('./user-card/user-card.component2');
+var uacc_card_component_1 = require('./user-card/uacc-card.component');
 var off_click_directive_1 = require('./directives/off-click.directive');
 var user_page_content_service_1 = require('./services/user-page-content.service');
-var user_data_service_1 = require('./services/user-data.service');
 var utils_1 = require('./services/utils');
-var user_page_routing_module_1 = require('./user-page-routing.module');
 var UserPageModule = (function () {
     function UserPageModule() {
     }
@@ -25,16 +26,18 @@ var UserPageModule = (function () {
         core_1.NgModule({
             imports: [
                 shared_module_1.SharedModule,
+                forms_1.ReactiveFormsModule,
                 user_page_routing_module_1.UserPageRoutingModule
             ],
             declarations: [
                 user_page_component_1.UserPageComponent,
                 user_card_component_1.UserCardComponent,
-                off_click_directive_1.default
+                off_click_directive_1.default,
+                user_card_component2_1.UserCardComponent2,
+                uacc_card_component_1.UAccCardComponent
             ],
             providers: [
                 user_page_content_service_1.UserPageContentService,
-                user_data_service_1.UserDataService,
                 utils_1.Utils
             ]
         }), 

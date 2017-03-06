@@ -106,6 +106,9 @@ var UserCardComponent = (function () {
             templateUrl: 'user-card.component.html',
             styleUrls: [
                 'user-card.component.css'
+            ],
+            providers: [
+                user_data_service_1.UserDataService
             ]
         }), 
         __metadata('design:paramtypes', [user_data_service_1.UserDataService, video_chat_service_1.VideoChatService, utils_1.Utils, router_1.Router])

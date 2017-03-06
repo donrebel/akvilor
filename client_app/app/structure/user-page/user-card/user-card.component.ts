@@ -10,12 +10,9 @@ import { UserDataService } from '../services/user-data.service';
 
 import { Utils } from '../services/utils';
 import { RatePerMinutePipe } from './user-card.pipes';
-
 import { AuthService } from '../../../auth/auth.service';
-
 import { Router,
          NavigationExtras } from '@angular/router';
-
 import { UserAccount } from '../../../app.models';
 
 const uploadURL = 'http://localhost:8080/profile/';
@@ -26,6 +23,9 @@ const uploadURL = 'http://localhost:8080/profile/';
   templateUrl: 'user-card.component.html',
   styleUrls: [
     'user-card.component.css'
+  ],
+  providers: [
+    UserDataService
   ]
 })
 export class UserCardComponent implements OnInit {

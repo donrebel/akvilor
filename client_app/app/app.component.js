@@ -43,6 +43,10 @@ var AppComponent = (function () {
             _this.currentUserAccountLink = "/" + _this.currentUserAccountID;
         });
     };
+    AppComponent.prototype.test = function () {
+        var c = this.auth.authenticated();
+        console.log(c);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'akvilor',

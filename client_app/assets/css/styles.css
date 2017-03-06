@@ -4,6 +4,45 @@ body {
   -ms-overflow-style: scrollbar;
 }
 
+body, input, select, textarea {
+	color: #646464;
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: 400;
+	line-height: 1.75;
+	letter-spacing: 0.1em;
+}
+
+label, p {
+	color: #646464;
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
+	font-size: 1em;
+	font-weight: 400;
+	line-height: 1.75;
+}
+
+.upper {
+	text-transform: uppercase;
+}
+
+.lower {
+	text-transform: lowercase;
+}
+
+.bold {
+	font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+		color: #646464;
+		font-family: "Raleway Cyrillic", Helvetica, sans-serif;
+		font-weight: 400;
+		letter-spacing: 0.25em;
+		line-height: 1.65;
+		margin: 0 0 0.5em 0;
+		text-transform: uppercase;
+	}
+
 a {
 	-moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
 	-webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
@@ -11,6 +50,12 @@ a {
 	transition: color 0.2s ease, border-bottom-color 0.2s ease;
 	color: inherit;
 	text-decoration: none;
+
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
+	font-size: 0.7em;
+	font-weight: 400;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
 }
 
 a:before {
@@ -22,7 +67,7 @@ a:before {
 
 a:hover {
 	border-bottom-color: transparent;
-	color: #79a7d3 !important;
+	color: #79a7d3;
 	text-decoration: none !important;
 }
 
@@ -31,7 +76,7 @@ a:hover:before {
 }
 
 a.akvilor {
-	font-family: "Raleway", Helvetica, sans-serif;
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
 	font-size: 0.7em;
 	font-weight: 800;
 	letter-spacing: 0.25em;
@@ -62,7 +107,7 @@ a.akvilor {
 
 .btn {
 	border-radius: 0px;
-	font-family: "Raleway", Helvetica, sans-serif;
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
 	font-size: 0.6em;
 	font-weight: 800;
 	height: 4em;
@@ -84,4 +129,12 @@ a.akvilor {
 }
 .btn:hover:active {
 	background-color: rgba(46, 186, 174, 0.10);
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
 }
