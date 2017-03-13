@@ -6,13 +6,12 @@ import { UserPageRoutingModule } from './user-page-routing.module';
 
 import { UserPageComponent } from './user-page.component';
 import { UserCardComponent } from './user-card/user-card.component';
-import { UserCardComponent2 } from './user-card/user-card.component2';
 import { UAccCardComponent } from './user-card/uacc-card.component';
-
+import { UAccCardEditFormComponent } from './user-card/uacc-card-edit-form.component';
+import { RatePipe } from './user-card/user-card.pipes';
 import OffClickDirective from './directives/off-click.directive';
-import { UserPageContentService } from './services/user-page-content.service';
 
-import { Utils } from './services/utils';
+import { UserDataService } from './services/user-data.service';
 
 @NgModule({
     imports: [
@@ -24,12 +23,15 @@ import { Utils } from './services/utils';
       UserPageComponent,
       UserCardComponent,
       OffClickDirective,
-      UserCardComponent2,
-      UAccCardComponent
+      UAccCardComponent,
+      UAccCardEditFormComponent,
+      RatePipe
+    ],
+    entryComponents: [
+      UAccCardEditFormComponent
     ],
     providers: [
-      UserPageContentService,
-      Utils
+      UserDataService
     ]
 })
 export class UserPageModule {}

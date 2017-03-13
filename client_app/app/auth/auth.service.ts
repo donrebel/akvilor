@@ -34,6 +34,7 @@ export class AuthService {
 
   private guestAccount: UserAccount = new UserAccount("guest");
   private _currentUserAccount: BehaviorSubject<UserAccount> = new BehaviorSubject(this.guestAccount);
+  private currentUserID: string;
 
   constructor(
     private http: Http,
@@ -92,6 +93,21 @@ export class AuthService {
     return this._currentUserAccount.asObservable();
   }
 
+  public updateCurrentUserProfileData (profileData: UserAccount):Observable<UserAccount> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.post(`${this.apiBaseUrl}userAccount/${this.currentUserID}`, profileData, options)
+                      .map((response) => {
+                        let res = this.util.extractDataHttpRequest(response)
+                        if (response.ok) {
+                          this._currentUserAccount.next(profileData);
+                        }
+                        return res
+                      })
+                      .catch(this.util.handleErrorHttpRequest);
+  }
+
   private setCurrentUserAccount(profile?: UserProfile) {
     if (!profile) {
       if (!localStorage.getItem('profile') == false) {
@@ -101,8 +117,8 @@ export class AuthService {
     }
 
     if (profile) {
-      let user_id = profile.identities[0].user_id;
-      this.http.get(`${this.apiBaseUrl}userAccount/${user_id}`)
+      this.currentUserID = profile.identities[0].user_id;
+      this.http.get(`${this.apiBaseUrl}userAccount/${this.currentUserID}`)
                 .map(this.util.extractDataHttpRequest)
                 .catch(this.util.handleErrorHttpRequest)
                 .subscribe(
@@ -114,3 +130,19 @@ export class AuthService {
     }
   }
 }
+
+// var obj = {x: 1};
+// var source = Rx.Observable.ofObjectChanges(obj);
+//
+// var subscription = source.subscribe(
+//   function (x) {
+//     console.log('Next: %s', x);
+//   },
+//   function (err) {
+//     console.log('Error: %s', err);
+//   },
+//   function () {
+//     console.log('Completed');
+//   });
+//
+// obj.x = 42;

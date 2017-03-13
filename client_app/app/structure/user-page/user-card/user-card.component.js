@@ -15,14 +15,14 @@ var core_1 = require('@angular/core');
 //import { AkvAvatar } from '../../directives/default-avatar';
 var video_chat_service_1 = require('../../../video-chat/services/video-chat.service');
 var user_data_service_1 = require('../services/user-data.service');
-var utils_1 = require('../services/utils');
 var router_1 = require('@angular/router');
 var uploadURL = 'http://localhost:8080/profile/';
 var UserCardComponent = (function () {
-    function UserCardComponent(userDataService, videoChatService, utils, router) {
+    function UserCardComponent(userDataService, videoChatService, 
+        // private utils: Utils,
+        router) {
         this.userDataService = userDataService;
         this.videoChatService = videoChatService;
-        this.utils = utils;
         this.router = router;
         //public uploader:FileUploader = new FileUploader({url: uploadURL});
         //public hasBaseDropZoneOver:boolean = false;
@@ -68,7 +68,7 @@ var UserCardComponent = (function () {
     };
     UserCardComponent.prototype.userCardForm_editOpen = function ($event) {
         $event.stopPropagation();
-        this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
+        // this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
         this.isOpenEditUserCardForm = true;
     };
     UserCardComponent.prototype.avatar_change = function ($event) {
@@ -89,7 +89,7 @@ var UserCardComponent = (function () {
         this.isOpenEditUserCardForm = false;
     };
     UserCardComponent.prototype.userCardForm_editCancel = function () {
-        this.cmodel_userProfile = this.utils.copyObject(this.cmodel_userProfile_);
+        // this.cmodel_userProfile = this.utils.copyObject(this.cmodel_userProfile_);
         this.userCardForm_editClose();
     };
     UserCardComponent.prototype.userCardForm_editSave = function () {
@@ -111,7 +111,7 @@ var UserCardComponent = (function () {
                 user_data_service_1.UserDataService
             ]
         }), 
-        __metadata('design:paramtypes', [user_data_service_1.UserDataService, video_chat_service_1.VideoChatService, utils_1.Utils, router_1.Router])
+        __metadata('design:paramtypes', [user_data_service_1.UserDataService, video_chat_service_1.VideoChatService, router_1.Router])
     ], UserCardComponent);
     return UserCardComponent;
 }());

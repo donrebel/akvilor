@@ -10,24 +10,24 @@
   </a>
   <div id="r1" class="br-bottom">
     <div id="c1" class="left">
-      <img class="avatar avatar-lg" src="assets/images/avatar1.jpg">
+      <img class="avatar avatar-lg" src={{profile.user_profile.picture}}>
     </div>
     <div class="left">
       <div>
-        <h5 class="bold">Maksym Kovalenko</h5>
+        <h5 class="bold">{{profile.personName}}</h5>
       </div>
       <div>
-        <label class="bold">Software Engineer</label>
+        <label class="bold">{{profile.title}}</label>
       </div>
       <div>
-        <label>local time</label>
+        <label>{{profile.localTime | date:'medium'}}</label>
       </div>
       <div>
-        <label>#Python #javascript</label>
+        <label>{{profile.skills}}</label>
       </div>
     </div>
     <div class="right">
-      <h4 class="lower">$10.00 /min</h4>
+      <h4 class="lower">{{profile.ratePerMinute | rate:'minute'}}</h4>
     </div>
   </div>
   <div>
@@ -35,8 +35,7 @@
   </div>
   <div>
     <p>
-      For some people, the accelerated learning process is continuous. But for most, it levels off when they get their first job. If there are no more exams to take, if there's no demand to get out paper and pencil, why read any more books? Of course, you will learn some things through experience. Just getting out there—sometimes doing it wrong and sometimes doing it right—you will learn
+      {{profile.overview}}
     </p>
   </div>
-
 </div>

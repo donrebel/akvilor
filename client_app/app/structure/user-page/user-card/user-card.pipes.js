@@ -9,26 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-/*
- * Raise the value exponentially
- * Takes an exponent argument that defaults to 1.
- * Usage:
- *   value | exponentialStrength:exponent
- * Example:
- *   {{ 2 |  exponentialStrength:10}}
- *   formats to: 1024
-*/
-var RatePerMinutePipe = (function () {
-    function RatePerMinutePipe() {
+var RatePipe = (function () {
+    function RatePipe() {
     }
-    RatePerMinutePipe.prototype.transform = function (value) {
-        return value + ' per 1 minute';
+    RatePipe.prototype.transform = function (value, unitTime) {
+        var res = '$ ' + String(value) + ' /';
+        if (unitTime === 'minute') {
+            res = res + 'min';
+        }
+        return res;
     };
-    RatePerMinutePipe = __decorate([
-        core_1.Pipe({ name: 'ratePerMinute' }), 
+    RatePipe = __decorate([
+        core_1.Pipe({
+            name: 'rate'
+        }), 
         __metadata('design:paramtypes', [])
-    ], RatePerMinutePipe);
-    return RatePerMinutePipe;
+    ], RatePipe);
+    return RatePipe;
 }());
-exports.RatePerMinutePipe = RatePerMinutePipe;
+exports.RatePipe = RatePipe;
 //# sourceMappingURL=user-card.pipes.js.map

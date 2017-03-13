@@ -26,27 +26,39 @@ export interface IUserAccount {
     id: string,
     user_account_id: string,
     user_profile_id: string,
+    user_profile: UserProfile,
     accountName: string,
     personName: string,
+    firstName: string,
+    lastName: string,
+    title: string,
+    localTime: Date,
     accountEmail: string,
     avatarPicture: string,
     canvasPicture:string,
-    skilltaglist: string[],
+    skills: string[],
     ratePerMinute: number,
-    likes: number
+    likes: number,
+    overview: string
 }
 
 export class UserAccount implements IUserAccount {
   public user_account_id: string;
   public user_profile_id: string;
+  public user_profile: UserProfile;
   public accountName: string;
   public personName: string;
+  public firstName: string;
+  public lastName: string;
+  public title: string;
+  public localTime: Date;
   public accountEmail: string;
   public avatarPicture: string;
   public canvasPicture:string;
-  public skilltaglist: string[];
+  public skills: string[];
   public ratePerMinute: number;
-  public likes: number
+  public likes: number;
+  public overview: string;
 
   constructor (
     public id: string,

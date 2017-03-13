@@ -1,0 +1,28 @@
+#cnt {
+  /*position: fixed;*/
+  top: 50px;
+  left: 50px;
+  /*background-color: #f4f4f4;*/
+}
+
+#content {
+  width: 500px;
+  height: 600px;
+}
+
+/*.md-input-container {
+  font-weight: 600;
+}*/
+
+.full-width {
+  width: 100%;
+}
+
+.inp {
+  font-family: "Raleway Cyrillic", Helvetica, sans-serif;
+  font-weight: 300;
+  padding: 2px;
+}
+:host input.mat-input-placeholder {
+    color: rgba(0, 0, 0, 0.75);
+}

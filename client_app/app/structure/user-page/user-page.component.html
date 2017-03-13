@@ -1,28 +1,28 @@
-
-
-
 <div class="container">
-  <div class="row">
+  <h3 *ngIf="accIsLoading"><i>Loading ... </i></h3>
+  <div class="row" *ngIf="userProfile">
     <div class="col-md-9 col-md-offset-1">
       <div class="row">
         <h5>My profile</h5>
       </div>
       <div class="row">
-        <uacc-card></uacc-card>
+        <uacc-card [profile]="userProfile"></uacc-card>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container-fluid content-holder">
+
+
+<!-- <div class="container-fluid content-holder">
   <h3 *ngIf="accIsLoading"><i>Loading ... </i></h3>
   <user-card [accID]="userName"></user-card>
 </div>
 <div class="container-fluid content-holder">
   <app-user-card [accID]="userName"></app-user-card>
-</div>
+</div> -->
 
-<div class="container-fluid content-holder">
+<!-- <div class="container-fluid content-holder">
   <div class="row" *ngIf="pageContent">
     <div class="col-md-6 col-lg-6" *ngFor="let mpost of pageContent.posts">
       <md-card>
@@ -42,4 +42,4 @@
       </md-card>
     <div>
   </div>
-</div>
+</div> -->

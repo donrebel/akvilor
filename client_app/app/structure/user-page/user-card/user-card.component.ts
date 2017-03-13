@@ -8,8 +8,7 @@ import { VideoChatService } from '../../../video-chat/services/video-chat.servic
 
 import { UserDataService } from '../services/user-data.service';
 
-import { Utils } from '../services/utils';
-import { RatePerMinutePipe } from './user-card.pipes';
+// import { Utils } from '../services/utils';
 import { AuthService } from '../../../auth/auth.service';
 import { Router,
          NavigationExtras } from '@angular/router';
@@ -45,7 +44,7 @@ export class UserCardComponent implements OnInit {
   constructor (
       private userDataService: UserDataService,
       private videoChatService: VideoChatService,
-      private utils: Utils,
+      // private utils: Utils,
       public router: Router
   ) {
       this.clickedOutside = this.clickedOutside.bind(this);
@@ -101,7 +100,7 @@ export class UserCardComponent implements OnInit {
 
   userCardForm_editOpen($event){
     $event.stopPropagation();
-    this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
+    // this.cmodel_userProfile_ = this.utils.copyObject(this.cmodel_userProfile);
     this.isOpenEditUserCardForm = true;
   }
 
@@ -127,7 +126,7 @@ export class UserCardComponent implements OnInit {
     this.isOpenEditUserCardForm = false;
   }
   userCardForm_editCancel(){
-    this.cmodel_userProfile = this.utils.copyObject(this.cmodel_userProfile_);
+    // this.cmodel_userProfile = this.utils.copyObject(this.cmodel_userProfile_);
     this.userCardForm_editClose()
   }
   userCardForm_editSave(){

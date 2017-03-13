@@ -5,7 +5,22 @@ import { UserPageComponent } from './user-page.component';
 import { AuthGuard } from '../../auth/auth-guard.service';
 
 const userPageRoutes: Routes = [
-  { path: ':id', component: UserPageComponent, canActivate: [AuthGuard] }
+  {
+    path: 'mypage',
+    component: UserPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      mode: 'myPage'
+    }
+  },
+  {
+    path: ':id',
+    component: UserPageComponent,
+    canActivate: [AuthGuard],
+    data : {
+      mode: 'otherUserPage'
+    }
+  }
 ];
 
 @NgModule({

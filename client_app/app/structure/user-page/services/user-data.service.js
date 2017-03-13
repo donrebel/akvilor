@@ -29,6 +29,12 @@ var UserDataService = (function () {
             .map(this.util.extractDataHttpRequest)
             .catch(this.util.handleErrorHttpRequest);
     };
+    UserDataService.prototype.getUserProfileData = function (id) {
+        return this.authHttp
+            .get(this.apiUrl + "/" + id)
+            .map(this.util.extractDataHttpRequest)
+            .catch(this.util.handleErrorHttpRequest);
+    };
     UserDataService.prototype.create = function (accInfo) {
         var body = JSON.stringify({ data: accInfo });
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });

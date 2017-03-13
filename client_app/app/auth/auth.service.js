@@ -80,6 +80,20 @@ var AuthService = (function () {
     AuthService.prototype.getCurrentUserAccount = function () {
         return this._currentUserAccount.asObservable();
     };
+    AuthService.prototype.updateCurrentUserProfileData = function (profileData) {
+        var _this = this;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.apiBaseUrl + "userAccount/" + this.currentUserID, profileData, options)
+            .map(function (response) {
+            var res = _this.util.extractDataHttpRequest(response);
+            if (response.ok) {
+                _this._currentUserAccount.next(profileData);
+            }
+            return res;
+        })
+            .catch(this.util.handleErrorHttpRequest);
+    };
     AuthService.prototype.setCurrentUserAccount = function (profile) {
         var _this = this;
         if (!profile) {
@@ -89,8 +103,8 @@ var AuthService = (function () {
             }
         }
         if (profile) {
-            var user_id = profile.identities[0].user_id;
-            this.http.get(this.apiBaseUrl + "userAccount/" + user_id)
+            this.currentUserID = profile.identities[0].user_id;
+            this.http.get(this.apiBaseUrl + "userAccount/" + this.currentUserID)
                 .map(this.util.extractDataHttpRequest)
                 .catch(this.util.handleErrorHttpRequest)
                 .subscribe(function (acc) { _this._currentUserAccount.next(acc); }, function (err) { console.log(err); }, function () { });
@@ -104,4 +118,19 @@ var AuthService = (function () {
     return AuthService;
 }());
 exports.AuthService = AuthService;
+// var obj = {x: 1};
+// var source = Rx.Observable.ofObjectChanges(obj);
+//
+// var subscription = source.subscribe(
+//   function (x) {
+//     console.log('Next: %s', x);
+//   },
+//   function (err) {
+//     console.log('Error: %s', err);
+//   },
+//   function () {
+//     console.log('Completed');
+//   });
+//
+// obj.x = 42;
 //# sourceMappingURL=auth.service.js.map

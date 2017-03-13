@@ -11,24 +11,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 require('rxjs/add/operator/switchMap');
-var user_page_content_service_1 = require('./services/user-page-content.service');
+var auth_service_1 = require('../../auth/auth.service');
+var user_data_service_1 = require('./services/user-data.service');
 var UserPageComponent = (function () {
-    function UserPageComponent(route, router, contentService) {
+    function UserPageComponent(route, router, userData, authData) {
         this.route = route;
         this.router = router;
-        this.contentService = contentService;
+        this.userData = userData;
+        this.authData = authData;
         this.accIsLoading = false;
     }
     UserPageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params
-            .switchMap(function (params) {
-            _this.userName = params['id'];
-            return _this.contentService.getContent();
-        })
-            .subscribe(function (content) {
-            _this.pageContent = content;
+        this.accIsLoading = true;
+        this.route.data.subscribe(function (res) {
+            _this.getUserProfileData(res.mode);
         });
+    };
+    UserPageComponent.prototype.getUserProfileData = function (mode) {
+        var _this = this;
+        if (mode == 'myPage') {
+            this.authData.getCurrentUserAccount().subscribe(function (profile) {
+                _this.userProfile = profile;
+                _this.accIsLoading = false;
+            }, function (err) {
+                console.log(err);
+                _this.accIsLoading = false;
+            });
+        }
+        else {
+            this.route.params
+                .switchMap(function (params) {
+                return _this.userData.getUserProfileData(params['id']);
+            })
+                .subscribe(function (content) {
+                _this.userProfile = content;
+                _this.accIsLoading = false;
+            }, function (error) {
+                console.log(error);
+                _this.accIsLoading = false;
+            });
+        }
     };
     UserPageComponent.prototype.ngOnDestroy = function () {
         if (this.sub) {
@@ -46,7 +69,7 @@ var UserPageComponent = (function () {
             templateUrl: 'user-page.component.html',
             styleUrls: ['user-page.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, user_page_content_service_1.UserPageContentService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, user_data_service_1.UserDataService, auth_service_1.AuthService])
     ], UserPageComponent);
     return UserPageComponent;
 }());

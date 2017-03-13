@@ -14,11 +14,11 @@ var shared_module_1 = require('../../shared/shared.module');
 var user_page_routing_module_1 = require('./user-page-routing.module');
 var user_page_component_1 = require('./user-page.component');
 var user_card_component_1 = require('./user-card/user-card.component');
-var user_card_component2_1 = require('./user-card/user-card.component2');
 var uacc_card_component_1 = require('./user-card/uacc-card.component');
+var uacc_card_edit_form_component_1 = require('./user-card/uacc-card-edit-form.component');
+var user_card_pipes_1 = require('./user-card/user-card.pipes');
 var off_click_directive_1 = require('./directives/off-click.directive');
-var user_page_content_service_1 = require('./services/user-page-content.service');
-var utils_1 = require('./services/utils');
+var user_data_service_1 = require('./services/user-data.service');
 var UserPageModule = (function () {
     function UserPageModule() {
     }
@@ -33,12 +33,15 @@ var UserPageModule = (function () {
                 user_page_component_1.UserPageComponent,
                 user_card_component_1.UserCardComponent,
                 off_click_directive_1.default,
-                user_card_component2_1.UserCardComponent2,
-                uacc_card_component_1.UAccCardComponent
+                uacc_card_component_1.UAccCardComponent,
+                uacc_card_edit_form_component_1.UAccCardEditFormComponent,
+                user_card_pipes_1.RatePipe
+            ],
+            entryComponents: [
+                uacc_card_edit_form_component_1.UAccCardEditFormComponent
             ],
             providers: [
-                user_page_content_service_1.UserPageContentService,
-                utils_1.Utils
+                user_data_service_1.UserDataService
             ]
         }), 
         __metadata('design:paramtypes', [])

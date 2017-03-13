@@ -30,6 +30,14 @@ export class UserDataService {
       .catch(this.util.handleErrorHttpRequest);
   }
 
+  getUserProfileData(id: any): Observable<UserAccount> {
+    return this.authHttp
+      .get(`${this.apiUrl}/${id}`)
+      .map(this.util.extractDataHttpRequest)
+      .catch(this.util.handleErrorHttpRequest);
+  }
+
+
   create(accInfo): Observable<UserAccount> {
     let body = JSON.stringify({data: accInfo});
     let headers = new Headers({ 'Content-Type': 'application/json' });
