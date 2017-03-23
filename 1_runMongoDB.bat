@@ -1,4 +1,4 @@
-cd C:\Program Files\MongoDB\Server\3.4\bin
-mongod --dbpath "C:\MyFolder\Work\Projects\akvilor\data\dbs"
+cd C:\Program Files\MongoDB\Server\3.4\bin 
+mongod --dbpath "C:\MyFolder\Work\Projects\akvilor\data\db"
 
 

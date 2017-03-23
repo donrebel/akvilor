@@ -1,2 +1,2 @@
-cd C:\_Projects\akvilor\server_node
+cd C:\MyFolder\Work\Projects\akvilor\server_node
 node server.js
