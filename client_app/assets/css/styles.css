@@ -21,6 +21,11 @@ label, p {
 	line-height: 1.5;
 }
 
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
 .upper {
 	text-transform: uppercase;
 }

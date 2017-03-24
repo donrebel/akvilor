@@ -1,8 +1,8 @@
 
-<div class="container" id="main-tape">
+<div class="container-fluid" id="main-tape">
   <header id="header">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 col-lg-12">
         <a class="akvilor" routerLink="/home" routerLinkActive="active">Akvilor</a>
       </div>
     </div>
@@ -16,7 +16,7 @@
 			</ul>
 		</nav>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 col-lg-12">
         <!-- <a (click)="test()">test</a> -->
         <a class="akvilor right" (click)="auth.login()" *ngIf="!auth.authenticated()">Sign In</a>
         <a class="akvilor" (click)="auth.logout()" *ngIf="auth.authenticated()">Sign Out</a>

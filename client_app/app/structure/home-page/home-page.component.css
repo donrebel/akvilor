@@ -58,7 +58,7 @@ header p {
 		font-size: 0.8em;
 	}
 
-	@media screen and (max-width: 3280px) {
+	/*@media screen and (max-width: 3280px) {
 
 		#intro {
 			margin: 3em 0 3em 0;
@@ -73,9 +73,9 @@ header p {
 				font-size: 0.7em;
 			}
 
-	}
+	}*/
 
-	@media screen and (max-width: 736px) {
+	/*@media screen and (max-width: 736px) {
 
 		#intro {
 			margin: 3em 0 3em 0;
@@ -97,4 +97,4 @@ header p {
 				margin-bottom: 0;
 			}
 
-	}
+	}*/

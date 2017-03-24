@@ -1,4 +1,4 @@
-<div class="uacc-card" (mouseenter)="onHover()" (mouseleave)="onBlur()">
+<div *ngIf="profile" class="uacc-card" (mouseenter)="onHover()" (mouseleave)="onBlur()">
   <a class="edit-btn" *ngIf="suggestToEdit" (click)="openEditDialog()">
     <div class="cc">
       <svg viewBox="0 0 24 24" width="24px" height="24px" x="0" y="0">
@@ -10,7 +10,7 @@
   </a>
   <div id="r1" class="br-bottom">
     <div id="c1" class="left">
-      <img class="avatar avatar-lg" src={{profile.user_profile.picture}}>
+      <img class="avatar avatar-lg" src={{profile.user_profile?.picture}}>
     </div>
     <div class="left">
       <div>
