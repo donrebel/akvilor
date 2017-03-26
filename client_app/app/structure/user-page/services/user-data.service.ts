@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { APP_CONFIG, AppConfig } from '../../../app-config';
 import { UtilService } from '../../../core/services/util.service';
-import { UserAccount } from '../../../app.models';
+import { UserProfile } from '../../../app.models';
 
 @Injectable()
 export class UserDataService {
@@ -20,17 +20,17 @@ export class UserDataService {
     private util: UtilService
   ) {
     this.apiBaseUrl = appConfig.apiEndpoint;
-    this.apiUrl = `${this.apiBaseUrl}userAccount`;
+    this.apiUrl = `${this.apiBaseUrl}userProfile`;
   }
 
-  getOne(id: any): Observable<UserAccount> {
+  getOne(id: any): Observable<UserProfile> {
     return this.authHttp
       .get(`${this.apiUrl}/${id}`)
       .map(this.util.extractDataHttpRequest)
       .catch(this.util.handleErrorHttpRequest);
   }
 
-  getUserProfileData(id: any): Observable<UserAccount> {
+  getUserProfileData(id: any): Observable<UserProfile> {
     return this.authHttp
       .get(`${this.apiUrl}/${id}`)
       .map(this.util.extractDataHttpRequest)
@@ -38,7 +38,7 @@ export class UserDataService {
   }
 
 
-  create(accInfo): Observable<UserAccount> {
+  create(accInfo): Observable<UserProfile> {
     let body = JSON.stringify({data: accInfo});
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -48,7 +48,7 @@ export class UserDataService {
       .catch(this.util.handleErrorHttpRequest);
   }
 
-  update(accInfo): Observable<UserAccount> {
+  update(accInfo): Observable<UserProfile> {
     let body = JSON.stringify({data: accInfo});
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

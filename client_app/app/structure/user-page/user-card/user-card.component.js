@@ -9,23 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 //import { FILE_UPLOAD_DIRECTIVES, FileUploader } from 'ng2-file-upload';
 //import OffClickDirective from "../directives/off-click.directive";
 //import { Draggable } from '../directives/draggable';
 //import { AkvAvatar } from '../../directives/default-avatar';
 var video_chat_service_1 = require('../../../video-chat/services/video-chat.service');
 var user_data_service_1 = require('../services/user-data.service');
-var router_1 = require('@angular/router');
 var uploadURL = 'http://localhost:8080/profile/';
 var UserCardComponent = (function () {
-    function UserCardComponent(userDataService, videoChatService, 
-        // private utils: Utils,
-        router) {
+    function UserCardComponent(userDataService, videoChatService, router) {
         this.userDataService = userDataService;
         this.videoChatService = videoChatService;
         this.router = router;
-        //public uploader:FileUploader = new FileUploader({url: uploadURL});
-        //public hasBaseDropZoneOver:boolean = false;
         this.test = 0;
         this.hasAnotherDropZoneOver = false;
         this.form_submited = false;

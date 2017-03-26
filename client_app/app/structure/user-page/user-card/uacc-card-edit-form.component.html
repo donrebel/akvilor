@@ -36,9 +36,9 @@
 
       <div style="margin-bottom: 1em">
         <button type="submit"
-                [disabled]="accForm.pristine" class="btn btn-success">Save</button> &nbsp;
-        <button type="reset" (click)="revert()"
-                [disabled]="accForm.pristine" class="btn btn-danger">Revert</button>
+                [disabled]="accForm.pristine" class="btn btn-default">Save</button> &nbsp;
+        <button type="button"
+                class="btn btn-default" (click)="closeEditForm()">Cancel</button> &nbsp;        
       </div>
     </form>
   </div>

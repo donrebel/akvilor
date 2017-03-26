@@ -20,6 +20,7 @@ var UserPageComponent = (function () {
         this.userData = userData;
         this.authData = authData;
         this.accIsLoading = false;
+        this.onEditFlag = false;
     }
     UserPageComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -31,7 +32,7 @@ var UserPageComponent = (function () {
     UserPageComponent.prototype.getUserProfileData = function (mode) {
         var _this = this;
         if (mode == 'myPage') {
-            this.authData.getCurrentUserAccount().subscribe(function (profile) {
+            this.authData.getCurrentUserProfile().subscribe(function (profile) {
                 _this.userProfile = profile;
                 _this.accIsLoading = false;
             }, function (err) {
@@ -53,6 +54,9 @@ var UserPageComponent = (function () {
             });
         }
     };
+    UserPageComponent.prototype.onEdit = function (isEditMode) {
+        this.onEditFlag = isEditMode;
+    };
     UserPageComponent.prototype.ngOnDestroy = function () {
         if (this.sub) {
             this.sub.unsubscribe();
@@ -67,7 +71,10 @@ var UserPageComponent = (function () {
             moduleId: module.id,
             selector: 'app-user-page',
             templateUrl: 'user-page.component.html',
-            styleUrls: ['user-page.component.css']
+            styleUrls: ['user-page.component.css'],
+            providers: [
+                user_data_service_1.UserDataService
+            ]
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, user_data_service_1.UserDataService, auth_service_1.AuthService])
     ], UserPageComponent);

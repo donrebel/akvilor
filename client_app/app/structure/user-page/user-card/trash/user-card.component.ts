@@ -1,18 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router,
+         NavigationExtras } from '@angular/router';
 
 //import { FILE_UPLOAD_DIRECTIVES, FileUploader } from 'ng2-file-upload';
 //import OffClickDirective from "../directives/off-click.directive";
 //import { Draggable } from '../directives/draggable';
 //import { AkvAvatar } from '../../directives/default-avatar';
+
 import { VideoChatService } from '../../../video-chat/services/video-chat.service';
-
 import { UserDataService } from '../services/user-data.service';
-
-// import { Utils } from '../services/utils';
 import { AuthService } from '../../../auth/auth.service';
-import { Router,
-         NavigationExtras } from '@angular/router';
-import { UserAccount } from '../../../app.models';
+import { UserProfile } from '../../../app.models';
 
 const uploadURL = 'http://localhost:8080/profile/';
 
@@ -29,22 +27,19 @@ const uploadURL = 'http://localhost:8080/profile/';
 })
 export class UserCardComponent implements OnInit {
   @Input() accID:string;
-  //public uploader:FileUploader = new FileUploader({url: uploadURL});
-  //public hasBaseDropZoneOver:boolean = false;
   private test:number = 0;
   public hasAnotherDropZoneOver:boolean = false;
 
   errorMessage: string;
   isOpenEditUserCardForm: boolean;
-  cmodel_userProfile: UserAccount;
-  cmodel_userProfile_: UserAccount;
+  cmodel_userProfile: UserProfile;
+  cmodel_userProfile_: UserProfile;
 
   form_submited = false;
 
   constructor (
       private userDataService: UserDataService,
       private videoChatService: VideoChatService,
-      // private utils: Utils,
       public router: Router
   ) {
       this.clickedOutside = this.clickedOutside.bind(this);

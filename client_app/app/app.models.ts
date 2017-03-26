@@ -1,11 +1,11 @@
-interface UserProfileIdentities {
+interface AuthOUserProfileIdentities {
   user_id: string,
   provider: string,
   connection: string,
   isSocial: boolean
 }
 
-export interface UserProfile {
+export interface AuthOUserProfile {
     user_id: string,
     email: string,
     picture: string,
@@ -17,24 +17,18 @@ export interface UserProfile {
     email_verified: boolean,
     clientID: string,
     updated_at: string,
-    identities: UserProfileIdentities[],
+    identities: AuthOUserProfileIdentities[],
     created_at: string,
     global_client_id: string
 }
 
-export interface IUserAccount {
+export interface IUserProfile {
     id: string,
-    user_account_id: string,
-    user_profile_id: string,
-    user_profile: UserProfile,
-    accountName: string,
-    personName: string,
+    autho_profile: AuthOUserProfile,
     firstName: string,
     lastName: string,
     title: string,
     localTime: Date,
-    accountEmail: string,
-    avatarPicture: string,
     canvasPicture:string,
     skills: string[],
     ratePerMinute: number,
@@ -42,18 +36,12 @@ export interface IUserAccount {
     overview: string
 }
 
-export class UserAccount implements IUserAccount {
-  public user_account_id: string;
-  public user_profile_id: string;
-  public user_profile: UserProfile;
-  public accountName: string;
-  public personName: string;
+export class UserProfile implements IUserProfile {
+  public autho_profile: AuthOUserProfile;
   public firstName: string;
   public lastName: string;
   public title: string;
   public localTime: Date;
-  public accountEmail: string;
-  public avatarPicture: string;
   public canvasPicture:string;
   public skills: string[];
   public ratePerMinute: number;

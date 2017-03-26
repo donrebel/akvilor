@@ -4,20 +4,24 @@ import 'rxjs/add/operator/switchMap';
 
 import { AuthService } from '../../auth/auth.service';
 import { UserDataService } from './services/user-data.service';
-import { UserAccount } from '../../app.models';
+import { UserProfile } from '../../app.models';
 
 @Component({
   moduleId: module.id,
   selector: 'app-user-page',
   templateUrl: 'user-page.component.html',
-  styleUrls: ['user-page.component.css']
+  styleUrls: ['user-page.component.css'],
+  providers: [
+    UserDataService
+  ]
 })
 export class UserPageComponent implements OnInit {
   public errorMessage:string;
   private sub: any;
 
   private accIsLoading = false;
-  private userProfile: UserAccount;
+  private userProfile: UserProfile;
+  private onEditFlag = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,8 +41,8 @@ export class UserPageComponent implements OnInit {
 
   getUserProfileData(mode: string) {
     if (mode == 'myPage') {
-      this.authData.getCurrentUserAccount().subscribe(
-        (profile: UserAccount) => {
+      this.authData.getCurrentUserProfile().subscribe(
+        (profile: UserProfile) => {
           this.userProfile = profile;
           this.accIsLoading = false;
         },
@@ -53,7 +57,7 @@ export class UserPageComponent implements OnInit {
           return this.userData.getUserProfileData(params['id']);
         })
         .subscribe(
-          (content: UserAccount) => {
+          (content: UserProfile) => {
             this.userProfile = content;
             this.accIsLoading = false;
           },
@@ -63,6 +67,10 @@ export class UserPageComponent implements OnInit {
           }
         )
     }
+  }
+
+  onEdit(isEditMode: boolean) {
+    this.onEditFlag = isEditMode;
   }
 
   ngOnDestroy() {

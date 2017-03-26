@@ -1,0 +1,43 @@
+<div id="cnt">
+  <!-- <h1 md-dialog-title>Dialog</h1> -->
+  <div md-dialog-content id="content">
+    <form [formGroup]="accForm" (ngSubmit)="onSubmit()">
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="City">
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="First Name" class="inp" formControlName="firstName">
+      </md-input-container>
+      <div class="form-group">
+        <label class="center-block">Last Name
+          <input class="form-control" formControlName="lastName">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="center-block">Headline
+          <input class="form-control" formControlName="title">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="center-block">Overview
+          <textarea class="form-control" formControlName="overview"></textarea>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="center-block">Skills
+          <input class="form-control" formControlName="skills">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="center-block">Rate
+          <input class="form-control" formControlName="ratePerMinute">
+        </label>
+      </div>
+
+      <div style="margin-bottom: 1em">
+        <button type="submit"
+                [disabled]="accForm.pristine" class="btn btn-default">Save</button> &nbsp;
+      </div>
+    </form>
+  </div>
+</div>

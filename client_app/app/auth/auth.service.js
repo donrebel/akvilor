@@ -15,12 +15,11 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var angular2_jwt_1 = require('angular2-jwt');
 var router_1 = require('@angular/router');
-var app_config_1 = require('../app-config');
-// import { UserAccount, UserProfile } from './user-account';
-var app_models_1 = require('../app.models');
-var util_service_1 = require('../core/services/util.service');
 var Rx_1 = require('rxjs/Rx');
 require('rxjs/add/operator/filter');
+var app_config_1 = require('../app-config');
+var app_models_1 = require('../app.models');
+var util_service_1 = require('../core/services/util.service');
 var AuthService = (function () {
     function AuthService(http, router, util, appConfig) {
         var _this = this;
@@ -34,31 +33,16 @@ var AuthService = (function () {
                 redirect: false,
             }
         });
-        //currentUserAccount: UserAccount;
-        this.guestAccount = new app_models_1.UserAccount("guest");
-        this._currentUserAccount = new Rx_1.BehaviorSubject(this.guestAccount);
+        this.guestProfile = new app_models_1.UserProfile("guest");
+        this.$currentUserProfile = new Rx_1.BehaviorSubject(this.guestProfile);
         this.apiBaseUrl = appConfig.apiEndpoint;
-        this.redirectUrl = localStorage.getItem('redirectUrl');
-        // Add callback for lock 'authenticated' event
         this.lock.on("authenticated", function (authResult) {
             localStorage.setItem('id_token', authResult.idToken);
-            _this.lock.getProfile(authResult.idToken, function (error, profile) {
-                if (error) {
-                    console.log(error);
-                }
-                localStorage.setItem('profile', JSON.stringify(profile));
-                console.log(JSON.stringify(profile));
-                _this.setCurrentUserAccount(profile);
-            });
-            //      let redirect = this.redirectUrl ? this.redirectUrl : '/home';
+            _this.getCurrentUserProfileFromDB();
             _this.router.navigateByUrl(authResult.state);
             _this.lock.hide();
         });
-        this.setCurrentUserAccount();
     }
-    AuthService.prototype.setRedirectUrl = function (url) {
-        localStorage.setItem('redirectUrl', url);
-    };
     AuthService.prototype.login = function () {
         this.lock.show({
             auth: {
@@ -69,45 +53,45 @@ var AuthService = (function () {
         });
     };
     AuthService.prototype.logout = function () {
-        localStorage.removeItem('profile');
         localStorage.removeItem('id_token');
-        localStorage.removeItem('redirectUrl');
         this.router.navigate(['/home']);
     };
     AuthService.prototype.authenticated = function () {
         return angular2_jwt_1.tokenNotExpired();
     };
-    AuthService.prototype.getCurrentUserAccount = function () {
-        return this._currentUserAccount.asObservable();
-    };
-    AuthService.prototype.updateCurrentUserProfileData = function (profileData) {
+    AuthService.prototype.updateCurrentUserProfile = function (profileData) {
         var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.apiBaseUrl + "userAccount/" + this.currentUserID, profileData, options)
+        return this.http
+            .post(this.apiBaseUrl + "userProfile/" + this.currentUserID, profileData, options)
             .map(function (response) {
             var res = _this.util.extractDataHttpRequest(response);
             if (response.ok) {
-                _this._currentUserAccount.next(profileData);
+                _this.$currentUserProfile.next(profileData);
             }
             return res;
         })
             .catch(this.util.handleErrorHttpRequest);
     };
-    AuthService.prototype.setCurrentUserAccount = function (profile) {
+    AuthService.prototype.getCurrentUserProfile = function () {
+        return this.$currentUserProfile.asObservable();
+    };
+    AuthService.prototype.getCurrentUserProfileFromDB = function () {
         var _this = this;
-        if (!profile) {
-            if (!localStorage.getItem('profile') == false) {
-                var profileStr = localStorage.getItem('profile');
-                profile = JSON.parse(profileStr);
-            }
-        }
-        if (profile) {
-            this.currentUserID = profile.identities[0].user_id;
-            this.http.get(this.apiBaseUrl + "userAccount/" + this.currentUserID)
-                .map(this.util.extractDataHttpRequest)
-                .catch(this.util.handleErrorHttpRequest)
-                .subscribe(function (acc) { _this._currentUserAccount.next(acc); }, function (err) { console.log(err); }, function () { });
+        if (!localStorage.getItem('id_token') == false) {
+            var idToken = localStorage.getItem('id_token');
+            this.lock.getProfile(idToken, function (error, authOProfile) {
+                if (error) {
+                    console.log(error);
+                }
+                _this.currentUserID = authOProfile.identities[0].user_id;
+                _this.http
+                    .get(_this.apiBaseUrl + "userProfile/" + _this.currentUserID)
+                    .map(_this.util.extractDataHttpRequest)
+                    .catch(_this.util.handleErrorHttpRequest)
+                    .subscribe(function (acc) { _this.$currentUserProfile.next(acc); }, function (err) { console.log(err); }, function () { });
+            });
         }
     };
     AuthService = __decorate([

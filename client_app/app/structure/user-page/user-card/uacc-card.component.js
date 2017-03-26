@@ -10,11 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var material_1 = require('@angular/material');
-var uacc_card_edit_form_component_1 = require('./uacc-card-edit-form.component');
 var app_models_1 = require('../../../app.models');
 var UAccCardComponent = (function () {
+    //selectedOption: string;
     function UAccCardComponent(dialog) {
         this.dialog = dialog;
+        this.onEdit = new core_1.EventEmitter();
         this.suggestToEdit = false;
     }
     UAccCardComponent.prototype.onHover = function () {
@@ -23,17 +24,23 @@ var UAccCardComponent = (function () {
     UAccCardComponent.prototype.onBlur = function () {
         this.suggestToEdit = false;
     };
-    UAccCardComponent.prototype.openEditDialog = function () {
-        var _this = this;
-        var dialogRef = this.dialog.open(uacc_card_edit_form_component_1.UAccCardEditFormComponent);
-        dialogRef.afterClosed().subscribe(function (result) {
-            _this.selectedOption = result;
-        });
+    UAccCardComponent.prototype.openEditForm = function () {
+        this.onEdit.emit(true);
+        // let dialogRef = this.dialog.open(
+        //   UAccCardEditFormModalComponent
+        // );
+        // dialogRef.afterClosed().subscribe(result => {
+        //   this.selectedOption = result;
+        // });
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', app_models_1.UserAccount)
+        __metadata('design:type', app_models_1.UserProfile)
     ], UAccCardComponent.prototype, "profile", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], UAccCardComponent.prototype, "onEdit", void 0);
     UAccCardComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

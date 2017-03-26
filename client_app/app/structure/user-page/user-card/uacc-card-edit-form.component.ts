@@ -1,40 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { AuthService } from '../../../auth/auth.service';
 import { UserDataService } from '../services/user-data.service';
-import { UserAccount } from '../../../app.models';
+import { UserProfile } from '../../../app.models';
 
 @Component({
   moduleId: module.id,
+  selector: 'uacc-card-edit',
   templateUrl: 'uacc-card-edit-form.component.html',
   styleUrls: ['uacc-card-edit-form.component.css']
 })
 
-export class UAccCardEditFormComponent implements OnInit {
-  private profile: UserAccount;
+export class UAccCardEditFormComponent implements OnChanges {
+  @Input() profile: UserProfile;
+  @Output() onEdit = new EventEmitter<boolean>();
+
   accForm: FormGroup;
 
   constructor(
     private userData: UserDataService,
     private authData: AuthService,
-    private fb: FormBuilder,
-    public dialogRef: MdDialogRef<UAccCardEditFormComponent>
+    private fb: FormBuilder
   ) {
     this.createForm()
-  }
-
-  ngOnInit() {
-    this.authData.getCurrentUserAccount().subscribe(
-      (profile: UserAccount) => {
-        this.profile = profile;
-        this.refillForm();
-      },
-      (err) => {
-        console.log(err);
-      }
-    )
   }
 
   createForm() {
@@ -49,9 +38,9 @@ export class UAccCardEditFormComponent implements OnInit {
     })
   }
 
-  refillForm() {
+  ngOnChanges() {
     this.accForm.reset({
-      loginName: this.profile.user_profile.nickname,
+      loginName: this.profile.autho_profile.nickname,
       firstName: this.profile.firstName,
       lastName: this.profile.lastName,
       title: this.profile.title,
@@ -63,19 +52,24 @@ export class UAccCardEditFormComponent implements OnInit {
 
   onSubmit() {
     this.profile = this.prepareSaveProfile();
-    this.authData.updateCurrentUserProfileData(this.profile).subscribe(
+    this.authData.updateCurrentUserProfile(this.profile).subscribe(
       (res) => res,
       (err) => {
         console.log(err)
       }
     );
-    this.refillForm();
+    this.ngOnChanges();
+    this.closeEditForm();
   }
 
-  prepareSaveProfile(): UserAccount {
+  closeEditForm() {
+    this.onEdit.emit(false);
+  }
+
+  prepareSaveProfile(): UserProfile {
     const formModel = this.accForm.value;
-    let profile: UserAccount = this.profile;
-    profile.user_profile.nickname = formModel.loginName;
+    let profile: UserProfile = this.profile;
+    profile.autho_profile.nickname = formModel.loginName;
     profile.firstName = formModel.firstName;
 
     profile.lastName = formModel.lastName;
@@ -86,7 +80,4 @@ export class UAccCardEditFormComponent implements OnInit {
     return profile;
   }
 
-  revert() {
-    this.refillForm()
-  }
 }

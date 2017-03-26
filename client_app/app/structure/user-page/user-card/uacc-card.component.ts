@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
-import { UAccCardEditFormComponent } from './uacc-card-edit-form.component';
-import { UserAccount } from '../../../app.models';
+import { UAccCardEditFormModalComponent } from './uacc-card-edit-form-modal.component';
+import { UserProfile } from '../../../app.models';
 
 @Component({
   moduleId: module.id,
@@ -12,10 +12,11 @@ import { UserAccount } from '../../../app.models';
 })
 
 export class UAccCardComponent {
-  @Input() profile: UserAccount;
+  @Input() profile: UserProfile;
+  @Output() onEdit = new EventEmitter<boolean>();
 
   private suggestToEdit: boolean = false;
-  selectedOption: string;
+  //selectedOption: string;
 
   constructor (public dialog: MdDialog) {
 
@@ -29,12 +30,13 @@ export class UAccCardComponent {
     this.suggestToEdit = false;
   }
 
-  openEditDialog() {
-    let dialogRef = this.dialog.open(
-      UAccCardEditFormComponent
-    );
-    dialogRef.afterClosed().subscribe(result => {
-      this.selectedOption = result;
-    });
+  openEditForm() {
+    this.onEdit.emit(true);
+    // let dialogRef = this.dialog.open(
+    //   UAccCardEditFormModalComponent
+    // );
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.selectedOption = result;
+    // });
   }
 }

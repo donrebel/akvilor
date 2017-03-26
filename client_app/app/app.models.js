@@ -1,9 +1,9 @@
 "use strict";
-var UserAccount = (function () {
-    function UserAccount(id) {
+var UserProfile = (function () {
+    function UserProfile(id) {
         this.id = id;
     }
-    return UserAccount;
+    return UserProfile;
 }());
-exports.UserAccount = UserAccount;
+exports.UserProfile = UserProfile;
 //# sourceMappingURL=app.models.js.map

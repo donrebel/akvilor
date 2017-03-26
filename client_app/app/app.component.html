@@ -1,23 +1,21 @@
 
-<div class="container-fluid" id="main-tape">
+<div class="container" id="main-tape">
   <header id="header">
     <div class="row">
-      <div class="col-md-12 col-lg-12">
+      <div class="col-md-12">
         <a class="akvilor" routerLink="/home" routerLinkActive="active">Akvilor</a>
       </div>
     </div>
     <nav class="links">
 			<ul *ngIf="auth.authenticated()">
         <li><a routerLink="/home">back to find</a></li>
-        <!-- <li><a [routerLink]="currentUserAccountLink">my page</a></li> -->
-        <li><a routerLink="/mypage">my page</a></li>
+        <li><a routerLink="/u">my page</a></li>
 
         <li><a [routerLink]="[{ outlets: {popup: ['compose'] } }]">test</a></li>
 			</ul>
 		</nav>
     <div class="row">
-      <div class="col-md-12 col-lg-12">
-        <!-- <a (click)="test()">test</a> -->
+      <div class="col-md-12">
         <a class="akvilor right" (click)="auth.login()" *ngIf="!auth.authenticated()">Sign In</a>
         <a class="akvilor" (click)="auth.logout()" *ngIf="auth.authenticated()">Sign Out</a>
       </div>

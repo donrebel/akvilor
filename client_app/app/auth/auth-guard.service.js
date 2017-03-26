@@ -24,7 +24,7 @@ var AuthGuard = (function () {
         if (this.authService.authenticated()) {
             return true;
         }
-        this.authService.setRedirectUrl(url);
+        //    this.authService.setRedirectUrl(url);
         this.authService.login();
         return false;
     };

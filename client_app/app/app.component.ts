@@ -18,14 +18,15 @@ export class AppComponent implements OnInit {
     //private openChatRoom: boolean = false;
     private chatRooms: ChatRoomInfo[] = [];
     private videoFrame: {};
-    private currentUserAccountID: string = '';
-    private currentUserAccountLink: string = '';
+    private currentUserProfileID: string = '';
+    private currentUserProfileLink: string = '';
 
     constructor(
       private auth: AuthService,
       private videoChatService: VideoChatService,
       public router: Router
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
       this.videoChatService.getChatRoomInfo().subscribe((chatRoomInfo: ChatRoomInfo) => {
@@ -42,12 +43,7 @@ export class AppComponent implements OnInit {
         }
       })
 
-      this.auth.getCurrentUserAccount().subscribe(
-        (acc) => {
-          this.currentUserAccountID = acc.id
-          this.currentUserAccountLink = "/"+ this.currentUserAccountID;
-        }
-      )
+      this.auth.getCurrentUserProfileFromDB()
     }
 
     test() {

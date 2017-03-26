@@ -1,0 +1,267 @@
+label {
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
+	font-size: 0.7em;
+	font-weight: 400;
+	letter-spacing: 0.25em;
+	line-height: 2.5;
+	margin-top: -1em;
+	text-transform: uppercase;
+}
+
+.visible-lg #logo-cnt,
+.visible-md #logo-cnt {
+	z-index: 10;
+	width: 15em;
+	top: 3em;
+	right: 2em;
+	position: absolute;
+}
+.visible-sm #logo-cnt,
+.visible-xs #logo-cnt {
+	z-index: 10;
+	display: block;
+	position: relative;
+	margin: auto;
+	width: 30%;
+	min-width: 9em;
+}
+#logo-cnt #logo-img {
+	border-radius: 100%;
+	width: 100%;
+	height: auto;
+}
+#logo-cnt:hover #edit-avatar {
+	display: block;
+}
+
+.visible-lg #info-cnt,
+.visible-md #info-cnt {
+	padding-right: 17em;
+}
+.visible-sm #info-cnt,
+.visible-xs #info-cnt {
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.visible-lg #synopsis,
+.visible-md #synopsis {
+	text-align: right;
+}
+.visible-sm #synopsis,
+.visible-xs #synopsis {
+	text-align: center;
+}
+.visible-lg #user-name,
+.visible-md #user-name {
+	text-align: right;
+	padding-bottom: 1em;
+	border-bottom: solid 2px rgba(255, 255, 255, 0.125);
+	font-size: 1.2em;
+	color: #ffffff;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	margin: 0 0 1em 0;
+	text-transform: uppercase;
+}
+.visible-sm #user-name,
+.visible-xs #user-name {
+	text-align: center;
+	margin: auto;
+	padding-bottom: 1em;
+	border-bottom: solid 2px rgba(255, 255, 255, 0.125);
+	font-size: 1.2em;
+	color: #ffffff;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+ul {
+	list-style: none;
+	text-align: right;
+}
+li {
+	display: inline;
+}
+.usertag {
+	text-decoration: none;
+	border-bottom: none;
+	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
+  font-size: 0.8em;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  line-height: 2.5;
+}
+.rate {
+	font-size: 2em;
+}
+
+/* === USER-CARD === */
+#user-card {
+	display: block;
+	position: relative;
+  background-image: url("assets/images/usercard.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+	/*margin: 0 0 3em 0;*/
+	color: #ffffff;
+}
+#user-card:hover #edit-userdata {
+	display: block;
+}
+#user-card:before {
+  -moz-transition: opacity 2s ease-in-out;
+  -webkit-transition: opacity 2s ease-in-out;
+  -ms-transition: opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
+  -moz-transition-delay: 0.75s;
+  -webkit-transition-delay: 0.75s;
+  -ms-transition-delay: 0.75s;
+  transition-delay: 0.75s;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #323a47;
+  opacity: 0.65;
+}
+#user-card header {
+	padding: 3em 3em 2em 3em;
+	position: relative;
+	height: 32em;
+}
+#user-card footer {
+	padding: 2em 2em 2em 2em;
+	height: 7em;
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* === EDIT-BTN === */
+#edit-userdata, #edit-avatar {
+	position: absolute;
+	right: 1em;
+	bottom: 1em;
+	text-decoration: none;
+	/*display: block;*/
+	display: none;
+}
+
+.edit-btn {
+	display:block;
+	width:70px;
+	height:70px;
+	line-height:70px;
+	border: 2px solid #79a7d3;
+	border-radius: 50%;
+	color:#f5f5f5;
+	text-align:center;
+	vertical-align: middle;
+	text-decoration:none;
+	background: #79a7d3;
+	box-shadow: 0 0 3px gray;
+	font-size:20px;
+	font-weight:bold;
+	-moz-transition: color 0.2s ease;
+	-webkit-transition: color 0.2s ease;
+	-ms-transition: color 0.2s ease;
+	transition: color 0.2s ease;
+	padding: inherit;
+}
+.edit-btn:hover {
+	background: #4d79ff;
+	color: white !important;
+}
+
+
+/* === MODAL FORM === */
+/* The Modal (background) */
+.modal-form-container {
+	color:#646464;
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+/* Modal Content */
+.form {
+	display: block;
+  position: fixed;
+	padding: 1.5em 1em 0em 1em;
+  top: 150px;
+  background: #f4f4f4;
+  width: 50%;
+	left: 25%;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+	overflow: hidden;
+}
+
+.right {
+	float: right;
+	margin-left: 1em;
+}
+.button {
+	width: 15em;
+	padding: 0;
+}
+.hidden {
+	display: none;
+}
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.modal-form-header {
+  padding: 1em 1em 0em 1em;
+  background-color: #f4f4f4;
+	border-bottom: solid 1px rgba(160, 160, 160, 0.3);
+}
+.modal-form-body {
+	padding: 1em 1em 0em 1em;
+	display: block;
+	position: relative;
+}
+.modal-form-footer {
+	position: relative;
+	display: flex;
+  padding: 1em 1em 0em 1em;
+  background-color: #f4f4f4;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {top: -300px; opacity: 0}
+  to {top: 300px; opacity: 1}
+}
+@keyframes slideIn {
+  from {top: -300px; opacity: 0}
+  to {top: 300px; opacity: 1}
+}
+@-webkit-keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}

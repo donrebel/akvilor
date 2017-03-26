@@ -9,27 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var material_1 = require('@angular/material');
 var forms_1 = require('@angular/forms');
 var auth_service_1 = require('../../../auth/auth.service');
 var user_data_service_1 = require('../services/user-data.service');
+var app_models_1 = require('../../../app.models');
 var UAccCardEditFormComponent = (function () {
-    function UAccCardEditFormComponent(userData, authData, fb, dialogRef) {
+    function UAccCardEditFormComponent(userData, authData, fb) {
         this.userData = userData;
         this.authData = authData;
         this.fb = fb;
-        this.dialogRef = dialogRef;
+        this.onEdit = new core_1.EventEmitter();
         this.createForm();
     }
-    UAccCardEditFormComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.authData.getCurrentUserAccount().subscribe(function (profile) {
-            _this.profile = profile;
-            _this.refillForm();
-        }, function (err) {
-            console.log(err);
-        });
-    };
     UAccCardEditFormComponent.prototype.createForm = function () {
         this.accForm = this.fb.group({
             loginName: '',
@@ -41,9 +32,9 @@ var UAccCardEditFormComponent = (function () {
             skills: ''
         });
     };
-    UAccCardEditFormComponent.prototype.refillForm = function () {
+    UAccCardEditFormComponent.prototype.ngOnChanges = function () {
         this.accForm.reset({
-            loginName: this.profile.user_profile.nickname,
+            loginName: this.profile.autho_profile.nickname,
             firstName: this.profile.firstName,
             lastName: this.profile.lastName,
             title: this.profile.title,
@@ -54,15 +45,19 @@ var UAccCardEditFormComponent = (function () {
     };
     UAccCardEditFormComponent.prototype.onSubmit = function () {
         this.profile = this.prepareSaveProfile();
-        this.authData.updateCurrentUserProfileData(this.profile).subscribe(function (res) { return res; }, function (err) {
+        this.authData.updateCurrentUserProfile(this.profile).subscribe(function (res) { return res; }, function (err) {
             console.log(err);
         });
-        this.refillForm();
+        this.ngOnChanges();
+        this.closeEditForm();
+    };
+    UAccCardEditFormComponent.prototype.closeEditForm = function () {
+        this.onEdit.emit(false);
     };
     UAccCardEditFormComponent.prototype.prepareSaveProfile = function () {
         var formModel = this.accForm.value;
         var profile = this.profile;
-        profile.user_profile.nickname = formModel.loginName;
+        profile.autho_profile.nickname = formModel.loginName;
         profile.firstName = formModel.firstName;
         profile.lastName = formModel.lastName;
         profile.title = formModel.title;
@@ -71,16 +66,22 @@ var UAccCardEditFormComponent = (function () {
         profile.skills = formModel.skills;
         return profile;
     };
-    UAccCardEditFormComponent.prototype.revert = function () {
-        this.refillForm();
-    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', app_models_1.UserProfile)
+    ], UAccCardEditFormComponent.prototype, "profile", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], UAccCardEditFormComponent.prototype, "onEdit", void 0);
     UAccCardEditFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
+            selector: 'uacc-card-edit',
             templateUrl: 'uacc-card-edit-form.component.html',
             styleUrls: ['uacc-card-edit-form.component.css']
         }), 
-        __metadata('design:paramtypes', [user_data_service_1.UserDataService, auth_service_1.AuthService, forms_1.FormBuilder, material_1.MdDialogRef])
+        __metadata('design:paramtypes', [user_data_service_1.UserDataService, auth_service_1.AuthService, forms_1.FormBuilder])
     ], UAccCardEditFormComponent);
     return UAccCardEditFormComponent;
 }());

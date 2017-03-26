@@ -20,8 +20,8 @@ var AppComponent = (function () {
         this.router = router;
         //private openChatRoom: boolean = false;
         this.chatRooms = [];
-        this.currentUserAccountID = '';
-        this.currentUserAccountLink = '';
+        this.currentUserProfileID = '';
+        this.currentUserProfileLink = '';
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -38,10 +38,7 @@ var AppComponent = (function () {
                 _this.videoFrame = false;
             }
         });
-        this.auth.getCurrentUserAccount().subscribe(function (acc) {
-            _this.currentUserAccountID = acc.id;
-            _this.currentUserAccountLink = "/" + _this.currentUserAccountID;
-        });
+        this.auth.getCurrentUserProfileFromDB();
     };
     AppComponent.prototype.test = function () {
         var c = this.auth.authenticated();

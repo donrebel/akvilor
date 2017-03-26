@@ -21,7 +21,7 @@ var UserDataService = (function () {
         this.authHttp = authHttp;
         this.util = util;
         this.apiBaseUrl = appConfig.apiEndpoint;
-        this.apiUrl = this.apiBaseUrl + "userAccount";
+        this.apiUrl = this.apiBaseUrl + "userProfile";
     }
     UserDataService.prototype.getOne = function (id) {
         return this.authHttp
