@@ -3,7 +3,13 @@
   <div class="col-fixed-700">
     <div class="row" *ngIf="userProfile.id != 'guest'">
       <div class="row">
-        <h5>My profile</h5>
+        <div class="col-md-3" style="padding-left : 0">
+          <h5>My profile</h5>
+        </div>
+        <div class="col-md-1 pull-right" style="padding-right:0" *ngIf="onEditFlag">
+          <!-- <h5>X</h5> -->
+          <!-- <span class="close-btn right" (click)="userCardForm_editCancel()">&times;</span> -->
+        </div>
       </div>
       <div class="row">
 

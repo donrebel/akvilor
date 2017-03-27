@@ -1,44 +1,57 @@
-<div id="cnt">
+<div>
   <!-- <h1 md-dialog-title>Dialog</h1> -->
-  <div md-dialog-content id="content">
+  <div md-dialog-content>
     <form [formGroup]="accForm" (ngSubmit)="onSubmit()">
-      <md-input-container class="example-full-width">
-        <input mdInput placeholder="City">
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="First Name" class="inp" formControlName="firstName">
-      </md-input-container>
-      <div class="form-group">
-        <label class="center-block">Last Name
-          <input class="form-control" formControlName="lastName">
-        </label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="center-block upper">First Name
+              <input class="form-control" formControlName="firstName">
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="center-block upper">Last Name
+              <input class="form-control" formControlName="lastName">
+            </label>
+          </div>
+        </div>
       </div>
+
       <div class="form-group">
-        <label class="center-block">Headline
+        <label class="center-block upper">Headline
           <input class="form-control" formControlName="title">
         </label>
       </div>
+
       <div class="form-group">
-        <label class="center-block">Overview
+        <label class="center-block upper">Overview
           <textarea class="form-control" formControlName="overview"></textarea>
         </label>
       </div>
+
       <div class="form-group">
-        <label class="center-block">Skills
+        <label class="center-block upper">Skills
           <input class="form-control" formControlName="skills">
         </label>
       </div>
-      <div class="form-group">
-        <label class="center-block">Rate
-          <input class="form-control" formControlName="ratePerMinute">
-        </label>
+
+      <div class="row">
+        <div class="col-md-3 pull-right">
+          <div class="form-group">
+            <label class="center-block upper">Rate
+              <input class="form-control" formControlName="ratePerMinute">
+            </label>
+          </div>
+        </div>
       </div>
 
       <div style="margin-bottom: 1em">
-        <button type="submit"
-                [disabled]="accForm.pristine" class="btn btn-default">Save</button> &nbsp;
         <button type="button"
-                class="btn btn-default" (click)="closeEditForm()">Cancel</button> &nbsp;        
+                class="btn btn-default right" (click)="closeEditForm()">Cancel</button> &nbsp;
+        <button type="submit"
+                [disabled]="accForm.pristine" class="btn btn-default right" style="margin-right: 10px">Save</button> &nbsp;
       </div>
     </form>
   </div>

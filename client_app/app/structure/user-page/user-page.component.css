@@ -1,14 +1,10 @@
-/*.content-holder {
-	padding: 1em;
-}
-
-.content-holder md-card {
-  margin-bottom: 2em;
-}*/
-
 .col-fixed-700 {
 	position: relative;
 	display: block;
 	margin-left: calc((100% - 670px) / 2);
 	margin-right: calc((100% - 670px) / 2);
 }
+
+/*.close-btn {
+  font-size: 2.5em;
+}*/
