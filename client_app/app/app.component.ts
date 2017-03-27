@@ -15,7 +15,6 @@ import { Router,
   styleUrls: ['app/app.component.css']
 })
 export class AppComponent implements OnInit {
-    //private openChatRoom: boolean = false;
     private chatRooms: ChatRoomInfo[] = [];
     private videoFrame: {};
     private currentUserProfileID: string = '';
@@ -31,7 +30,6 @@ export class AppComponent implements OnInit {
     ngOnInit() {
       this.videoChatService.getChatRoomInfo().subscribe((chatRoomInfo: ChatRoomInfo) => {
         console.log('chat room for: ', chatRoomInfo.data.chatLink)
-        //this.openChatRoom = true;
         this.chatRooms.push(chatRoomInfo);
       });
 

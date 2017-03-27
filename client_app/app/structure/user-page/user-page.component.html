@@ -1,7 +1,7 @@
 
   <h3 *ngIf="accIsLoading"><i>Loading ... </i></h3>
-  <div class="row" *ngIf="userProfile.id != 'guest'">
-    <div class="col-md-9 col-centered">
+  <div class="col-fixed-700">
+    <div class="row" *ngIf="userProfile.id != 'guest'">
       <div class="row">
         <h5>My profile</h5>
       </div>
@@ -14,7 +14,6 @@
         <div *ngIf="onEditFlag">
           <uacc-card-edit [profile]="userProfile" (onEdit)="onEdit($event)"></uacc-card-edit>
         </div>
-
       </div>
     </div>
   </div>
