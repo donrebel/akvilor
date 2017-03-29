@@ -1,25 +1,24 @@
-
-  <h3 *ngIf="accIsLoading"><i>Loading ... </i></h3>
-  <div class="col-fixed-700">
-    <div class="row" *ngIf="userProfile.id != 'guest'">
-      <div class="row">
-        <div class="col-md-3" style="padding-left : 0">
-          <h5>My profile</h5>
-        </div>
-        <div class="col-md-1 pull-right" style="padding-right:0" *ngIf="onEditFlag">
-          <!-- <h5>X</h5> -->
-          <!-- <span class="close-btn right" (click)="userCardForm_editCancel()">&times;</span> -->
-        </div>
+<h3 *ngIf="accIsLoading"><i>Loading ... </i></h3>
+<div class="col-fixed-700">
+  <div class="row" *ngIf="userProfile.id != 'guest'">
+    <div class="row">
+      <div class="col-md-3" style="padding-left : 0">
+        <h5>My profile</h5>
       </div>
-      <div class="row">
+      <div class="col-md-1 pull-right" style="padding-right:0" *ngIf="onEditFlag">
+        <!-- <h5>X</h5> -->
+        <!-- <span class="close-btn right" (click)="userCardForm_editCancel()">&times;</span> -->
+      </div>
+    </div>
+    <div class="row">
 
-        <div *ngIf="!onEditFlag">
-          <uacc-card [profile]="userProfile" (onEdit)="onEdit($event)"></uacc-card>
-        </div>
+      <div *ngIf="!onEditFlag">
+        <uacc-card [profile]="userProfile" (onEdit)="onEdit($event)"></uacc-card>
+      </div>
 
-        <div *ngIf="onEditFlag">
-          <uacc-card-edit [profile]="userProfile" (onEdit)="onEdit($event)"></uacc-card-edit>
-        </div>
+      <div *ngIf="onEditFlag">
+        <uacc-card-edit [profile]="userProfile" (onEdit)="onEdit($event)"></uacc-card-edit>
       </div>
     </div>
   </div>
+</div>

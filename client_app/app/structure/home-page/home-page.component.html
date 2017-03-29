@@ -1,18 +1,21 @@
-<div>
-	<section id="intro">
-		<a href="#" class="logo"><img src="../assets/images/logo.jpg" alt="" /></a>
-		<header>
-			<p>What do you want to know?</p>
-		</header>
-		<form ng-submit="goFind()">
-			<input #term (keyup)="search(term.value)" class="form-control" placeholder=""/>
-		</form>
-		<div class="container-fluid">
-			<div class=row>
-				<div class="col-md-6 col-lg-6" *ngFor="let item of items | async">
-					<search-item [searchItem]="item" (likeRequest)="like($event)"></search-item>
-				</div>
-			</div>
+<div class="container-fluid" id="intro">
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<a href="#" class="logo"><img src="../assets/images/logo.jpg" alt="" /></a>
+			<header>
+				<p>What do you want to know?</p>
+			</header>
+			<form ng-submit="goFind()">
+				<input #term (keyup)="search(term.value)" class="form-control" placeholder=""/>
+			</form>
 		</div>
-	</section>
+	</div>
+
+	<div class=row>
+		<div class="col-md-3 col-lg-3" *ngFor="let item of items | async">
+			<search-item [searchItem]="item" (likeRequest)="like($event)"></search-item>
+		</div>
+	</div>
+
 </div>
