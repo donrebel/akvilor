@@ -20,9 +20,10 @@ require('rxjs/add/operator/catch');
 var app_config_1 = require('../../app-config');
 var util_service_1 = require('./util.service');
 var SearchItem = (function () {
-    function SearchItem(id, name) {
+    function SearchItem(id, name, imgsrc) {
         this.id = id;
         this.name = name;
+        this.imgsrc = imgsrc;
     }
     return SearchItem;
 }());

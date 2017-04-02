@@ -13,7 +13,8 @@ import { UtilService } from './util.service';
 export class SearchItem {
   constructor (
     public id: string,
-    public name: string
+    public name: string,
+    public imgsrc: string
   ) {}
 }
 

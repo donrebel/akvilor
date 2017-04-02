@@ -16,7 +16,7 @@ header p {
 /* Intro */
 
 	#intro {
-		margin: 3em 0 3em 0;
+		/*margin: 3em 0 3em 0;*/
 		text-align: center;
 	}
 
@@ -58,43 +58,26 @@ header p {
 		font-size: 0.8em;
 	}
 
-	/*@media screen and (max-width: 3280px) {
+	@media (min-width: 576px) {
+	    .card-columns {
+	        -webkit-column-count: 2;
+	        -moz-column-count: 2;
+	        column-count: 2;
+	    }
+	}
 
-		#intro {
-			margin: 3em 0 3em 0;
-			text-align: center;
-		}
+	@media (min-width: 768px) {
+	    .card-columns {
+	        -webkit-column-count: 3;
+	        -moz-column-count: 3;
+	        column-count: 3;
+	    }
+	}
 
-			#intro header h2 {
-				font-size: 2em;
-			}
-
-			#intro header p {
-				font-size: 0.7em;
-			}
-
-	}*/
-
-	/*@media screen and (max-width: 736px) {
-
-		#intro {
-			margin: 3em 0 3em 0;
-		}
-
-			#intro > :last-child {
-				margin-bottom: 0;
-			}
-
-			#intro .logo {
-				margin: 0 0 0.5em 0;
-			}
-
-			#intro header h2 {
-				font-size: 1.25em;
-			}
-
-			#intro header > :last-child {
-				margin-bottom: 0;
-			}
-
-	}*/
+	@media (min-width: 992px) {
+	    .card-columns {
+	        -webkit-column-count: 4;
+	        -moz-column-count: 4;
+	        column-count: 4;
+	    }
+	}

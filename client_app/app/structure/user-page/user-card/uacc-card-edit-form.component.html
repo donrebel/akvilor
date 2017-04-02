@@ -1,48 +1,41 @@
 <div>
-  <!-- <h1 md-dialog-title>Dialog</h1> -->
   <div md-dialog-content>
     <form [formGroup]="accForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md">
           <div class="form-group">
-            <label class="center-block upper">First Name
-              <input class="form-control" formControlName="firstName">
-            </label>
+            <label class="center-block upper">First Name</label>
+            <input class="form-control" formControlName="firstName">
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md">
           <div class="form-group">
-            <label class="center-block upper">Last Name
-              <input class="form-control" formControlName="lastName">
-            </label>
+            <label class="center-block upper">Last Name</label>
+            <input class="form-control" formControlName="lastName">
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="center-block upper">Headline
-          <input class="form-control" formControlName="title">
-        </label>
+        <label class="center-block upper">Headline</label>
+        <input class="form-control" formControlName="title">
       </div>
 
       <div class="form-group">
-        <label class="center-block upper">Overview
-          <textarea class="form-control" formControlName="overview"></textarea>
-        </label>
+        <label class="center-block upper">Overview</label>
+        <textarea class="form-control" formControlName="overview"></textarea>
       </div>
 
       <div class="form-group">
-        <label class="center-block upper">Skills
-          <input class="form-control" formControlName="skills">
-        </label>
+        <label class="center-block upper">Skills</label>
+        <input class="form-control" formControlName="skills">
       </div>
 
-      <div class="row">
-        <div class="col-md-3 pull-right">
+      <div class="row justify-content-end">
+        <div class="col-md-3">
           <div class="form-group">
-            <label class="center-block upper">Rate
-              <input class="form-control" formControlName="ratePerMinute">
-            </label>
+            <label class="center-block upper">Rate</label>
+            <input class="form-control" formControlName="ratePerMinute">
           </div>
         </div>
       </div>

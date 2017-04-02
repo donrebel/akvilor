@@ -29,10 +29,10 @@ main-page{
   -ms-transition: opacity 0.5s ease;
   transition: opacity 0.5s ease;
 
-  padding: 4.5em;
-  margin: 0 auto;
-  max-width: 90em;
-  min-width: 470px;
+  padding-top: 5.5em;
+  /*margin: 0 auto;*/
+  /*max-width: 90em;
+  min-width: 470px;*/
 }
 
 /* HEADER */
