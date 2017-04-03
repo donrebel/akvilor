@@ -1,7 +1,7 @@
 <div class="container-fluid" id="intro">
 
 	<div class="row justify-content-center">
-		<div class="col-md-5">
+		<div class="col-lg-5 col-md-9 col-sm-12">
 			<a href="#" class="logo"><img src="../assets/images/logo.jpg" alt="" /></a>
 			<header>
 				<p>What do you want to know?</p>
@@ -12,10 +12,9 @@
 		</div>
 	</div>
 
-
 	<div class="row justify-content-center" style="margin-top: 2em">
 		<div class="card-columns" style="margin: 0 auto; max-width: 100em">
-			<search-item *ngFor="let item of items | async" [searchItem]="item" (likeRequest)="like($event)"></search-item>
+			<search-item *ngFor="let item of items | async" [data]="item" (likeRequest)="like($event)"></search-item>
 		</div>
 	</div>
 

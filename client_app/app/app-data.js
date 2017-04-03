@@ -3,18 +3,128 @@ var AppData = (function () {
     function AppData() {
     }
     AppData.prototype.createDb = function () {
-        var searchItems = [
-            { id: '111', name: 'item1', imgsrc: 'assets/images/p1.jpg' },
-            { id: '222', name: 'item2', imgsrc: 'assets/images/p2.jpg' },
-            { id: '333', name: 'item3', imgsrc: 'assets/images/p3.jpg' },
-            { id: '444', name: 'item4', imgsrc: 'assets/images/p4.jpg' },
-            { id: '666', name: 'item6', imgsrc: 'assets/images/test.jpg' },
-            { id: '111', name: 'item1', imgsrc: 'assets/images/p1.jpg' },
-            { id: '222', name: 'item2', imgsrc: 'assets/images/p2.jpg' },
-            { id: '333', name: 'item3', imgsrc: 'assets/images/p3.jpg' },
-            { id: '444', name: 'item4', imgsrc: 'assets/images/p4.jpg' },
-            { id: '555', name: 'item5', imgsrc: 'assets/images/test2.jpg' },
-            { id: '666', name: 'item6', imgsrc: 'assets/images/test.jpg' }
+        // let searchItems = [
+        //   { id: '111', name: 'item1', imgsrc:'assets/images/p1.jpg' },
+        //   { id: '222', name: 'item2', imgsrc:'assets/images/p2.jpg' },
+        //   { id: '333', name: 'item3', imgsrc:'assets/images/p3.jpg' },
+        //   { id: '444', name: 'item4', imgsrc:'assets/images/p4.jpg' },
+        //   { id: '666', name: 'item6', imgsrc:'assets/images/test.jpg' },
+        //   { id: '111', name: 'item1', imgsrc:'assets/images/p1.jpg' },
+        //   { id: '222', name: 'item2', imgsrc:'assets/images/p2.jpg' },
+        //   { id: '333', name: 'item3', imgsrc:'assets/images/p3.jpg' },
+        //   { id: '444', name: 'item4', imgsrc:'assets/images/p4.jpg' },
+        //   { id: '555', name: 'item5', imgsrc:'assets/images/test2.jpg' },
+        //   { id: '666', name: 'item6', imgsrc:'assets/images/test.jpg' }
+        // ];
+        var search_item_user_profiles = [
+            {
+                user_profile_id: '57521c76bf3ea47941a13343',
+                avatar_img_src: 'https://s.gravatar.com/avatar/0a9983b2869cd597962a9c1269518aa5?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png',
+                canvas_img_src: 'assets/images/p1.jpg',
+                first_name: 'Maksym',
+                last_name: 'Kovalenko',
+                title: 'Software Engineer',
+                overview: "For some people, the accelerated learning process is continuous. But for most, it levels off when they get their first job. If there are no more exams to take, if there's no demand to get out paper and pencil, why read any more books? Of course, you will learn some things through experience. Just getting out there—sometimes doing it wrong and sometimes doing it right—you will learn",
+                skills: ["AngularJS", "HTML", "CSS", "ReactJS"],
+                rate_per_minute: '7.37',
+                likes: '530'
+            },
+            {
+                user_profile_id: '575219c5eddebf241d6126fb',
+                avatar_img_src: 'https://s.gravatar.com/avatar/774d996e8aa03c387171d7c9b7baabc4?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png',
+                canvas_img_src: 'assets/images/p1.jpg',
+                first_name: 'Maksym',
+                last_name: 'Kovalenko',
+                title: 'DWBI Developer',
+                overview: "For some people, the accelerated learning process is continuous. But for most, it levels off when they get their first job. If there are no more exams to take, if there's no demand to get out paper and pencil, why read any more books? Of course, you will learn some things through experience. Just getting out there—sometimes doing it wrong and sometimes doing it right—you will learn",
+                skills: ["DWBI", "Database", "SQL", "Machine Learning"],
+                rate_per_minute: '5.57',
+                likes: '210'
+            },
+            {
+                user_profile_id: '11',
+                avatar_img_src: 'assets/images/avatar1.jpg',
+                canvas_img_src: 'assets/images/p1.jpg',
+                first_name: 'asd',
+                last_name: 'asd',
+                title: 'asd',
+                overview: 'as',
+                skills: 'asd',
+                rate_per_minute: 'asdd',
+                likes: 'ads'
+            },
+            {
+                user_profile_id: '11',
+                avatar_img_src: 'assets/images/avatar1.jpg',
+                canvas_img_src: 'assets/images/f1.jpg',
+                first_name: 'asd',
+                last_name: 'asd',
+                title: 'asd',
+                overview: 'as',
+                skills: 'asd',
+                rate_per_minute: 'asdd',
+                likes: 'ads'
+            },
+            {
+                user_profile_id: '11',
+                avatar_img_src: 'assets/images/avatar1.jpg',
+                canvas_img_src: 'assets/images/f2.jpg',
+                first_name: 'asd',
+                last_name: 'asd',
+                title: 'asd',
+                overview: 'as',
+                skills: 'asd',
+                rate_per_minute: 'asdd',
+                likes: 'ads'
+            },
+            {
+                user_profile_id: '11',
+                avatar_img_src: 'assets/images/avatar1.jpg',
+                canvas_img_src: 'assets/images/f3.jpg',
+                first_name: 'asd',
+                last_name: 'asd',
+                title: 'asd',
+                overview: 'as',
+                skills: 'asd',
+                rate_per_minute: 'asdd',
+                likes: 'ads'
+            },
+            {
+                user_profile_id: '11',
+                avatar_img_src: 'assets/images/avatar1.jpg',
+                canvas_img_src: 'assets/images/f4.jpg',
+                first_name: 'asd',
+                last_name: 'asd',
+                title: 'asd',
+                overview: 'as',
+                skills: 'asd',
+                rate_per_minute: 'asdd',
+                likes: 'ads'
+            },
+            {
+                user_profile_id: '11',
+                avatar_img_src: 'assets/images/avatar1.jpg',
+                canvas_img_src: 'assets/images/p3.jpg',
+                first_name: 'asd',
+                last_name: 'asd',
+                title: 'asd',
+                overview: 'as',
+                skills: 'asd',
+                rate_per_minute: 'asdd',
+                likes: 'ads'
+            },
+            {
+                user_profile_id: '11',
+                avatar_img_src: 'assets/images/avatar1.jpg',
+                canvas_img_src: 'assets/images/p4.jpg',
+                first_name: 'asd',
+                last_name: 'asd',
+                title: 'asd',
+                overview: 'as',
+                skills: 'asd',
+                rate_per_minute: 'asdd',
+                likes: 'ads'
+            }
         ];
         var userProfile = [
             {
@@ -85,7 +195,7 @@ var AppData = (function () {
                 likes: 310
             }
         ];
-        return { searchItems: searchItems, userProfile: userProfile };
+        return { userProfile: userProfile, search_item_user_profiles: search_item_user_profiles };
     };
     return AppData;
 }());

@@ -10,12 +10,17 @@ import 'rxjs/add/operator/catch';
 import { APP_CONFIG, AppConfig } from '../../app-config';
 import { UtilService } from './util.service';
 
-export class SearchItem {
-  constructor (
-    public id: string,
-    public name: string,
-    public imgsrc: string
-  ) {}
+export interface IsearchItemUserProfile {
+  user_profile_id: string,
+  avatar_img_src: string,
+  canvas_img_src: string,
+  first_name: string,
+  last_name: string,
+  title: string,
+  overview: string,
+  skills: string,
+  rate_per_minute: number,
+  likes: number
 }
 
 @Injectable()
@@ -31,18 +36,24 @@ export class SearchService {
     this.apiBaseUrl = appConfig.apiEndpoint;
   }
 
-  search(term: string): Observable<SearchItem[]> {
-    return this.http.get(`${this.apiBaseUrl}searchItems`)
-                    .map(this.util.extractDataHttpRequest)
+  search(term: string): Observable<IsearchItemUserProfile[]> {
+    return this.http.get(`${this.apiBaseUrl}search_item_user_profiles`)
+                    .map(
+                      (data) => {
+
+                      return  this.util.extractDataHttpRequest(data);
+
+                    }
+                  )
                     .catch(this.util.handleErrorHttpRequest);
   }
 
-  searchAddItem(item: SearchItem): Observable<SearchItem[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.post(`${this.apiBaseUrl}searchItems`, item, options)
-                    .map(this.util.extractDataHttpRequest)
-                    .catch(this.util.handleErrorHttpRequest);
-  }
+  // searchAddItem(item: SearchItem): Observable<SearchItem[]> {
+  //   let headers = new Headers({ 'Content-Type': 'application/json' });
+  //   let options = new RequestOptions({ headers: headers });
+  //
+  //   return this.http.post(`${this.apiBaseUrl}searchItems`, item, options)
+  //                   .map(this.util.extractDataHttpRequest)
+  //                   .catch(this.util.handleErrorHttpRequest);
+  // }
 }

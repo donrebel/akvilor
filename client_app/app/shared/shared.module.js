@@ -13,18 +13,27 @@ var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
 var material_1 = require('@angular/material');
 var draggable_1 = require('./draggable');
+var pipes_1 = require('./pipes');
 var SharedModule = (function () {
     function SharedModule() {
     }
     SharedModule = __decorate([
         core_1.NgModule({
             imports: [common_1.CommonModule],
-            declarations: [draggable_1.Draggable],
+            declarations: [
+                draggable_1.Draggable,
+                pipes_1.RatePipe,
+                pipes_1.CurrencyPipe,
+                pipes_1.SkillsPipe
+            ],
             exports: [
                 common_1.CommonModule,
                 forms_1.FormsModule,
                 material_1.MaterialModule,
-                draggable_1.Draggable
+                draggable_1.Draggable,
+                pipes_1.RatePipe,
+                pipes_1.CurrencyPipe,
+                pipes_1.SkillsPipe
             ]
         }), 
         __metadata('design:paramtypes', [])

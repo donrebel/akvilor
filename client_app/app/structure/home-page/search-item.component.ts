@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SearchItem } from '../../core/services/search.service';
+import { IsearchItemUserProfile } from '../../core/services/search.service';
 
 @Component({
   moduleId: module.id,
@@ -9,10 +9,10 @@ import { SearchItem } from '../../core/services/search.service';
 })
 export class SearchItemComponent {
 
-  @Input() searchItem: SearchItem;
-  @Output() likeRequest = new EventEmitter<SearchItem>();
+  @Input() data: IsearchItemUserProfile;
+  @Output() likeRequest = new EventEmitter<IsearchItemUserProfile>();
 
   like() {
-    this.likeRequest.emit(this.searchItem);
+    this.likeRequest.emit(this.data);
   }
 }

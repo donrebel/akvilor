@@ -19,15 +19,6 @@ require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
 var app_config_1 = require('../../app-config');
 var util_service_1 = require('./util.service');
-var SearchItem = (function () {
-    function SearchItem(id, name, imgsrc) {
-        this.id = id;
-        this.name = name;
-        this.imgsrc = imgsrc;
-    }
-    return SearchItem;
-}());
-exports.SearchItem = SearchItem;
 var SearchService = (function () {
     function SearchService(appConfig, http, util) {
         this.http = http;
@@ -35,15 +26,11 @@ var SearchService = (function () {
         this.apiBaseUrl = appConfig.apiEndpoint;
     }
     SearchService.prototype.search = function (term) {
-        return this.http.get(this.apiBaseUrl + "searchItems")
-            .map(this.util.extractDataHttpRequest)
-            .catch(this.util.handleErrorHttpRequest);
-    };
-    SearchService.prototype.searchAddItem = function (item) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.apiBaseUrl + "searchItems", item, options)
-            .map(this.util.extractDataHttpRequest)
+        var _this = this;
+        return this.http.get(this.apiBaseUrl + "search_item_user_profiles")
+            .map(function (data) {
+            return _this.util.extractDataHttpRequest(data);
+        })
             .catch(this.util.handleErrorHttpRequest);
     };
     SearchService = __decorate([

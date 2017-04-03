@@ -26,6 +26,7 @@ export class AuthService {
       }
     });
 
+
   private currentUserID: string;
   private guestProfile: UserProfile;
   private $currentUserProfile: BehaviorSubject<UserProfile>;

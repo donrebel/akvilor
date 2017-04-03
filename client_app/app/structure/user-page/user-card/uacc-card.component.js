@@ -9,12 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var material_1 = require('@angular/material');
 var app_models_1 = require('../../../app.models');
 var UAccCardComponent = (function () {
     //selectedOption: string;
-    function UAccCardComponent(dialog) {
-        this.dialog = dialog;
+    function UAccCardComponent() {
         this.onEdit = new core_1.EventEmitter();
         this.suggestToEdit = false;
     }
@@ -48,7 +46,7 @@ var UAccCardComponent = (function () {
             templateUrl: 'uacc-card.component.html',
             styleUrls: ['uacc-card.component.css']
         }), 
-        __metadata('design:paramtypes', [material_1.MdDialog])
+        __metadata('design:paramtypes', [])
     ], UAccCardComponent);
     return UAccCardComponent;
 }());

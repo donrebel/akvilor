@@ -6,7 +6,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
-import { SearchService, SearchItem } from '../../core/services/search.service';
+import { SearchService, IsearchItemUserProfile } from '../../core/services/search.service';
 import { SearchItemComponent } from './search-item.component';
 
 @Component({
@@ -15,7 +15,7 @@ import { SearchItemComponent } from './search-item.component';
   styleUrls: ['home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  public items = new Observable<SearchItem[]>();
+  public items = new Observable<IsearchItemUserProfile[]>();
   private searchTermStream = new Subject<string>();
 
   constructor(private searchService: SearchService) {}
@@ -31,7 +31,7 @@ export class HomePageComponent implements OnInit {
       .switchMap((term: string) => this.searchService.search(term));
   }
 
-  like(searchItem: SearchItem) {
+  like(searchItem: IsearchItemUserProfile) {
     console.log(searchItem);
   }
 }

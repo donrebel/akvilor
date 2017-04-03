@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { UAccCardEditFormModalComponent } from './uacc-card-edit-form-modal.component';
 import { UserProfile } from '../../../app.models';
@@ -18,7 +17,7 @@ export class UAccCardComponent {
   private suggestToEdit: boolean = false;
   //selectedOption: string;
 
-  constructor (public dialog: MdDialog) {
+  constructor () {
 
   }
 
