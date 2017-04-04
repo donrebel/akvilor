@@ -2,19 +2,6 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 export class AppData implements InMemoryDbService {
   createDb() {
-    // let searchItems = [
-    //   { id: '111', name: 'item1', imgsrc:'assets/images/p1.jpg' },
-    //   { id: '222', name: 'item2', imgsrc:'assets/images/p2.jpg' },
-    //   { id: '333', name: 'item3', imgsrc:'assets/images/p3.jpg' },
-    //   { id: '444', name: 'item4', imgsrc:'assets/images/p4.jpg' },
-    //   { id: '666', name: 'item6', imgsrc:'assets/images/test.jpg' },
-    //   { id: '111', name: 'item1', imgsrc:'assets/images/p1.jpg' },
-    //   { id: '222', name: 'item2', imgsrc:'assets/images/p2.jpg' },
-    //   { id: '333', name: 'item3', imgsrc:'assets/images/p3.jpg' },
-    //   { id: '444', name: 'item4', imgsrc:'assets/images/p4.jpg' },
-    //   { id: '555', name: 'item5', imgsrc:'assets/images/test2.jpg' },
-    //   { id: '666', name: 'item6', imgsrc:'assets/images/test.jpg' }
-    // ];
 
     let search_item_user_profiles = [
       {
@@ -44,7 +31,7 @@ export class AppData implements InMemoryDbService {
       {
         user_profile_id: '11',
         avatar_img_src: 'assets/images/avatar1.jpg',
-        canvas_img_src: 'assets/images/p1.jpg',
+        canvas_img_src: '',
         first_name: 'asd',
         last_name: 'asd',
         title: 'asd',

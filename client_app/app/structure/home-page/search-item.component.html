@@ -1,7 +1,6 @@
 <div class="card" style="max-width: 20rem">
-  <img class="card-img-top img-fluid darken-img" md-card-image src={{data.canvas_img_src}} alt="Card image cap">
 
-  <div class="card-img-overlay">
+  <div *ngIf="!data.canvas_img_src" class="card-block" id="card-empty-header">
     <div class="row justify-content-between">
       <div class="col">
         <div style="float:left">
@@ -22,9 +21,33 @@
         <h5>{{data.title}}</h5>
       </div>
     </div>
-    </div>
+  </div>
 
-  <div class="card-block" style="margin-top: -67px">
+  <img *ngIf="data.canvas_img_src" class="card-img-top img-fluid darken-img" md-card-image src={{data.canvas_img_src}} alt="Card image cap">
+  <div *ngIf="data.canvas_img_src" class="card-img-overlay">
+    <div class="row justify-content-between">
+      <div class="col">
+        <div style="float:left">
+          <h6>
+            <i class="fa fa-thumbs-o-up" style="float:left; margin-top: 5px" aria-hidden="true"></i>
+          </h6>
+        </div>
+        <div style="float:left">
+          <h6>{{data.likes}}</h6>
+        </div>
+      </div>
+      <div class="col" style="text-align:right">
+        <h6 style="text-transform:lowercase">{{data.rate_per_minute | currency}}</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h5>{{data.title}}</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-block" style="margin-top: -4rem">
         <img src={{data.avatar_img_src}} alt="" class="rounded-circle avatar" style="-webkit-filter: brightness(100%);"/>
   </div>
   <div class="card-block">

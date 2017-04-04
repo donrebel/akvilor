@@ -1,3 +1,15 @@
+#card-empty-header {
+  min-height: 10rem;
+  border-bottom: solid 1px rgba(0,0,0,.125);
+  padding-bottom: 3rem;
+  background: #e1e6f0;
+}
+
+#avatar-bur {
+  -webkit-filter: blur(70px);
+  filter: blur(70px);
+}
+
 .card-img-overlay * {
   color: white;
 }
