@@ -45,8 +45,8 @@ var UserPageComponent = (function () {
                 .switchMap(function (params) {
                 return _this.userData.getUserProfileData(params['id']);
             })
-                .subscribe(function (content) {
-                _this.userProfile = content;
+                .subscribe(function (profile) {
+                _this.userProfile = profile;
                 _this.accIsLoading = false;
             }, function (error) {
                 console.log(error);

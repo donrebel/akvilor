@@ -30,4 +30,8 @@ export class UtilService {
     return Observable.throw(errMsg);
   }
 
+  getNativeWindow() {
+    return window
+  }
+
 }

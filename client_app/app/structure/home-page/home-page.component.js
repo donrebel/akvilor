@@ -15,6 +15,7 @@ require('rxjs/add/operator/debounceTime');
 require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/switchMap');
 var search_service_1 = require('../../core/services/search.service');
+var search_item_animation_1 = require('./search-item.animation');
 var HomePageComponent = (function () {
     function HomePageComponent(searchService) {
         this.searchService = searchService;
@@ -38,7 +39,8 @@ var HomePageComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             templateUrl: 'home-page.component.html',
-            styleUrls: ['home-page.component.css']
+            styleUrls: ['home-page.component.css'],
+            animations: [search_item_animation_1.flyInOut]
         }), 
         __metadata('design:paramtypes', [search_service_1.SearchService])
     ], HomePageComponent);

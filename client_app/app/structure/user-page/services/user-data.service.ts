@@ -5,8 +5,8 @@ import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 
 import { APP_CONFIG, AppConfig } from '../../../app-config';
-import { UtilService } from '../../../core/services/util.service';
 import { UserProfile } from '../../../app.models';
+import { UtilService } from '../../../core/services/util.service';
 
 @Injectable()
 export class UserDataService {
@@ -32,7 +32,7 @@ export class UserDataService {
 
   getUserProfileData(id: any): Observable<UserProfile> {
     return this.authHttp
-      .get(`${this.apiUrl}/${id}`)
+      .get(`${this.apiBaseUrl}userProfile/${id}`)
       .map(this.util.extractDataHttpRequest)
       .catch(this.util.handleErrorHttpRequest);
   }

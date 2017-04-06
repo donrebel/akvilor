@@ -1,3 +1,7 @@
+.btn-block {
+  cursor: pointer;
+}
+
 #card-empty-header {
   min-height: 10rem;
   border-bottom: solid 1px rgba(0,0,0,.125);
@@ -13,6 +17,8 @@
 .card-img-overlay * {
   color: white;
 }
+
+
 
 .darken {
   background-image:

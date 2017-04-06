@@ -31,7 +31,7 @@ var UserDataService = (function () {
     };
     UserDataService.prototype.getUserProfileData = function (id) {
         return this.authHttp
-            .get(this.apiUrl + "/" + id)
+            .get(this.apiBaseUrl + "userProfile/" + id)
             .map(this.util.extractDataHttpRequest)
             .catch(this.util.handleErrorHttpRequest);
     };

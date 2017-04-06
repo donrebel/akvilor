@@ -48,7 +48,7 @@
   </div>
 
   <div class="card-block" style="margin-top: -4rem">
-        <img src={{data.avatar_img_src}} alt="" class="rounded-circle avatar" style="-webkit-filter: brightness(100%);"/>
+    <img src={{data.avatar_img_src}} alt="" class="rounded-circle avatar" style="-webkit-filter: brightness(100%);"/>
   </div>
   <div class="card-block">
     <h4 class="card-title">{{data.first_name}} {{data.last_name}}</h4>
@@ -65,7 +65,8 @@
         <a href="#" class="btn btn-success btn-block">Contact</a>
       </div>
       <div class="col">
-        <a href="#" class="btn btn-secondary btn-block">View profile</a>
+        <a href={{profileLink}} class="btn btn-secondary btn-block" >View profile</a>
+  <!-- (click)="openUserProfilePage()"       -->
       </div>
     </div>
   </div>

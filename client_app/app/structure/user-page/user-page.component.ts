@@ -57,8 +57,8 @@ export class UserPageComponent implements OnInit {
           return this.userData.getUserProfileData(params['id']);
         })
         .subscribe(
-          (content: UserProfile) => {
-            this.userProfile = content;
+          (profile: UserProfile) => {
+            this.userProfile = profile;
             this.accIsLoading = false;
           },
           (error) => {

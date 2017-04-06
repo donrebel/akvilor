@@ -38,6 +38,9 @@ var UtilService = (function () {
         console.error(errMsg);
         return Observable_1.Observable.throw(errMsg);
     };
+    UtilService.prototype.getNativeWindow = function () {
+        return window;
+    };
     UtilService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])

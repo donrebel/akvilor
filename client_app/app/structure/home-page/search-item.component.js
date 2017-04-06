@@ -9,10 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var util_service_1 = require('../../core/services/util.service');
 var SearchItemComponent = (function () {
-    function SearchItemComponent() {
+    // nativeWindow: any
+    function SearchItemComponent(util) {
+        this.util = util;
         this.likeRequest = new core_1.EventEmitter();
+        // this.nativeWindow = util.getNativeWindow();
     }
+    SearchItemComponent.prototype.ngOnInit = function () {
+        if (this.data) {
+            this.profileLink = "/" + this.data.user_profile_id;
+        }
+    };
     SearchItemComponent.prototype.like = function () {
         this.likeRequest.emit(this.data);
     };
@@ -31,7 +40,7 @@ var SearchItemComponent = (function () {
             templateUrl: './search-item.component.html',
             styleUrls: ['./search-item.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [util_service_1.UtilService])
     ], SearchItemComponent);
     return SearchItemComponent;
 }());
