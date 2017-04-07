@@ -12,9 +12,12 @@
 		</div>
 	</div>
 
-	<div class="row justify-content-center" style="margin-top: 2em">
-		<div class="card-columns" style="margin: 0 auto; max-width: 100em" >
-			<search-item *ngFor="let item of items | async" [data]="item" (likeRequest)="like($event)"></search-item>
+	<div class="row justify-content-center" style="margin-top: 2em" *ngIf="items">
+		<div class="card-columns" style="margin: 0 auto; max-width: 100em">
+			<search-item *ngFor="let item of items| async"
+				[data]="item"
+				(likeRequest)="like($event)">
+			</search-item>
 		</div>
 	</div>
 

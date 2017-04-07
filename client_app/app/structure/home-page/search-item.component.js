@@ -9,13 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var util_service_1 = require('../../core/services/util.service');
+var search_item_animation_1 = require('./search-item.animation');
 var SearchItemComponent = (function () {
-    // nativeWindow: any
-    function SearchItemComponent(util) {
-        this.util = util;
+    function SearchItemComponent() {
         this.likeRequest = new core_1.EventEmitter();
-        // this.nativeWindow = util.getNativeWindow();
     }
     SearchItemComponent.prototype.ngOnInit = function () {
         if (this.data) {
@@ -38,9 +35,10 @@ var SearchItemComponent = (function () {
             moduleId: module.id,
             selector: 'search-item',
             templateUrl: './search-item.component.html',
-            styleUrls: ['./search-item.component.css']
+            styleUrls: ['./search-item.component.css'],
+            animations: [search_item_animation_1.flyInOut]
         }), 
-        __metadata('design:paramtypes', [util_service_1.UtilService])
+        __metadata('design:paramtypes', [])
     ], SearchItemComponent);
     return SearchItemComponent;
 }());

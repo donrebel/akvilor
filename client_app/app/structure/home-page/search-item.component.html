@@ -1,4 +1,4 @@
-<div class="card" style="max-width: 20rem">
+<div class="card" style="max-width: 20rem" [@flyInOut]="'in'">
 
   <div *ngIf="!data.canvas_img_src" class="card-block" id="card-empty-header">
     <div class="row justify-content-between">
@@ -66,7 +66,6 @@
       </div>
       <div class="col">
         <a href={{profileLink}} class="btn btn-secondary btn-block" >View profile</a>
-  <!-- (click)="openUserProfilePage()"       -->
       </div>
     </div>
   </div>
