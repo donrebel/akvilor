@@ -11,7 +11,9 @@
         <li><a routerLink="/home">back to find</a></li>
         <li><a routerLink="/u">my page</a></li>
 
-        <li><a [routerLink]="[{ outlets: {popup: ['compose'] } }]">test</a></li>
+        <!-- <li><a [routerLink]="[{ outlets: {popup: ['compose'] } }]">test</a></li> -->
+        <li><a [routerLink]="[{ outlets: {chat: ['chat'] } }]">chat</a></li>
+
 			</ul>
 		</nav>
     <div class="row">
@@ -24,7 +26,8 @@
 
   <router-outlet></router-outlet>
 
-  <router-outlet name="popup"></router-outlet>
+  <!-- <router-outlet name="popup"></router-outlet> -->
+  <router-outlet name="chat"></router-outlet>
 
   <div class="container-fluid chatViewContainer">
     <div class="row">
