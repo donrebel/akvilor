@@ -95,22 +95,6 @@ a.akvilor {
 	cursor: pointer;
 }
 
-.close-btn {
-	position: absolute;
-	right: 0;
-	color: #646464;
-	font-size: 2.5em;
-	z-index: 100;
-	vertical-align: text-top;
-	line-height: 1;
-}
-.close-btn:hover,
-.close-btn:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 /* === Bootstrap Customs === */
 .form-control {
 	border-radius: 0px;
@@ -124,37 +108,23 @@ a.akvilor {
 	letter-spacing: 0.25em;
 }
 
-
-/*.btn {
-	border-radius: 0px;
-	font-family: "Raleway Cyrillic", Helvetica, sans-serif;
-	font-size: 0.6em;
-	font-weight: 800;
-	height: 4em;
-	text-transform: uppercase;
-	letter-spacing: 0.25em;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-	-webkit-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-	-ms-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-	transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-}*/
-
-/*.btn:hover,
-.btn:focus {
-	background: rgba(46, 186, 174, 0.05);
-}
-.btn:hover:active {
-	background-color: rgba(46, 186, 174, 0.10);
-}*/
-
 .left {
 	float: left;
 }
 
 .right {
 	float: right;
+}
+
+.close-btn {
+	color: #777;
+	font: 14px/100% arial, sans-serif;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #fff;
+	padding-right: 0.7rem;
+}
+
+.close-btn p {
+	margin-top: 0.19rem;
+	margin-bottom:0px;
 }

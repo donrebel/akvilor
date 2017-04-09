@@ -1,0 +1,36 @@
+.chat-container {
+  position:fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.card-header {
+  padding: 0;
+}
+
+.chat-body-title {
+  padding-top: 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn-holder {
+  height: 2.5rem;
+}
+
+.btn-block {
+  height: 100%;
+}
+
+.btn-block:hover {
+  cursor: pointer;
+  background: #e4e7e8;
+  color: #646464;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+.list-group-item:hover {
+   background-color: #f1f4f5;
+}
