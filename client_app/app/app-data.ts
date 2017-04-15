@@ -185,6 +185,155 @@ export class AppData implements InMemoryDbService {
         likes: 310
       }
     ]
-    return {userProfile, search_item_user_profiles};
+
+    let messageLog = [
+      {
+        session_id: "1",
+        participants: [
+          {
+            user_id: "57521c76bf3ea47941a13343",
+            nickname: "max.y.kovalenko",
+            picture: "https://s.gravatar.com/avatar/0a9983b2869cd597962a9c1269518aa5?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png"
+          },
+          {
+            user_id: "575219c5eddebf241d6126fb",
+            nickname: "max.cimmerian",
+            picture: "https://s.gravatar.com/avatar/774d996e8aa03c387171d7c9b7baabc4?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png"
+          }
+        ],
+        messages: [
+          {
+            message_id: "1",
+            user_id: "57521c76bf3ea47941a13343",
+            timestamp: "2017-04-07T23:22:36.155Z",
+            message_body: "asdasdasdasd",
+            status: "read"
+          },
+          {
+            message_id: "2",
+            user_id: "575219c5eddebf241d6126fb",
+            timestamp: "2017-04-07T23:23:36.155Z",
+            message_body: "asdasdasdasd",
+            status: "read"
+          }
+        ]
+      },
+      {
+        session_id: "2",
+        participants: [
+          {
+            user_id: "57521c76bf3ea47941a13343",
+            nickname: "max.y.kovalenko",
+            picture: "https://s.gravatar.com/avatar/0a9983b2869cd597962a9c1269518aa5?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png"
+          },
+          {
+            user_id: "111",
+            nickname: "nickname1",
+            picture: "'assets/images/avatar1.jpg"
+          }
+        ],
+        messages: [
+          {
+            message_id: "1",
+            user_id: "57521c76bf3ea47941a13343",
+            timestamp: "2017-04-07T23:22:36.155Z",
+            message_body: "asdasdasdasd",
+            status: "read"
+          },
+          {
+            message_id: "2",
+            user_id: "111",
+            timestamp: "2017-04-07T23:23:36.155Z",
+            message_body: "asdasdasdasd",
+            status: "read"
+          }
+        ]
+      },
+      {
+        session_id: "3",
+        participants: [
+          {
+            user_id: "57521c76bf3ea47941a13343",
+            nickname: "max.y.kovalenko",
+            picture: "https://s.gravatar.com/avatar/0a9983b2869cd597962a9c1269518aa5?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png"
+          },
+          {
+            user_id: "222",
+            nickname: "nickname2",
+            picture: "'assets/images/ph.jpg"
+          }
+        ],
+        messages: [
+          {
+            message_id: "1",
+            user_id: "57521c76bf3ea47941a13343",
+            timestamp: "2017-04-07T23:22:36.155Z",
+            message_body: "asdasdasdasd",
+            status: "read"
+          },
+          {
+            message_id: "2",
+            user_id: "222",
+            timestamp: "2017-04-07T23:23:36.155Z",
+            message_body: "asdasdasdasd",
+            status: "read"
+          }
+        ]
+      }
+    ]
+
+    let chat_items = [
+      {
+        session_id: "1",
+        message_id: "1",
+        user_id: "57521c76bf3ea47941a13343",
+        timestamp: "2017-04-07T23:22:36.155Z",
+        message_body: "asdasdasdasd",
+        status: "read"
+      },
+      {
+        session_id: "1",
+        message_id: "2",
+        user_id: "575219c5eddebf241d6126fb",
+        timestamp: "2017-04-07T23:23:36.155Z",
+        message_body: "asdasdasdasd",
+        status: "read"
+      },
+      {
+        session_id: "2",
+        message_id: "1",
+        user_id: "57521c76bf3ea47941a13343",
+        timestamp: "2017-04-07T23:22:36.155Z",
+        message_body: "asdasdasdasd",
+        status: "read"
+      },
+      {
+        session_id: "2",
+        message_id: "2",
+        user_id: "111",
+        timestamp: "2017-04-07T23:23:36.155Z",
+        message_body: "asdasdasdasd",
+        status: "read"
+      },
+      {
+        session_id: "3",
+        message_id: "1",
+        user_id: "57521c76bf3ea47941a13343",
+        timestamp: "2017-04-07T23:22:36.155Z",
+        message_body: "asdasdasdasd",
+        status: "read"
+      },
+      {
+        session_id: "3",
+        message_id: "2",
+        user_id: "222",
+        timestamp: "2017-04-07T23:23:36.155Z",
+        message_body: "asdasdasdasd",
+        status: "read"
+      }
+    ]
+
+
+    return {userProfile, search_item_user_profiles, chat_items};
   }
 }
