@@ -30,7 +30,8 @@
 
       'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
       'ng2-file-upload': 'npm:ng2-file-upload/ng2-file-upload.js',
-      'socket.io-client': 'npm:socket.io-client/socket.io.js'
+      'socket.io-client': 'npm:socket.io-client/socket.io.js',
+	  'lodash': 'npm:lodash/lodash.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -49,7 +50,10 @@
       },
       'angular2-jwt': {
         defaultExtension: 'js'
-      }
+      },
+	  'lodash': {
+		defaultExtension: 'js'  
+	  }
     }
   });
 })(this);
