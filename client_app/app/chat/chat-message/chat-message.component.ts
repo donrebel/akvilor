@@ -14,6 +14,7 @@ import { Thread } from './../thread/thread.model';
 import { User } from './../user/user.model';
 
 @Component({
+  moduleId: module.id,
   selector: 'chat-message',
   templateUrl: './chat-message.component.html',
   styleUrls: ['./chat-message.component.css']

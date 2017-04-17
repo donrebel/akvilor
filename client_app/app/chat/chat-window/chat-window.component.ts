@@ -14,6 +14,7 @@ import { Message } from '../message/message.model';
 import { MessagesService } from '../message/messages.service';
 
 @Component({
+  moduleId: module.id,
   selector: 'chat-window',
   templateUrl: './chat-window.component.html',
   styleUrls: ['./chat-window.component.css']

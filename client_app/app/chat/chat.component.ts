@@ -3,6 +3,7 @@ import { Router } from '@angular/router'
 
 @Component({
   moduleId: module.id,
+  selector: 'chat',
   templateUrl: 'chat.component.html',
   styleUrls: ['chat.component.css']
 })

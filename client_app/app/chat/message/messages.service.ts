@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs/Rx';
 import { User } from '../user/user.model';
 import { Thread } from '../thread/thread.model';
 import { Message } from '../message/message.model';

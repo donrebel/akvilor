@@ -10,6 +10,7 @@ import { ThreadsService } from './../thread/threads.service';
 import { Thread } from '../thread/thread.model';
 
 @Component({
+  moduleId: module.id,
   selector: 'chat-thread',
   templateUrl: './chat-thread.component.html',
   styleUrls: ['./chat-thread.component.css']

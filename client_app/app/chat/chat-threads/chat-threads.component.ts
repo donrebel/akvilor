@@ -8,6 +8,7 @@ import { Thread } from '../thread/thread.model';
 import { ThreadsService } from './../thread/threads.service';
 
 @Component({
+  moduleId: module.id,
   selector: 'chat-threads',
   templateUrl: './chat-threads.component.html',
   styleUrls: ['./chat-threads.component.css']
