@@ -1,35 +1,34 @@
 <div class="chat-container">
   <div class="card">
     <div class="card-header" *ngIf="mode == 'chatBody'">
-      <div class="row">
-        <div class="col">
-          <div class="btn-holder">
-            <a class="btn btn-block" (click)="closeChatBody()">
-              <i class="fa fa-angle-left fa-2x" style="margin-top:3px" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
+      <div class="btn-holder pull-left">
+        <a class="btn btn-block" (click)="closeChatBody()">
+          <i class="fa fa-angle-left fa-2x" style="margin-top:3px" aria-hidden="true"></i>
+        </a>
+      </div>
+      <div class="row pull-left">
         <div class="col">
           <div class="text-nowrap chat-body-title">
             <span>chat-header</span>
           </div>
         </div>
-        <div class="col">
-          <div class="btn-holder">
-            <a class="btn btn-block close-btn" (click)="closeChatWindow()">
-              <p>✖</p>
-            </a>
-          </div>
-        </div>
+      </div>
+      <div class="btn-holder pull-right">
+        <a class="btn btn-block close-btn" (click)="closeChatWindow()">
+          <p>✖</p>
+        </a>
       </div>
     </div>
     <div class="card-block" *ngIf="mode == 'chatBody'">
-      <label>chat-body</label>
+      <chat-window></chat-window>
     </div>
     <ul class="list-group list-group-flush" *ngIf="mode == 'chatList'">
+
       <li class="list-group-item" (click)="openChatBody('1')">Cras justo odio</li>
       <li class="list-group-item" (click)="openChatBody('2')">Dapibus ac facilisis in</li>
       <li class="list-group-item" (click)="openChatBody('3')">Vestibulum at eros</li>
+
+      <li *ngFor="let thread of threads | async"><chat-thread [thread]="thread"></chat-thread></li>
     </ul>
   </div>
 </div>

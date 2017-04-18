@@ -10,12 +10,14 @@
 
 .chat-body-title {
   padding-top: 0.5rem;
+  padding-left: 1rem;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .btn-holder {
   height: 2.5rem;
+  width: 3rem;
 }
 
 .btn-block {
