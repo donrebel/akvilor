@@ -23,12 +23,9 @@
       <chat-window></chat-window>
     </div>
     <ul class="list-group list-group-flush" *ngIf="mode == 'chatList'">
-
-      <li class="list-group-item" (click)="openChatBody('1')">Cras justo odio</li>
-      <li class="list-group-item" (click)="openChatBody('2')">Dapibus ac facilisis in</li>
-      <li class="list-group-item" (click)="openChatBody('3')">Vestibulum at eros</li>
-
-      <li *ngFor="let thread of threads | async"><chat-thread [thread]="thread"></chat-thread></li>
+      <li class="list-group-item" (click)="openChatBody('3')" *ngFor="let thread of threads | async">
+        <chat-thread [thread]="thread"></chat-thread>
+      </li>
     </ul>
   </div>
 </div>
