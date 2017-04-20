@@ -11,7 +11,6 @@ import { flyInOut } from './search-item.animation'
   animations: [ flyInOut ]
 })
 export class SearchItemComponent implements OnInit {
-
   @Input() data: IsearchItemUserProfile;
   @Output() likeRequest = new EventEmitter<IsearchItemUserProfile>();
 

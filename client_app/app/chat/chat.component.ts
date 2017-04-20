@@ -31,4 +31,9 @@ export class ChatComponent {
   closeChatWindow() {
     this.router.navigate([{ outlets: { chat: null }}]);
   }
+
+  onOpenChatWindow(threadId: string) {
+    console.log(threadId);
+    this.mode = 'chatBody';    
+  }
 }

@@ -24,7 +24,7 @@
     </div>
     <ul class="list-group list-group-flush" *ngIf="mode == 'chatList'">
       <li class="list-group-item" (click)="openChatBody('3')" *ngFor="let thread of threads | async">
-        <chat-thread [thread]="thread"></chat-thread>
+        <chat-thread [thread]="thread" (openChatWindow)="onOpenChatWindow($event)"></chat-thread>
       </li>
     </ul>
   </div>
