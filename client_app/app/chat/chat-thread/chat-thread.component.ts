@@ -17,7 +17,7 @@ import { Thread } from '../thread/thread.model';
 })
 export class ChatThreadComponent implements OnInit {
   @Input() thread: Thread;
-  @Output() openChatWindow = new EventEmitter<String>();
+  @Output() openChatWindow = new EventEmitter<Thread>();
 
   selected = false;
 
@@ -35,7 +35,7 @@ export class ChatThreadComponent implements OnInit {
 
   clicked(event: any): void {
     this.threadsService.setCurrentThread(this.thread);
-    this.openChatWindow.emit(this.thread.id);
+    this.openChatWindow.emit(this.thread);
     event.preventDefault();
   }
 }

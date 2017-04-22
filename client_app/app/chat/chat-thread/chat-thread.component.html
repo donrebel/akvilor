@@ -1,5 +1,5 @@
-<div class="media" (click)="clicked($event)">
-  <img class="d-flex mr-3 rounded-circle avatar" src="{{thread.avatarSrc}}">
+<div class="media thread" (click)="clicked($event)">
+  <img class="d-flex mr-3 rounded-circle avatar-sm" src="{{thread.avatarSrc}}">
   <div class="media-body">
     <h5 class="media-heading contact-name">{{thread.name}}</h5>
     <small class="message-preview">{{thread.lastMessage.text}}</small>

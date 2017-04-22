@@ -1,3 +1,6 @@
-.avatar {
-  width: 4rem;
+.thread {
+  height: 3rem;
+}
+.contact-name {
+  overflow: hidden;
 }

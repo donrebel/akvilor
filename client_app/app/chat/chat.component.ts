@@ -12,8 +12,8 @@ import { ThreadsService } from './thread/threads.service';
   styleUrls: ['chat.component.css']
 })
 export class ChatComponent {
-  mode = 'chatList'
-
+  mode = 'chatList';
+  currentThread: Thread;
   threads: Observable<any>;
 
   constructor(private router: Router, threadsService: ThreadsService) {
@@ -32,8 +32,8 @@ export class ChatComponent {
     this.router.navigate([{ outlets: { chat: null }}]);
   }
 
-  onOpenChatWindow(threadId: string) {
-    console.log(threadId);
-    this.mode = 'chatBody';    
+  onOpenChatWindow(currentThread: Thread) {
+    this.currentThread = currentThread;
+    this.mode = 'chatBody';
   }
 }

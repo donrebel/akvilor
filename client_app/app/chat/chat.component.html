@@ -1,5 +1,11 @@
 <div class="chat-container">
   <div class="card">
+    <ul class="list-group list-group-flush" *ngIf="mode == 'chatList'">
+      <li class="list-group-item" (click)="openChatBody('3')" *ngFor="let thread of threads | async">
+        <chat-thread [thread]="thread" (openChatWindow)="onOpenChatWindow($event)"></chat-thread>
+      </li>
+    </ul>
+
     <div class="card-header" *ngIf="mode == 'chatBody'">
       <div class="btn-holder pull-left">
         <a class="btn btn-block" (click)="closeChatBody()">
@@ -9,7 +15,7 @@
       <div class="row pull-left">
         <div class="col">
           <div class="text-nowrap chat-body-title">
-            <span>chat-header</span>
+            <span>{{currentThread.name}}</span>
           </div>
         </div>
       </div>
@@ -19,13 +25,8 @@
         </a>
       </div>
     </div>
-    <div class="card-block" *ngIf="mode == 'chatBody'">
+    <div class="card-block chat-w-c" *ngIf="mode == 'chatBody'">
       <chat-window></chat-window>
     </div>
-    <ul class="list-group list-group-flush" *ngIf="mode == 'chatList'">
-      <li class="list-group-item" (click)="openChatBody('3')" *ngFor="let thread of threads | async">
-        <chat-thread [thread]="thread" (openChatWindow)="onOpenChatWindow($event)"></chat-thread>
-      </li>
-    </ul>
   </div>
 </div>

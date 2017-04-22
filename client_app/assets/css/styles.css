@@ -53,6 +53,10 @@ h1, h2, h3, h4, h5, h6 {
 	 border: solid 2px white;
 }
 
+.avatar-sm {
+  width: 3rem;
+}
+
 a {
 	-moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
 	-webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
