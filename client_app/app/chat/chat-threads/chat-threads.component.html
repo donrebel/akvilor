@@ -1,4 +1,14 @@
-<!-- conversations -->
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" (click)="onClick()" *ngFor="let thread of threads | async">
+      <chat-thread [thread]="thread"></chat-thread>
+    </li>
+  </ul>
+</div>
+
+
+
+<!--
 <div class="row">
   <div class="conversation-wrap">
 
@@ -8,4 +18,4 @@
     </chat-thread>
 
   </div>
-</div>
+</div> -->

@@ -1,7 +1,9 @@
 import {
   Component,
-  OnInit,
-  Inject
+  // OnInit,
+  // Inject
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Thread } from '../thread/thread.model';
@@ -15,8 +17,13 @@ import { ThreadsService } from './../thread/threads.service';
 })
 export class ChatThreadsComponent {
   threads: Observable<any>;
+  @Output() openChatWindow = new EventEmitter()
 
   constructor(public threadsService: ThreadsService) {
     this.threads = threadsService.orderedThreads;
+  }
+
+  onClick() {
+    this.openChatWindow.emit()
   }
 }

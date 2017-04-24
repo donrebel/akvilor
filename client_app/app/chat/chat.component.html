@@ -1,11 +1,16 @@
 <div class="chat-container">
-  <div class="card">
-    <ul class="list-group list-group-flush" *ngIf="mode == 'chatList'">
+  <chat-threads *ngIf = "mode == 'chatList'" (openChatWindow)="onOpenChatWindow()"></chat-threads>
+  <chat-window *ngIf = "mode == 'chatBody'" (chatWindowEvent)="onChatWindowEvent($event)"></chat-window>
+
+
+
+    <!-- <ul class="list-group list-group-flush" *ngIf="mode == 'chatList'">
       <li class="list-group-item" (click)="openChatBody('3')" *ngFor="let thread of threads | async">
         <chat-thread [thread]="thread" (openChatWindow)="onOpenChatWindow($event)"></chat-thread>
       </li>
-    </ul>
+    </ul> -->
 
+  <!-- <div class="card">
     <div class="card-header" *ngIf="mode == 'chatBody'">
       <div class="btn-holder pull-left">
         <a class="btn btn-block" (click)="closeChatBody()">
@@ -26,7 +31,15 @@
       </div>
     </div>
     <div class="card-block chat-w-c" *ngIf="mode == 'chatBody'">
-      <chat-window></chat-window>
+
+
+
+
     </div>
-  </div>
+    <div class="card-footer" *ngIf="mode == 'chatBody'">
+      <div contenteditable="true" class="chat-input" (keydown.enter)="onEnter($event)" [(ngModel)]="draftMessage.text"></div>
+    </div>
+  </div> -->
+
+
 </div>

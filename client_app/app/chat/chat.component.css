@@ -1,47 +1,10 @@
 .chat-container {
-  position:fixed;
+  position: fixed;
   bottom: 10px;
   right: 10px;
 
   width: 400px;
-}
 
-.card-header {
-  padding: 0;
-  background-color: #fafafd;
-  /*#d7d7e8*/
-}
-
-.chat-body-title {
-  padding-top: 0.5rem;
-  padding-left: 1rem;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.btn-holder {
-  height: 2.5rem;
-  width: 3rem;
-}
-
-.btn-block {
-  height: 100%;
-}
-
-.chat-w-c {
-  /*background-color: #edeef1;*/
-  background-color: #edf3fa;
-}
-
-.btn-block:hover {
-  cursor: pointer;
-  background: #e4e7e8;
-  color: #646464;
-}
-
-.list-group-item {
-  cursor: pointer;
-}
-.list-group-item:hover {
-   background-color: #f1f4f5;
+  /*resize: both;
+  overflow: auto;*/
 }

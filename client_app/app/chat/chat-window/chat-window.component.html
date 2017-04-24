@@ -1,42 +1,78 @@
-<div class="chat-window-container">
-  <div class="chat-window">
-    <div class="panel-container">
-      <div class="panel panel-default">
-
-        <div class="panel-heading top-bar">
-          <!-- <div class="panel-title-container">
-            <h3 class="panel-title">
-              <span class="glyphicon glyphicon-comment"></span>
-              Chat - {{currentThread.name}}
-            </h3>
-          </div> -->
-          <div class="panel-buttons-container">
-            <!-- you could put minimize or close buttons here -->
-          </div>
+<div class="card">
+  <div class="card-header">
+    <div class="btn-holder pull-left">
+      <a class="btn btn-block" (click)="emitChatWindowEvent('openChatThreads')">
+        <i class="fa fa-angle-left fa-2x" style="margin-top:3px" aria-hidden="true"></i>
+      </a>
+    </div>
+    <div class="row pull-left">
+      <div class="col">
+        <div class="text-nowrap chat-body-title">
+          <span>{{currentThread.name}}</span>
         </div>
-
-        <div class="panel-body msg-container-base">
-          <chat-message
-          *ngFor="let message of messages | async"
-          [message]="message">
-        </chat-message>
       </div>
+    </div>
+    <div class="btn-holder pull-right">
+      <a class="btn btn-block close-btn" (click)="emitChatWindowEvent('closeChat')">
+        <p>✖</p>
+      </a>
+    </div>
+  </div>
+  <div class="card-block chat-w-c">
 
-      <div class="panel-footer">
-        <div class="input-group">
-          <input type="text"
-          class="chat-input"
-          placeholder="Write your message here..."
-          (keydown.enter)="onEnter($event)"
-          [(ngModel)]="draftMessage.text" />
-          <span class="input-group-btn">
-            <button class="btn-chat"
-            (click)="onEnter($event)"
-            >Send</button>
-          </span>
+
+    <div class="chat-window-container">
+      <div class="chat-window">
+        <div class="panel-container">
+          <div class="panel panel-default">
+
+            <div class="panel-heading top-bar">
+              <!-- <div class="panel-title-container">
+                <h3 class="panel-title">
+                  <span class="glyphicon glyphicon-comment"></span>
+                  Chat - {{currentThread.name}}
+                </h3>
+              </div> -->
+              <div class="panel-buttons-container">
+                <!-- you could put minimize or close buttons here -->
+              </div>
+            </div>
+
+            <div class="panel-body msg-container-base">
+              <chat-message
+              *ngFor="let message of messages | async"
+              [message]="message">
+            </chat-message>
+          </div>
+
+
+
+          <!-- <div class="panel-footer">
+            <div class="input-group">
+              <input type="text"
+              class="chat-input"
+              placeholder="Write your message here..."
+              (keydown.enter)="onEnter($event)"
+              [(ngModel)]="draftMessage.text" />
+              <span class="input-group-btn">
+                <button class="btn btn-default"
+                (click)="onEnter($event)"
+                >Send</button>
+              </span>
+            </div>
+          </div> -->
+
         </div>
       </div>
 
     </div>
+    </div>
+
+
+
+
+  </div>
+  <div class="card-footer">
+    <div contenteditable="true" class="chat-input" (keydown.enter)="onEnter($event)" ></div>
   </div>
 </div>

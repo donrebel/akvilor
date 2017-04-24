@@ -1,16 +1,22 @@
 <div class="media" *ngIf="incoming">
   <img class="d-flex mr-3 rounded-circle avatar-sm" *ngIf="incoming" src="{{message.author.avatarSrc}}">
-  <div class="media-body">
+  <div class="d-flex align-items-start flex-column">
     <div class="msg-cnt">
       <span class="msg-body">{{message.text}}</span>
     </div>
     <p class="time">{{message.sender}} • {{message.sentAt | fromNow}}</p>
   </div>
+  <div class="p-2">
+  </div>
 </div>
 
-<div class="d-flex align-items-end flex-column" *ngIf="!incoming">
-    <div class="msg-cnt">
-      <span class="msg-body">{{message.text}}</span>
-    </div>
-    <p class="time" style="float:right">{{message.sender}} • {{message.sentAt | fromNow}}</p>
+<div class="d-flex flex-row justify-content-end">
+  <div class="p-2">
+  </div>
+  <div class="d-flex align-items-end flex-column" *ngIf="!incoming">
+      <div class="msg-cnt">
+        <span class="msg-body">{{message.text}}</span>
+      </div>
+      <p class="time" style="float:right">{{message.sender}} • {{message.sentAt | fromNow}}</p>
+  </div>
 </div>

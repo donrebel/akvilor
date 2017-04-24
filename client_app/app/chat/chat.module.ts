@@ -9,7 +9,7 @@ import { MessagesService } from './message/messages.service';
 
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatThreadComponent } from './chat-thread/chat-thread.component';
-// import { ChatThreadsComponent } from './chat-threads/chat-threads.component';
+import { ChatThreadsComponent } from './chat-threads/chat-threads.component';
 import { ChatWindowComponent } from './chat-window/chat-window.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
 import { FromNowPipe } from './pipes/from-now.pipe';
@@ -28,7 +28,7 @@ import { ChatContainerTmp } from './chat-container-tmp.component';
 
     ChatMessageComponent,
     ChatThreadComponent,
-    // ChatThreadsComponent,
+    ChatThreadsComponent,
     ChatWindowComponent,
     ChatPageComponent,
     FromNowPipe

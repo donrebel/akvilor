@@ -12,8 +12,10 @@
   word-wrap: break-word;
   overflow-x: hidden;
   overflow-y: visible;
+  font-family: 'Roboto', sans-serif;
 }
 
 .time {
   font-size: 0.7rem;
+  font-family: 'Roboto', sans-serif;
 }

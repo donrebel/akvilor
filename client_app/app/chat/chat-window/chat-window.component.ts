@@ -2,6 +2,8 @@ import {
   Component,
   Inject,
   ElementRef,
+  EventEmitter,
+  Output,
   OnInit
 } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -24,6 +26,8 @@ export class ChatWindowComponent implements OnInit {
   currentThread: Thread;
   draftMessage: Message;
   currentUser: User;
+
+  @Output() chatWindowEvent = new EventEmitter<String>()
 
   constructor(public messagesService: MessagesService,
               public threadsService: ThreadsService,
@@ -74,5 +78,9 @@ export class ChatWindowComponent implements OnInit {
     const scrollPane: any = this.el
       .nativeElement.querySelector('.msg-container-base');
     scrollPane.scrollTop = scrollPane.scrollHeight;
+  }
+
+  emitChatWindowEvent(eventName: string): void {
+    this.chatWindowEvent.emit(eventName)
   }
 }
