@@ -1,7 +1,7 @@
 <div class="media thread" (click)="clicked($event)">
   <img class="d-flex mr-3 rounded-circle avatar-sm" src="{{thread.avatarSrc}}">
-  <div class="media-body">
-    <h5 class="media-heading contact-name">{{thread.name}}</h5>
+  <div class="d-flex align-items-start flex-column thread-holder">
+    <label class="contact-name">{{thread.name}}</label>
     <small class="message-preview">{{thread.lastMessage.text}}</small>
   </div>
 </div>

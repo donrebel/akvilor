@@ -1,5 +1,5 @@
 <div class="media" *ngIf="incoming">
-  <img class="d-flex mr-3 rounded-circle avatar-sm" *ngIf="incoming" src="{{message.author.avatarSrc}}">
+  <img class="d-flex mr-3 rounded-circle avatar-sm" src="{{message.author.avatarSrc}}">
   <div class="d-flex align-items-start flex-column">
     <div class="msg-cnt">
       <span class="msg-body">{{message.text}}</span>
@@ -10,10 +10,11 @@
   </div>
 </div>
 
-<div class="d-flex flex-row justify-content-end">
+<div class="d-flex flex-row justify-content-end" *ngIf="!incoming">
   <div class="p-2">
   </div>
-  <div class="d-flex align-items-end flex-column" *ngIf="!incoming">
+  <!-- <div class="d-flex align-items-end flex-column" *ngIf="!incoming"> -->
+  <div class="d-flex align-items-end flex-column">
       <div class="msg-cnt">
         <span class="msg-body">{{message.text}}</span>
       </div>

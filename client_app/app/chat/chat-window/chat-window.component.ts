@@ -60,9 +60,12 @@ export class ChatWindowComponent implements OnInit {
         });
   }
 
-  onEnter(event: any): void {
-    this.sendMessage();
-    event.preventDefault();
+  onEnter(msgText: string): void {
+    if (msgText) {
+      this.draftMessage.text = msgText;
+      this.sendMessage();
+      event.preventDefault();
+    }
   }
 
   sendMessage(): void {
