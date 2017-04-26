@@ -14,18 +14,22 @@ require('./rxjs-operators');
 var _ = require('lodash');
 var auth_service_1 = require('./auth/auth.service');
 var video_chat_service_1 = require('./video-chat/services/video-chat.service');
+var chat_example_data_1 = require('./chat/c-data/chat-example-data');
+var users_service_1 = require('./chat/user/users.service');
 var threads_service_1 = require('./chat/thread/threads.service');
 var messages_service_1 = require('./chat/message/messages.service');
 var AppComponent = (function () {
-    function AppComponent(auth, router, messagesService, threadsService, videoChatService) {
+    function AppComponent(auth, router, usersService, messagesService, threadsService, videoChatService) {
         this.auth = auth;
         this.router = router;
+        this.usersService = usersService;
         this.messagesService = messagesService;
         this.threadsService = threadsService;
         this.videoChatService = videoChatService;
         this.chatRooms = [];
         this.currentUserProfileID = '';
         this.currentUserProfileLink = '';
+        chat_example_data_1.ChatExampleData.init(messagesService, threadsService, usersService);
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -73,7 +77,7 @@ var AppComponent = (function () {
             templateUrl: 'app/app.component.html',
             styleUrls: ['app/app.component.css']
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router, messages_service_1.MessagesService, threads_service_1.ThreadsService, video_chat_service_1.VideoChatService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router, users_service_1.UsersService, messages_service_1.MessagesService, threads_service_1.ThreadsService, video_chat_service_1.VideoChatService])
     ], AppComponent);
     return AppComponent;
 }());

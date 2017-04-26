@@ -9,11 +9,12 @@ import { AuthService } from './auth/auth.service';
 import { VideoChatService } from './video-chat/services/video-chat.service';
 import { ChatRoomInfo } from './video-chat/video-chat.d';
 
+import { ChatExampleData } from './chat/c-data/chat-example-data';
+import { UsersService } from './chat/user/users.service';
 import { ThreadsService } from './chat/thread/threads.service';
 import { MessagesService } from './chat/message/messages.service';
 import { Thread } from './chat/thread/thread.model';
 import { Message } from './chat/message/message.model';
-
 
 @Component({
   selector: 'akvilor',
@@ -31,10 +32,13 @@ export class AppComponent implements OnInit {
     constructor(
       public auth: AuthService,
       public router: Router,
+      public usersService: UsersService,
       public messagesService: MessagesService,
       public threadsService: ThreadsService,
       public videoChatService: VideoChatService
     ) {
+
+      ChatExampleData.init(messagesService, threadsService, usersService);
     }
 
     ngOnInit() {
@@ -63,9 +67,6 @@ export class AppComponent implements OnInit {
               },
               0);
         });
-
-
-
 
       this.videoChatService.getChatRoomInfo().subscribe((chatRoomInfo: ChatRoomInfo) => {
         console.log('chat room for: ', chatRoomInfo.data.chatLink)

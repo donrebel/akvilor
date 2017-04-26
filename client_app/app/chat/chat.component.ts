@@ -12,7 +12,8 @@ export class ChatComponent {
 
   constructor(
     public router: Router
-  ) { }
+  ) {
+  }
 
   onChatWindowEvent(signal: string) {
     if (signal == "closeChat") {
