@@ -4,7 +4,7 @@
     <div class="msg-cnt">
       <span class="msg-body">{{message.text}}</span>
     </div>
-    <p class="time">{{message.sender}} • {{message.sentAt | fromNow}}</p>
+    <p class="time">{{message.author.name}} • {{message.sentAt | fromNow}}</p>
   </div>
   <div class="p-2">
   </div>
@@ -18,6 +18,6 @@
       <div class="msg-cnt">
         <span class="msg-body">{{message.text}}</span>
       </div>
-      <p class="time" style="float:right">{{message.sender}} • {{message.sentAt | fromNow}}</p>
+      <p class="time" style="float:right">{{message.author.name}} • {{message.sentAt | fromNow}}</p>
   </div>
 </div>

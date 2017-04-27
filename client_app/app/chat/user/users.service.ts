@@ -16,6 +16,7 @@ export class UsersService {
   }
 }
 
+// max: looks like all work without the following const. Can be deleted.
 export const userServiceInjectables: Array<any> = [
   UsersService
 ];
