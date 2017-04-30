@@ -32,7 +32,7 @@ var UserPageComponent = (function () {
     UserPageComponent.prototype.getUserProfileData = function (mode) {
         var _this = this;
         if (mode == 'myPage') {
-            this.authData.getCurrentUserProfile().subscribe(function (profile) {
+            this.authData.currentUserProfile.subscribe(function (profile) {
                 _this.userProfile = profile;
                 _this.accIsLoading = false;
             }, function (err) {

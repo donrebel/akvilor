@@ -4,7 +4,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { AuthService } from '../../auth/auth.service';
 import { UserDataService } from './services/user-data.service';
-import { UserProfile } from '../../app.models';
+import { UserProfile } from '../../auth/auth.models';
 
 @Component({
   moduleId: module.id,
@@ -41,7 +41,7 @@ export class UserPageComponent implements OnInit {
 
   getUserProfileData(mode: string) {
     if (mode == 'myPage') {
-      this.authData.getCurrentUserProfile().subscribe(
+      this.authData.currentUserProfile.subscribe(
         (profile: UserProfile) => {
           this.userProfile = profile;
           this.accIsLoading = false;

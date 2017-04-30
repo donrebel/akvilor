@@ -68,7 +68,7 @@ var UAccCardEditFormComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', app_models_1.UserProfile)
+        __metadata('design:type', (typeof (_a = typeof app_models_1.UserProfile !== 'undefined' && app_models_1.UserProfile) === 'function' && _a) || Object)
     ], UAccCardEditFormComponent.prototype, "profile", void 0);
     __decorate([
         core_1.Output(), 
@@ -84,6 +84,7 @@ var UAccCardEditFormComponent = (function () {
         __metadata('design:paramtypes', [user_data_service_1.UserDataService, auth_service_1.AuthService, forms_1.FormBuilder])
     ], UAccCardEditFormComponent);
     return UAccCardEditFormComponent;
+    var _a;
 }());
 exports.UAccCardEditFormComponent = UAccCardEditFormComponent;
 //# sourceMappingURL=uacc-card-edit-form.component.js.map

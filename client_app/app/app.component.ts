@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     private currentUserProfileLink: string = '';
 
     constructor(
-      public auth: AuthService,
+      public authService: AuthService,
       public router: Router,
       public usersService: UsersService,
       public messagesService: MessagesService,
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
       public videoChatService: VideoChatService
     ) {
 
-      ChatExampleData.init(messagesService, threadsService, usersService);
+      ChatExampleData.init(messagesService, threadsService, authService);
     }
 
     ngOnInit() {
@@ -81,11 +81,11 @@ export class AppComponent implements OnInit {
         }
       })
 
-      this.auth.getCurrentUserProfileFromDB()
+      this.authService.getCurrentUserProfileFromDB()
     }
 
     test() {
-      let c = this.auth.authenticated();
+      let c = this.authService.authenticated();
       console.log(c)
     }
 }

@@ -19,8 +19,8 @@ var users_service_1 = require('./chat/user/users.service');
 var threads_service_1 = require('./chat/thread/threads.service');
 var messages_service_1 = require('./chat/message/messages.service');
 var AppComponent = (function () {
-    function AppComponent(auth, router, usersService, messagesService, threadsService, videoChatService) {
-        this.auth = auth;
+    function AppComponent(authService, router, usersService, messagesService, threadsService, videoChatService) {
+        this.authService = authService;
         this.router = router;
         this.usersService = usersService;
         this.messagesService = messagesService;
@@ -29,7 +29,7 @@ var AppComponent = (function () {
         this.chatRooms = [];
         this.currentUserProfileID = '';
         this.currentUserProfileLink = '';
-        chat_example_data_1.ChatExampleData.init(messagesService, threadsService, usersService);
+        chat_example_data_1.ChatExampleData.init(messagesService, threadsService, authService);
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -65,10 +65,10 @@ var AppComponent = (function () {
                 _this.videoFrame = false;
             }
         });
-        this.auth.getCurrentUserProfileFromDB();
+        this.authService.getCurrentUserProfileFromDB();
     };
     AppComponent.prototype.test = function () {
-        var c = this.auth.authenticated();
+        var c = this.authService.authenticated();
         console.log(c);
     };
     AppComponent = __decorate([

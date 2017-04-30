@@ -33,7 +33,7 @@ var UAccCardComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', app_models_1.UserProfile)
+        __metadata('design:type', (typeof (_a = typeof app_models_1.UserProfile !== 'undefined' && app_models_1.UserProfile) === 'function' && _a) || Object)
     ], UAccCardComponent.prototype, "profile", void 0);
     __decorate([
         core_1.Output(), 
@@ -49,6 +49,7 @@ var UAccCardComponent = (function () {
         __metadata('design:paramtypes', [])
     ], UAccCardComponent);
     return UAccCardComponent;
+    var _a;
 }());
 exports.UAccCardComponent = UAccCardComponent;
 //# sourceMappingURL=uacc-card.component.js.map

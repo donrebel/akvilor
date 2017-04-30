@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs/Rx';
-import { User } from '../user/user.model';
+// import { User } from '../user/user.model';
+import { User } from '../../auth/auth.models';
 import { Thread } from '../thread/thread.model';
 import { Message } from '../message/message.model';
 

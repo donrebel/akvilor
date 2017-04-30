@@ -3,11 +3,11 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/Rx';
+import { Subject, BehaviorSubject } from 'rxjs/Rx';
 import 'rxjs/add/operator/filter';
 
 import { APP_CONFIG, AppConfig } from '../app-config';
-import { AuthOUserProfile, UserProfile } from '../app.models';
+import { AuthOUserProfile, UserProfile, User } from './auth.models';
 import { UtilService } from '../core/services/util.service';
 
 declare var Auth0Lock: any;
@@ -26,10 +26,12 @@ export class AuthService {
       }
     });
 
-
+  currentUserProfile: Subject<UserProfile> = new BehaviorSubject<UserProfile>(null)
+  currentUser: Subject<User> = new BehaviorSubject<User>(null)
   private currentUserID: string;
-  private guestProfile: UserProfile;
-  private $currentUserProfile: BehaviorSubject<UserProfile>;
+  // private guestProfile: UserProfile;
+  // private $currentUserProfile: BehaviorSubject<UserProfile>;
+
 
   constructor(
     private http: Http,
@@ -37,15 +39,31 @@ export class AuthService {
     private util: UtilService,
     @Inject(APP_CONFIG) appConfig: AppConfig
   ) {
-    this.guestProfile = new UserProfile("guest");
-    this.$currentUserProfile = new BehaviorSubject(this.guestProfile);
+    var guestProfile: UserProfile = new UserProfile("guest");
+    this.currentUserProfile = new BehaviorSubject<UserProfile>(guestProfile);
+    var guestUser: User = new User("guest");
+    this.currentUser = new BehaviorSubject<User>(guestUser);
+    // this.$currentUserProfile = new BehaviorSubject(this.guestProfile);
     this.apiBaseUrl = appConfig.apiEndpoint;
+
     this.lock.on("authenticated", (authResult: any) => {
       localStorage.setItem('id_token', authResult.idToken);
       this.getCurrentUserProfileFromDB();
       this.router.navigateByUrl(authResult.state);
       this.lock.hide();
     });
+  }
+
+  public getCurrentUserProfile() {
+    // return this.$currentUserProfile.asObservable();
+  }
+
+  private setCurrentUserProfile(profile: UserProfile): void {
+    this.currentUserProfile.next(profile)
+  }
+
+  private setCurrentUser(user: User): void {
+    this.currentUser.next(user)
   }
 
   public login() {
@@ -76,15 +94,11 @@ export class AuthService {
       .map((response) => {
         let res = this.util.extractDataHttpRequest(response)
         if (response.ok) {
-          this.$currentUserProfile.next(profileData);
+          this.currentUserProfile.next(profileData);
         }
         return res
       })
       .catch(this.util.handleErrorHttpRequest);
-  }
-
-  public getCurrentUserProfile() {
-    return this.$currentUserProfile.asObservable();
   }
 
   public getCurrentUserProfileFromDB() {
@@ -95,14 +109,22 @@ export class AuthService {
           console.log(error);
         }
 
-        this.currentUserID = authOProfile.identities[0].user_id;
+        var currentUserID = authOProfile.identities[0].user_id;
 
         this.http
-          .get(`${this.apiBaseUrl}userProfile/${this.currentUserID}`)
+          .get(`${this.apiBaseUrl}userProfile/${currentUserID}`)
           .map(this.util.extractDataHttpRequest)
           .catch(this.util.handleErrorHttpRequest)
           .subscribe(
-            (acc) => {this.$currentUserProfile.next(acc)},
+            (acc) => {
+              this.setCurrentUserProfile(acc)
+              let user: User = new User (
+                acc.id,
+                acc.autho_profile.nickname,
+                acc.autho_profile.picture
+              )
+              this.setCurrentUser(user)
+            },
             (err) => {console.log(err)},
             () => {}
           );
@@ -110,7 +132,6 @@ export class AuthService {
     }
   }
 }
-
 
 // var obj = {x: 1};
 // var source = Rx.Observable.ofObjectChanges(obj);

@@ -18,9 +18,11 @@ var router_1 = require('@angular/router');
 var Rx_1 = require('rxjs/Rx');
 require('rxjs/add/operator/filter');
 var app_config_1 = require('../app-config');
-var app_models_1 = require('../app.models');
+var auth_models_1 = require('./auth.models');
 var util_service_1 = require('../core/services/util.service');
 var AuthService = (function () {
+    // private guestProfile: UserProfile;
+    // private $currentUserProfile: BehaviorSubject<UserProfile>;
     function AuthService(http, router, util, appConfig) {
         var _this = this;
         this.http = http;
@@ -33,8 +35,13 @@ var AuthService = (function () {
                 redirect: false,
             }
         });
-        this.guestProfile = new app_models_1.UserProfile("guest");
-        this.$currentUserProfile = new Rx_1.BehaviorSubject(this.guestProfile);
+        this.currentUserProfile = new Rx_1.BehaviorSubject(null);
+        this.currentUser = new Rx_1.BehaviorSubject(null);
+        var guestProfile = new auth_models_1.UserProfile("guest");
+        this.currentUserProfile = new Rx_1.BehaviorSubject(guestProfile);
+        var guestUser = new auth_models_1.User("guest");
+        this.currentUser = new Rx_1.BehaviorSubject(guestUser);
+        // this.$currentUserProfile = new BehaviorSubject(this.guestProfile);
         this.apiBaseUrl = appConfig.apiEndpoint;
         this.lock.on("authenticated", function (authResult) {
             localStorage.setItem('id_token', authResult.idToken);
@@ -43,6 +50,15 @@ var AuthService = (function () {
             _this.lock.hide();
         });
     }
+    AuthService.prototype.getCurrentUserProfile = function () {
+        // return this.$currentUserProfile.asObservable();
+    };
+    AuthService.prototype.setCurrentUserProfile = function (profile) {
+        this.currentUserProfile.next(profile);
+    };
+    AuthService.prototype.setCurrentUser = function (user) {
+        this.currentUser.next(user);
+    };
     AuthService.prototype.login = function () {
         this.lock.show({
             auth: {
@@ -68,14 +84,11 @@ var AuthService = (function () {
             .map(function (response) {
             var res = _this.util.extractDataHttpRequest(response);
             if (response.ok) {
-                _this.$currentUserProfile.next(profileData);
+                _this.currentUserProfile.next(profileData);
             }
             return res;
         })
             .catch(this.util.handleErrorHttpRequest);
-    };
-    AuthService.prototype.getCurrentUserProfile = function () {
-        return this.$currentUserProfile.asObservable();
     };
     AuthService.prototype.getCurrentUserProfileFromDB = function () {
         var _this = this;
@@ -85,12 +98,16 @@ var AuthService = (function () {
                 if (error) {
                     console.log(error);
                 }
-                _this.currentUserID = authOProfile.identities[0].user_id;
+                var currentUserID = authOProfile.identities[0].user_id;
                 _this.http
-                    .get(_this.apiBaseUrl + "userProfile/" + _this.currentUserID)
+                    .get(_this.apiBaseUrl + "userProfile/" + currentUserID)
                     .map(_this.util.extractDataHttpRequest)
                     .catch(_this.util.handleErrorHttpRequest)
-                    .subscribe(function (acc) { _this.$currentUserProfile.next(acc); }, function (err) { console.log(err); }, function () { });
+                    .subscribe(function (acc) {
+                    _this.setCurrentUserProfile(acc);
+                    var user = new auth_models_1.User(acc.id, acc.autho_profile.nickname, acc.autho_profile.picture);
+                    _this.setCurrentUser(user);
+                }, function (err) { console.log(err); }, function () { });
             });
         }
     };

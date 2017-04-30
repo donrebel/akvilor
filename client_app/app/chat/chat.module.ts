@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
-import { ChatRoutingModule } from './chat-routing.module';
-import { ChatComponent } from './chat.component';
 
+import { SharedModule } from '../shared/shared.module';
+
+import { ChatRoutingModule } from './chat-routing.module';
 import { UsersService } from './user/users.service';
 import { ThreadsService } from './thread/threads.service';
 import { MessagesService } from './message/messages.service';
 
+import { ChatComponent } from './chat.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatThreadComponent } from './chat-thread/chat-thread.component';
 import { ChatThreadsComponent } from './chat-threads/chat-threads.component';

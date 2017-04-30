@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-// import * as moment from 'moment';
+import * as moment from 'moment';
 
 /**
  * FromNowPipe let's us convert a date into a human-readable relative-time
@@ -10,8 +10,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FromNowPipe implements PipeTransform {
   transform(value: any, args: Array<any>): string {
-    // return moment(value).fromNow();
-    return "2017-o4-15T08:42:51.918Z"
+    return moment(value).fromNow();
   }
 }
 

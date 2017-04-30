@@ -1,4 +1,5 @@
-import { User } from '../user/user.model';
+// import { User } from '../user/user.model';
+import { User } from '../../auth/auth.models';
 import { Thread } from '../thread/thread.model';
 import { uuid } from '../../shared/utils';
 

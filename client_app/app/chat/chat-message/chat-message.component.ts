@@ -5,13 +5,14 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { UsersService } from './../user/users.service';
+import { AuthService } from '../../auth/auth.service';
 import { ThreadsService } from './../thread/threads.service';
 import { MessagesService } from './../message/messages.service';
 
 import { Message } from './../message/message.model';
 import { Thread } from './../thread/thread.model';
-import { User } from './../user/user.model';
+import { User } from '../../auth/auth.models';
+
 
 @Component({
   moduleId: module.id,
@@ -24,11 +25,11 @@ export class ChatMessageComponent implements OnInit {
   currentUser: User;
   incoming: boolean;
 
-  constructor(public UsersService: UsersService) {
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.UsersService.currentUser
+    this.authService.currentUser
       .subscribe(
         (user: User) => {
           this.currentUser = user;

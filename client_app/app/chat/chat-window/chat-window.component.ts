@@ -8,8 +8,10 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { User } from '../user/user.model';
-import { UsersService } from '../user/users.service';
+// import { User } from '../user/user.model';
+import { User } from '../../auth/auth.models';
+// import { UsersService } from '../user/users.service';
+import { AuthService } from '../../auth/auth.service';
 import { Thread } from '../thread/thread.model';
 import { ThreadsService } from '../thread/threads.service';
 import { Message } from '../message/message.model';
@@ -31,7 +33,8 @@ export class ChatWindowComponent implements OnInit {
 
   constructor(public messagesService: MessagesService,
               public threadsService: ThreadsService,
-              public UsersService: UsersService,
+              // public UsersService: UsersService,
+              public AuthService: AuthService,
               public el: ElementRef) {
   }
 
@@ -45,7 +48,12 @@ export class ChatWindowComponent implements OnInit {
         this.currentThread = thread;
       });
 
-    this.UsersService.currentUser
+    // this.UsersService.currentUser
+    // .subscribe(
+    //   (user: User) => {
+    //     this.currentUser = user;
+    //   });
+    this.AuthService.currentUser
       .subscribe(
         (user: User) => {
           this.currentUser = user;

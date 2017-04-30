@@ -6,7 +6,7 @@
       </div>
     </div>
     <nav class="links">
-			<ul *ngIf="auth.authenticated()">
+			<ul *ngIf="authService.authenticated()">
         <li><a routerLink="/home">back to find</a></li>
         <li><a routerLink="/u">my page</a></li>
 
@@ -21,8 +21,8 @@
 		</nav>
     <div class="row">
       <div class="col-md-12">
-        <a class="akvilor right" (click)="auth.login()" *ngIf="!auth.authenticated()">Sign In</a>
-        <a class="akvilor" (click)="auth.logout()" *ngIf="auth.authenticated()">Sign Out</a>
+        <a class="akvilor right" (click)="authService.login()" *ngIf="!authService.authenticated()">Sign In</a>
+        <a class="akvilor" (click)="authService.logout()" *ngIf="authService.authenticated()">Sign Out</a>
       </div>
     </div>
 	</header>
