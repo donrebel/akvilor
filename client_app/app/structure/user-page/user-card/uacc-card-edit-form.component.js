@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var auth_service_1 = require('../../../auth/auth.service');
 var user_data_service_1 = require('../services/user-data.service');
-var app_models_1 = require('../../../app.models');
+var auth_models_1 = require('../../../auth/auth.models');
 var UAccCardEditFormComponent = (function () {
     function UAccCardEditFormComponent(userData, authData, fb) {
         this.userData = userData;
@@ -68,7 +68,7 @@ var UAccCardEditFormComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', (typeof (_a = typeof app_models_1.UserProfile !== 'undefined' && app_models_1.UserProfile) === 'function' && _a) || Object)
+        __metadata('design:type', auth_models_1.UserProfile)
     ], UAccCardEditFormComponent.prototype, "profile", void 0);
     __decorate([
         core_1.Output(), 
@@ -84,7 +84,6 @@ var UAccCardEditFormComponent = (function () {
         __metadata('design:paramtypes', [user_data_service_1.UserDataService, auth_service_1.AuthService, forms_1.FormBuilder])
     ], UAccCardEditFormComponent);
     return UAccCardEditFormComponent;
-    var _a;
 }());
 exports.UAccCardEditFormComponent = UAccCardEditFormComponent;
 //# sourceMappingURL=uacc-card-edit-form.component.js.map

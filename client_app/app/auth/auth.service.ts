@@ -118,11 +118,12 @@ export class AuthService {
           .subscribe(
             (acc) => {
               this.setCurrentUserProfile(acc)
-              let user: User = new User (
-                acc.id,
-                acc.autho_profile.nickname,
-                acc.autho_profile.picture
-              )
+              // let user: User = new User (
+              //   acc.id,
+              //   acc.autho_profile.nickname,
+              //   acc.autho_profile.picture
+              // )
+              let user: User = new User (acc)
               this.setCurrentUser(user)
             },
             (err) => {console.log(err)},

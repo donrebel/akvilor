@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { AuthService } from '../../../auth/auth.service';
 import { UserDataService } from '../services/user-data.service';
-import { UserProfile } from '../../../app.models';
+import { UserProfile } from '../../../auth/auth.models';
 
 @Component({
   moduleId: module.id,

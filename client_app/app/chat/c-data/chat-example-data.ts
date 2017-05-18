@@ -10,11 +10,50 @@ import * as moment from 'moment';
 
 // the person using the app us Juliet
 // const me: User      = new User('max.y.kovalenko', 'assets/chat_assets/images/avatars/female-avatar-1.png');
-const ladycap: User = new User('', 'Lady Capulet', 'assets/chat_assets/images/avatars/female-avatar-2.png');
-const echo: User    = new User('', 'Echo Bot', 'assets/chat_assets/images/avatars/male-avatar-1.png');
-const rev: User     = new User('', 'Reverse Bot', 'assets/chat_assets/images/avatars/female-avatar-4.png');
-const wait: User    = new User('', 'Waiting Bot', 'assets/chat_assets/images/avatars/male-avatar-2.png');
-const umax: User    = new User('575219c5eddebf241d6126fb', 'Max', 'https://s.gravatar.com/avatar/774d996e8aa03c387171d7c9b7baabc4?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png');
+var obj = {
+  id: '',
+  autho_profile: {
+    nickname: 'Lady Capulet',
+    picture: 'assets/chat_assets/images/avatars/female-avatar-2.png'
+  }
+}
+const ladycap: User = new User(obj);
+
+var obj = {
+  id: '',
+  autho_profile: {
+    nickname: 'Echo Bot',
+    picture: 'assets/chat_assets/images/avatars/male-avatar-1.png'
+  }
+}
+const echo: User = new User(obj);
+
+var obj = {
+  id: '',
+  autho_profile: {
+    nickname: 'Reverse Bot',
+    picture: 'assets/chat_assets/images/avatars/female-avatar-4.png'
+  }
+}
+const rev: User = new User(obj);
+
+var obj = {
+  id: '',
+  autho_profile: {
+    nickname: 'Waiting Bot',
+    picture: 'assets/chat_assets/images/avatars/male-avatar-2.png'
+  }
+}
+const wait: User = new User(obj);
+
+var obj = {
+  id: '575219c5eddebf241d6126fb',
+  autho_profile: {
+    nickname: 'Max',
+    picture: 'https://s.gravatar.com/avatar/774d996e8aa03c387171d7c9b7baabc4?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fma.png'
+  }
+}
+const umax: User = new User(obj);
 
 const tLadycap: Thread = new Thread('tLadycap', ladycap.name, ladycap.avatarSrc);
 const tEcho: Thread    = new Thread('tEcho', echo.name, echo.avatarSrc);

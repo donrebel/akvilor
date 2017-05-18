@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var app_models_1 = require('../../../app.models');
+var auth_models_1 = require('../../../auth/auth.models');
 var UAccCardComponent = (function () {
     //selectedOption: string;
     function UAccCardComponent() {
@@ -33,7 +33,7 @@ var UAccCardComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', (typeof (_a = typeof app_models_1.UserProfile !== 'undefined' && app_models_1.UserProfile) === 'function' && _a) || Object)
+        __metadata('design:type', auth_models_1.UserProfile)
     ], UAccCardComponent.prototype, "profile", void 0);
     __decorate([
         core_1.Output(), 
@@ -49,7 +49,6 @@ var UAccCardComponent = (function () {
         __metadata('design:paramtypes', [])
     ], UAccCardComponent);
     return UAccCardComponent;
-    var _a;
 }());
 exports.UAccCardComponent = UAccCardComponent;
 //# sourceMappingURL=uacc-card.component.js.map

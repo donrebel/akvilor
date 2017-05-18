@@ -23,3 +23,13 @@ import { uuid } from '../../shared/utils';
      this.thread = obj && obj.thread || null;
    }
  }
+
+ export enum MessagingEvent {
+     ImTyping,
+     IStoppedTyping,
+     SendMessage,
+     MessageReceived,
+     UserTyping,
+     UserStoppedTyping,
+     NewMessage,
+ }

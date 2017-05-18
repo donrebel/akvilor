@@ -60,13 +60,20 @@ export class User {
   name: string;
   avatarSrc: string
 
-  constructor (id?: string, name?: string, avatarSrc?: string) {
-    if (id == '') {
-      this.id = uuid()
-    } else {
-      this.id = id
-    };
-    this.name = name || 'guest';
-    this.avatarSrc = avatarSrc || '';
+  // constructor (id?: string, name?: string, avatarSrc?: string) {
+  //   if (id == '') {
+  //     this.id = uuid()
+  //   } else {
+  //     this.id = id
+  //   };
+  //   this.name = name || 'guest';
+  //   this.avatarSrc = avatarSrc || '';
+  // }
+
+  constructor (obj?: any) {
+    this.id = obj && obj.id || uuid()
+    this.name = obj && obj.autho_profile && obj.autho_profile.nickname || 'guest'
+    this.avatarSrc = obj && obj.autho_profile && obj.autho_profile.picture || ''
   }
+
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UAccCardEditFormModalComponent } from './uacc-card-edit-form-modal.component';
-import { UserProfile } from '../../../app.models';
+import { UserProfile } from '../../../auth/auth.models';
 
 @Component({
   moduleId: module.id,

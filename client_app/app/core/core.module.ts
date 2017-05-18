@@ -8,6 +8,7 @@ import { VideoChatModule } from '../video-chat/video-chat.module';
 import { AuthModule } from '../auth/auth.module';
 import { SearchService } from './services/search.service';
 import { UtilService } from './services/util.service';
+import { IoService } from './services/io.service';
 import { CanDeactivateGuard }  from './guards/can-deactivate-guard.service';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CanDeactivateGuard }  from './guards/can-deactivate-guard.service';
     providers: [
       SearchService,
       UtilService,
+      IoService,
       CanDeactivateGuard
     ]
 })

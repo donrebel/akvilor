@@ -105,7 +105,12 @@ var AuthService = (function () {
                     .catch(_this.util.handleErrorHttpRequest)
                     .subscribe(function (acc) {
                     _this.setCurrentUserProfile(acc);
-                    var user = new auth_models_1.User(acc.id, acc.autho_profile.nickname, acc.autho_profile.picture);
+                    // let user: User = new User (
+                    //   acc.id,
+                    //   acc.autho_profile.nickname,
+                    //   acc.autho_profile.picture
+                    // )
+                    var user = new auth_models_1.User(acc);
                     _this.setCurrentUser(user);
                 }, function (err) { console.log(err); }, function () { });
             });

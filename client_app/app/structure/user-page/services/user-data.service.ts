@@ -5,7 +5,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 
 import { APP_CONFIG, AppConfig } from '../../../app-config';
-import { UserProfile } from '../../../app.models';
+import { UserProfile } from '../../../auth/auth.models';
 import { UtilService } from '../../../core/services/util.service';
 
 @Injectable()

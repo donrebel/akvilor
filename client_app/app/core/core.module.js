@@ -19,6 +19,7 @@ var video_chat_module_1 = require('../video-chat/video-chat.module');
 var auth_module_1 = require('../auth/auth.module');
 var search_service_1 = require('./services/search.service');
 var util_service_1 = require('./services/util.service');
+var io_service_1 = require('./services/io.service');
 var can_deactivate_guard_service_1 = require('./guards/can-deactivate-guard.service');
 var CoreModule = (function () {
     function CoreModule(parentModule) {
@@ -41,6 +42,7 @@ var CoreModule = (function () {
             providers: [
                 search_service_1.SearchService,
                 util_service_1.UtilService,
+                io_service_1.IoService,
                 can_deactivate_guard_service_1.CanDeactivateGuard
             ]
         }),
